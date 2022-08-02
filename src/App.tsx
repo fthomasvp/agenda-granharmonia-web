@@ -1,11 +1,13 @@
+import PageContainer from "./layouts/PageContainer";
+
 import "./App.css";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <h1>Hello World!</h1>
-    </div>
+    <section className="App">
+      <PageContainer />
+    </section>
   );
-}
+};
 
 export default App;
