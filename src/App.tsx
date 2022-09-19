@@ -1,11 +1,11 @@
-import PageContainer from "./layouts/PageContainer";
+import Pages from "./pages";
 
 import "./App.css";
 
 const App = () => {
   return (
     <section className="App">
-      <PageContainer />
+      <Pages />
     </section>
   );
 };

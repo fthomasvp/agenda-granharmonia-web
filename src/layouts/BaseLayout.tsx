@@ -1,14 +1,13 @@
+import { PropsWithChildren } from "react";
 import { Grid, GridItem } from "@chakra-ui/react";
 
-const PageContainer = () => {
+const templateArea = `"header header"
+"nav main"
+"footer footer"`;
+
+const BaseLayout = ({ children }: PropsWithChildren) => {
   return (
-    <Grid
-      templateAreas={`"header header"
-          "nav main"
-          "footer footer"`}
-      gridTemplateColumns="0.25fr 1fr"
-      gap="1"
-    >
+    <Grid templateAreas={templateArea} gridTemplateColumns="0.25fr 1fr" gap="1">
       <GridItem pl="2" bg="orange.300" area="header">
         Header
       </GridItem>
@@ -16,7 +15,7 @@ const PageContainer = () => {
         Nav
       </GridItem>
       <GridItem pl="2" bg="green.300" area="main">
-        Main
+        {children}
       </GridItem>
       <GridItem pl="2" bg="blue.300" area="footer">
         Footer
@@ -25,4 +24,4 @@ const PageContainer = () => {
   );
 };
 
-export default PageContainer;
+export default BaseLayout;
