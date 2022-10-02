@@ -26,3 +26,10 @@ dist-ssr
 # Tests
 coverage
 TEST-*.xml
+
+# Environment variables
+.env*
+!.env.example
+
+# json-server
+data

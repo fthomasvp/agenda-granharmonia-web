@@ -1,0 +1,11 @@
+{
+  "welcome": "Welcome again!",
+  "doLoginToContinue": "Do login to continue",
+  "name": "Name",
+  "password": "Password",
+  "email": "E-mail",
+  "login": "Login",
+  "resend": "Resend",
+  "confirm": "Confirm",
+  "cancel": "Cancel"
+}

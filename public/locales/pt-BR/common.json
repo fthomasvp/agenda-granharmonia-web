@@ -1,0 +1,11 @@
+{
+  "welcome": "Bem-vindo(a) de volta!",
+  "doLoginToContinue": "Faça login para continuar",
+  "name": "Nome",
+  "password": "Senha",
+  "email": "E-mail",
+  "login": "Entrar",
+  "resend": "Reenviar",
+  "confirm": "Confirmar",
+  "cancel": "Cancelar"
+}

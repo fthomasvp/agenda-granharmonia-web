@@ -5,7 +5,7 @@ const templateArea = `"header header"
 "nav main"
 "footer footer"`;
 
-const BaseLayout = ({ children }: PropsWithChildren) => {
+const PageContainer = ({ children }: PropsWithChildren) => {
   return (
     <Grid templateAreas={templateArea} gridTemplateColumns="0.25fr 1fr" gap="1">
       <GridItem pl="2" bg="orange.300" area="header">
@@ -24,4 +24,4 @@ const BaseLayout = ({ children }: PropsWithChildren) => {
   );
 };
 
-export default BaseLayout;
+export default PageContainer;

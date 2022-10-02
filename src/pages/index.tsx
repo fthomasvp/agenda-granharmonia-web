@@ -1,23 +1,25 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-import SignIn from "./SignIn";
+import { RequireAuth } from "../features/auth";
+import { PageContainer } from "../layouts";
+import Login from "./Login";
 
-const Pages = () => {
+export default function Pages() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<SignIn />}>
-          {/* <Route index element={<Home />} /> */}
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<Login />} />
 
-          {/* <Route path="teams" element={<Teams />}>
-            <Route path=":teamId" element={<Team />} />
-            <Route path="new" element={<NewTeamForm />} />
-            <Route index element={<LeagueStandings />} />
-          </Route> */}
-        </Route>
+        <Route
+          path="/home"
+          element={
+            <RequireAuth>
+              <PageContainer>HomePage</PageContainer>
+            </RequireAuth>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
-};
-
-export default Pages;
+}

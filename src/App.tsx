@@ -1,13 +1,14 @@
-import Pages from "./pages";
+import { Spinner } from "@chakra-ui/react";
+import { lazy, Suspense } from "react";
 
 import "./App.css";
 
-const App = () => {
-  return (
-    <section className="App">
-      <Pages />
-    </section>
-  );
-};
+const Pages = lazy(() => import("./pages"));
 
-export default App;
+export default function App() {
+  return (
+    <Suspense fallback={<Spinner />}>
+      <Pages />
+    </Suspense>
+  );
+}
