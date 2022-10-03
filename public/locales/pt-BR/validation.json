@@ -1,4 +1,5 @@
 {
   "requiredEmail": "Digite um e-mail",
-  "requiredPassword": "Digite uma senha"
+  "requiredPassword": "Digite uma senha",
+  "invalidEmail": "Digite um e-mail válido"
 }

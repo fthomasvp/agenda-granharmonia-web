@@ -1,4 +1,12 @@
-import { Box, Center, Flex, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Flex,
+  Heading,
+  Image,
+  Text,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
@@ -12,16 +20,31 @@ import {
   loginSchema,
   loginService,
   useAuthStore,
-} from "../features/auth";
+} from "../features/authentication";
 
-import { GranHarmoniaLogo } from "../assets/images";
+import { Ball, GranHarmoniaLogo } from "../assets/images";
 import { OxentiLabStamp } from "../components/ui";
+import { MobileContainer } from "../layouts";
 
 export default function SignIn() {
   const { t } = useTranslation(["common", "validation"]);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const ballVariantSize = useBreakpointValue(
+    {
+      base: "12",
+      sm: "14",
+      md: "20",
+      lg: "20",
+      xl: "24",
+    },
+    {
+      fallback: "md",
+      ssr: false,
+    }
+  );
 
   const from = (location.state as any)?.from?.pathname || "/home";
 
@@ -56,15 +79,16 @@ export default function SignIn() {
   }, [loginMutation.isSuccess]);
 
   return (
-    <Flex
-      flex={1}
-      flexDir="column"
-      alignItems="stretch"
-      h="100%"
-      w={["100%", "80%", "80%", "50%"]}
-      margin="0 auto"
-    >
-      <Flex justify="center" mb="8">
+    <MobileContainer>
+      <Image
+        src={Ball}
+        alt="Ball on top right position"
+        pos="absolute"
+        right={0}
+        boxSize={ballVariantSize}
+      />
+
+      <Flex justify="center" my="8">
         <Image src={GranHarmoniaLogo} alt="Gran Harmonia Logo" />
       </Flex>
 
@@ -82,9 +106,18 @@ export default function SignIn() {
         </FormProvider>
       </Flex>
 
-      <Center>
+      <Center flex={1}>
         <OxentiLabStamp />
       </Center>
-    </Flex>
+
+      <Image
+        src={Ball}
+        alt="Ball on bottom right position"
+        pos="absolute"
+        right={0}
+        bottom={0}
+        boxSize="10"
+      />
+    </MobileContainer>
   );
 }

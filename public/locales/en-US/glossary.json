@@ -1,0 +1,5 @@
+{
+  "forgotPasswordInstructionOne": "You will receive a six digits code in your e-mail.",
+  "forgotPasswordInstructionTwo": "The code will be used to confirm that you are the person who is requesting the password change.",
+  "forgotPasswordInstructionThree": "Do not share the code with anyone."
+}

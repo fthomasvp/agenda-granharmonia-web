@@ -1,11 +1,16 @@
 {
   "welcome": "Bem-vindo(a) de volta!",
   "doLoginToContinue": "Faça login para continuar",
+  "forgotPassword": "Esqueci minha senha",
+  "forgotPassword_question": "Esqueceu a senha?",
   "name": "Nome",
   "password": "Senha",
   "email": "E-mail",
   "login": "Entrar",
   "resend": "Reenviar",
   "confirm": "Confirmar",
-  "cancel": "Cancelar"
+  "cancel": "Cancelar",
+  "back": "Voltar",
+  "send": "Enviar",
+  "code": "Código"
 }

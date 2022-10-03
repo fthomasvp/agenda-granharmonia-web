@@ -1,11 +1,16 @@
 {
   "welcome": "Welcome again!",
   "doLoginToContinue": "Do login to continue",
+  "forgotPassword": "Forgot my password",
+  "forgotPassword_question": "Did you forget the password?",
   "name": "Name",
   "password": "Password",
   "email": "E-mail",
   "login": "Login",
   "resend": "Resend",
   "confirm": "Confirm",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "back": "Back",
+  "send": "Send",
+  "code": "Code"
 }
