@@ -16,6 +16,7 @@ const AInput = ({ label, name, ...rest }: AInputProps) => {
     <>
       <FormLabel htmlFor={name}>{label}</FormLabel>
       <Input
+        data-test={`${name}-input`}
         id={name}
         isInvalid={Boolean(errors[`${name}`])}
         {...register(name)}
