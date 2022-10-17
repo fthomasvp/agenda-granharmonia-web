@@ -4,6 +4,7 @@ import { RequireAuth } from "../features/authentication";
 import { PageContainer } from "../layouts";
 import ForgotPassword from "./ForgotPassword";
 import Login from "./Login";
+import VerifyCode from "./VerifyCode";
 
 export default function Pages() {
   return (
@@ -12,6 +13,7 @@ export default function Pages() {
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/verify-code" element={<VerifyCode />} />
 
         <Route
           path="/home"

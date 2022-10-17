@@ -1,5 +1,6 @@
 {
   "requiredEmail": "Enter an e-mail",
   "requiredPassword": "Enter a password",
-  "invalidEmail": "Enter a valid e-mail"
+  "invalidEmail": "Enter a valid e-mail",
+  "requiredCode": "Enter a code"
 }

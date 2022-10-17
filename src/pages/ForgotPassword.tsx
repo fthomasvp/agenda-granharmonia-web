@@ -36,17 +36,23 @@ export default function ForgotPassword() {
 
   const onSubmit: SubmitHandler<ForgotPasswordType> = (data) => {
     console.log("> data", data);
+
+    navigate("/verify-code");
   };
 
   return (
     <MobileContainer>
       <Flex flex={1}>
-        <Button leftIcon={<FaArrowLeft />} onClick={() => navigate(-1)}>
+        <Button
+          variant="ghost"
+          leftIcon={<FaArrowLeft />}
+          onClick={() => navigate(-1)}
+        >
           {t("back")}
         </Button>
       </Flex>
 
-      <Flex flex={0.5}>
+      <Flex flex={1}>
         <Heading fontWeight="bold">{t("forgotPassword_question")}</Heading>
       </Flex>
 
