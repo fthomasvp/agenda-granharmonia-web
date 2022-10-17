@@ -15,14 +15,12 @@ export default function Pages() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/verify-code" element={<VerifyCode />} />
 
-        <Route
-          path="/home"
-          element={
-            <RequireAuth>
-              <PageContainer>HomePage</PageContainer>
-            </RequireAuth>
-          }
-        />
+        <Route element={<RequireAuth />}>
+          <Route
+            path="/home"
+            element={<PageContainer>HomePage</PageContainer>}
+          />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
