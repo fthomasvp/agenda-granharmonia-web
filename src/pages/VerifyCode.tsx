@@ -1,21 +1,13 @@
-import {
-  Button,
-  Flex,
-  Heading,
-  Image,
-  useBreakpointValue,
-} from "@chakra-ui/react";
+import { Flex, Heading, Image, useBreakpointValue } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
-import { FaArrowLeft } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 
 import { MobileGreenCheck } from "../assets/images";
-import FormVerifyCode from "../features/authentication/components/FormVerifyCode";
+import { BackButton } from "../components/ui";
+import { FormVerifyCode } from "../features/authentication";
 import { MobileContainer } from "../layouts";
 
 export default function VerifyCode() {
   const { t } = useTranslation(["common", "glossary", "validation"]);
-  const navigate = useNavigate();
 
   const mobileGreenCheckVariantSize = useBreakpointValue(
     {
@@ -38,13 +30,7 @@ export default function VerifyCode() {
   return (
     <MobileContainer>
       <Flex flex={1}>
-        <Button
-          variant="ghost"
-          leftIcon={<FaArrowLeft />}
-          onClick={() => navigate(-1)}
-        >
-          {t("back")}
-        </Button>
+        <BackButton />
       </Flex>
 
       <Flex flex={1}>

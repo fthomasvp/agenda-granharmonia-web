@@ -1,23 +1,16 @@
-import {
-  Button,
-  Flex,
-  Heading,
-  List,
-  ListIcon,
-  ListItem,
-} from "@chakra-ui/react";
+import { Flex, Heading, List, ListIcon, ListItem } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { FaArrowLeft, FaInfoCircle } from "react-icons/fa";
+import { FaInfoCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
+import { BackButton } from "../components/ui";
 import {
   forgotPasswordSchema,
   ForgotPasswordType,
   FormForgotPassword,
 } from "../features/authentication";
-
 import { MobileContainer } from "../layouts";
 
 const instructions = [
@@ -43,13 +36,7 @@ export default function ForgotPassword() {
   return (
     <MobileContainer>
       <Flex flex={1}>
-        <Button
-          variant="ghost"
-          leftIcon={<FaArrowLeft />}
-          onClick={() => navigate(-1)}
-        >
-          {t("back")}
-        </Button>
+        <BackButton />
       </Flex>
 
       <Flex flex={1}>
