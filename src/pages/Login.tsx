@@ -6,6 +6,8 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import { GranHarmoniaLogo } from "../assets/images";
+import { HalfBall, OxentiLabStamp } from "../components/ui";
 import {
   AuthLogin,
   FormLogin,
@@ -13,9 +15,6 @@ import {
   loginService,
   useAuthStore,
 } from "../features/authentication";
-
-import { GranHarmoniaLogo } from "../assets/images";
-import { HalfBall, OxentiLabStamp } from "../components/ui";
 import { MobileContainer } from "../layouts";
 
 export default function SignIn() {
