@@ -1,12 +1,4 @@
-import {
-  Box,
-  Center,
-  Flex,
-  Heading,
-  Image,
-  Text,
-  useBreakpointValue,
-} from "@chakra-ui/react";
+import { Box, Center, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
@@ -22,8 +14,8 @@ import {
   useAuthStore,
 } from "../features/authentication";
 
-import { Ball, GranHarmoniaLogo } from "../assets/images";
-import { OxentiLabStamp } from "../components/ui";
+import { GranHarmoniaLogo } from "../assets/images";
+import { HalfBall, OxentiLabStamp } from "../components/ui";
 import { MobileContainer } from "../layouts";
 
 export default function SignIn() {
@@ -31,20 +23,6 @@ export default function SignIn() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const location = useLocation();
-
-  const ballVariantSize = useBreakpointValue(
-    {
-      base: "12",
-      sm: "14",
-      md: "20",
-      lg: "20",
-      xl: "24",
-    },
-    {
-      fallback: "md",
-      ssr: false,
-    }
-  );
 
   const from = (location.state as any)?.from?.pathname || "/home";
 
@@ -80,13 +58,7 @@ export default function SignIn() {
 
   return (
     <MobileContainer>
-      <Image
-        src={Ball}
-        alt="Ball on top right position"
-        pos="absolute"
-        right={0}
-        boxSize={ballVariantSize}
-      />
+      <HalfBall right={0} />
 
       <Flex justify="center" my="8">
         <Image src={GranHarmoniaLogo} alt="Gran Harmonia Logo" />
@@ -110,14 +82,7 @@ export default function SignIn() {
         <OxentiLabStamp />
       </Center>
 
-      <Image
-        src={Ball}
-        alt="Ball on bottom right position"
-        pos="absolute"
-        right={0}
-        bottom={0}
-        boxSize="10"
-      />
+      <HalfBall bottom={0} right={0} boxSize="10" />
     </MobileContainer>
   );
 }
