@@ -3,16 +3,13 @@ import {
   Flex,
   Heading,
   Image,
-  useBreakpointValue
+  useBreakpointValue,
 } from "@chakra-ui/react";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 import { MobileGreenCheck } from "../assets/images";
-import { verifyCodeSchema } from "../features/authentication";
 import FormVerifyCode from "../features/authentication/components/FormVerifyCode";
 import { MobileContainer } from "../layouts";
 
@@ -34,11 +31,7 @@ export default function VerifyCode() {
     }
   );
 
-  const methods = useForm<{ code: string }>({
-    resolver: yupResolver(verifyCodeSchema(t)),
-  });
-
-  const onSubmit: SubmitHandler<{ code: string }> = (data) => {
+  const onSubmit = (data: string) => {
     console.log("> VerifyCode :: data", data);
   };
 
@@ -67,9 +60,7 @@ export default function VerifyCode() {
       </Flex>
 
       <Flex flex={2} flexDir="column">
-        <FormProvider {...methods}>
-          <FormVerifyCode onSubmit={onSubmit} />
-        </FormProvider>
+        <FormVerifyCode onSubmit={onSubmit} />
       </Flex>
     </MobileContainer>
   );

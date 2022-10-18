@@ -2,5 +2,6 @@
   "requiredEmail": "Digite um e-mail",
   "requiredPassword": "Digite uma senha",
   "invalidEmail": "Digite um e-mail válido",
-  "requiredCode": "Digite um código"
+  "requiredCode": "Digite um código",
+  "invalidCode": "Digite um código válido"
 }
