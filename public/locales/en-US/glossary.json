@@ -3,5 +3,8 @@
   "forgotPasswordInstructionTwo": "The code will be used to confirm that you are the person who is requesting the password change.",
   "forgotPasswordInstructionThree": "Do not share the code with anyone.",
   "sentCode": "Code was sent!",
-  "enterCodeFromEmail": "Enter the code that you received by e-mail"
+  "enterCodeFromEmail": "Enter the code that you received by e-mail",
+  "pageNotFound": "Oops! The page you were looking for doesn't exist.",
+  "pageNotFound_description": "You may have mistyped the address or the page may have moved.",
+  "backToHomePage": "Back to home page"
 }
