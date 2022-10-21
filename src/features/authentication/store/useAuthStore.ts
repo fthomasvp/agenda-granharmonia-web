@@ -8,7 +8,7 @@ type User = { id: number; email: string };
 
 type AuthState = {
   user: User | null;
-  setUser: (data: User) => void;
+  setAuth: (data: User) => void;
 };
 
 export const useAuthStore = create<AuthState>()(
@@ -16,7 +16,7 @@ export const useAuthStore = create<AuthState>()(
     persist(
       (set) => ({
         user: null,
-        setUser: (data) => set(() => ({ user: data })),
+        setAuth: (data) => set(() => ({ user: data })),
       }),
       {
         name: "auth-storage",

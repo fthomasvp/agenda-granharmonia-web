@@ -7,7 +7,7 @@ import {
   PinInputField,
   Text,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 type FormVerifyCodeProps = {
@@ -16,6 +16,8 @@ type FormVerifyCodeProps = {
 
 export default function FormVerifyCode({ onSubmit }: FormVerifyCodeProps) {
   const { t } = useTranslation(["common", "glossary", "validation"]);
+
+  const confirmButtonRef = useRef<HTMLButtonElement>(null);
 
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
@@ -50,6 +52,12 @@ export default function FormVerifyCode({ onSubmit }: FormVerifyCodeProps) {
     setError("");
   };
 
+  const handleComplete = () => {
+    if (confirmButtonRef.current) {
+      confirmButtonRef.current.focus();
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <Flex flexDir="column">
@@ -65,6 +73,7 @@ export default function FormVerifyCode({ onSubmit }: FormVerifyCodeProps) {
             onChange={handleChange}
             value={code}
             placeholder=""
+            onComplete={handleComplete}
           >
             <PinInputField />
             <PinInputField />
@@ -90,7 +99,11 @@ export default function FormVerifyCode({ onSubmit }: FormVerifyCodeProps) {
             </Button>
           </Box>
           <Box>
-            <Button data-test="confirm-button" type="submit">
+            <Button
+              ref={confirmButtonRef}
+              data-test="confirm-button"
+              type="submit"
+            >
               {t("confirm")}
             </Button>
           </Box>

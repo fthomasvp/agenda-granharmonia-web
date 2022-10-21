@@ -12,5 +12,8 @@
   "cancel": "Cancelar",
   "back": "Voltar",
   "send": "Enviar",
-  "code": "Código"
+  "code": "Código",
+  "reset": "Redefinir",
+  "new": "Novo",
+  "new_female": "Nova"
 }

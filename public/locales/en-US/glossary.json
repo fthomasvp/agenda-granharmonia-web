@@ -6,5 +6,7 @@
   "enterCodeFromEmail": "Enter the code that you received by e-mail",
   "pageNotFound": "Oops! The page you were looking for doesn't exist.",
   "pageNotFound_description": "You may have mistyped the address or the page may have moved.",
-  "backToHomePage": "Back to home page"
+  "backToHomePage": "Back to home page",
+  "enterNewPassword": "Enter your new password!",
+  "repeatNewPassword": "Repeat your new password"
 }

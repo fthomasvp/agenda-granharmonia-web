@@ -6,7 +6,7 @@ type AInputProps = InputProps & {
   name: string;
 };
 
-const AInput = ({ label, name, ...rest }: AInputProps) => {
+export default function AInput({ label, name, ...rest }: AInputProps) {
   const {
     register,
     formState: { errors },
@@ -25,6 +25,4 @@ const AInput = ({ label, name, ...rest }: AInputProps) => {
       <Text color="red.500">{(errors as any)[`${name}`]?.message}</Text>
     </>
   );
-};
-
-export default AInput;
+}

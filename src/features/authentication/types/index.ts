@@ -4,3 +4,8 @@ export type AuthLogin = {
 };
 
 export type ForgotPasswordType = Omit<AuthLogin, "password">;
+
+export type ResetPasswordType = {
+  newPassword: string;
+  newPasswordConfirmation: string;
+};

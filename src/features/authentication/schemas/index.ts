@@ -1,7 +1,7 @@
 import { TFunction } from "react-i18next";
 import * as yup from "yup";
 
-import { validateEmail } from "../../../shared/validations";
+import { validateEmail, validatePassword } from "../../../shared/validations";
 
 export const loginSchema = (t: TFunction) =>
   yup
@@ -27,5 +27,17 @@ export const verifyCodeSchema = (t: TFunction) =>
     .object()
     .shape({
       code: yup.string().required(t("requiredCode", { ns: "validation" })),
+    })
+    .required();
+
+export const resetPasswordSchema = (t: TFunction) =>
+  yup
+    .object()
+    .shape({
+      newPassword: validatePassword(t),
+      newPasswordConfirmation: validatePassword(t).oneOf(
+        [yup.ref("newPassword"), null],
+        t("passwordMismatch", { ns: "validation" })
+      ),
     })
     .required();

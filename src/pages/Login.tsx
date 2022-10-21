@@ -25,7 +25,7 @@ export default function SignIn() {
 
   const from = (location.state as any)?.from?.pathname || "/home";
 
-  const setUser = useAuthStore((state) => state.setUser);
+  const setAuth = useAuthStore((state) => state.setAuth);
 
   const loginMutation = useMutation(loginService, {
     onSuccess: () => {
@@ -34,10 +34,6 @@ export default function SignIn() {
   });
 
   const methods = useForm<AuthLogin>({
-    defaultValues: {
-      email: "",
-      password: "",
-    },
     resolver: yupResolver(loginSchema(t)),
   });
 
@@ -49,7 +45,7 @@ export default function SignIn() {
     if (loginMutation.isSuccess) {
       const { data } = loginMutation;
 
-      setUser(data);
+      setAuth(data);
       navigate(from, { replace: true });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
