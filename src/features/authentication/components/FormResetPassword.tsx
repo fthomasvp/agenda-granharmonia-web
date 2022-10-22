@@ -5,11 +5,13 @@ import { useTranslation } from "react-i18next";
 import { APasswordInput } from "../../../components/form";
 import type { ResetPasswordType } from "../types";
 
-type FormLoginProps = {
+type FormResetPasswordProps = {
   onSubmit: SubmitHandler<ResetPasswordType>;
 };
 
-export default function FormNewPassword({ onSubmit }: FormLoginProps) {
+export default function FormResetPassword({
+  onSubmit,
+}: FormResetPasswordProps) {
   const { t } = useTranslation(["common", "glossary", "validation"]);
 
   const { handleSubmit } = useFormContext<ResetPasswordType>();
