@@ -15,7 +15,7 @@ export default function NotFound() {
       <HalfBall right={0} />
 
       <Flex justify="center" mt="8">
-        <Image src={GranHarmoniaLogo} alt="Gran Harmonia Logo" />
+        <Image src={GranHarmoniaLogo} alt="Gran Harmonia logo" />
       </Flex>
 
       <Flex align="center" justify="center" flex={1}>

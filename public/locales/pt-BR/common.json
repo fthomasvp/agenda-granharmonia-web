@@ -11,5 +11,8 @@
   "code": "Código",
   "reset": "Redefinir",
   "new": "Novo",
-  "new_female": "Nova"
+  "new_female": "Nova",
+  "show": "Mostrar",
+  "more": "Mais",
+  "less": "Menos"
 }

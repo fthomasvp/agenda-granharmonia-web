@@ -10,5 +10,8 @@
   "send": "Send",
   "code": "Code",
   "reset": "Reset",
-  "new": "New"
+  "new": "New",
+  "show": "Show",
+  "more": "More",
+  "less": "Less"
 }

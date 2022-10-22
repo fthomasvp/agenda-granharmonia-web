@@ -16,5 +16,6 @@
   "updatedPassword": "Your password was updated!",
   "resetPasswordInstructionOne": "Your new password should contain at least six characters.",
   "resetPasswordInstructionTwo": "Should include a special character (%, =, @, etc).",
-  "resetPasswordInstructionThree": "Should include an uppercase and lowercase letter."
+  "resetPasswordInstructionThree": "Should include an uppercase and lowercase letter.",
+  "tryAgain": "Try again"
 }
