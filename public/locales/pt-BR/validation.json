@@ -2,7 +2,6 @@
   "requiredEmail": "Digite um e-mail",
   "requiredPassword": "Digite uma senha",
   "invalidPassword": "Digite uma senha válida",
-  "passwordRequirements": "Deve conter pelo menos seis caracteres, incluindo: letra maiúscula, letra minúscula, número e caractere especial",
   "passwordMismatch": "As senhas informadas não são iguais",
   "invalidEmail": "Digite um e-mail válido",
   "requiredCode": "Digite um código",

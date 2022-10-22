@@ -2,7 +2,6 @@
   "requiredEmail": "Enter an e-mail",
   "requiredPassword": "Enter a password",
   "invalidPassword": "Enter a valid password",
-  "passwordRequirements": "Should contain at least six characters, including: lowercase letter, uppercase letter, number and special character",
   "passwordMismatch": "The passwords are not the same",
   "invalidEmail": "Enter a valid e-mail",
   "requiredCode": "Enter a code",

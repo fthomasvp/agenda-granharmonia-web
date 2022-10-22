@@ -1,11 +1,22 @@
-import { Button, Flex, Heading, Image, Text, VStack } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Heading,
+  Image,
+  List,
+  ListIcon,
+  ListItem,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { FaInfoCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-import { PasswordGreenLocker, UpdatedStatusNeonCarrot } from "../assets/images";
+import { UpdatedStatusNeonCarrot } from "../assets/images";
 import { BackButton, HalfBall } from "../components/ui";
 import {
   FormResetPassword,
@@ -13,6 +24,12 @@ import {
   ResetPasswordType,
 } from "../features/authentication";
 import { MobileContainer } from "../layouts";
+
+const passInstructions = [
+  "resetPasswordInstructionOne",
+  "resetPasswordInstructionTwo",
+  "resetPasswordInstructionThree",
+];
 
 export default function ResetPassword() {
   const { t } = useTranslation(["glossary"]);
@@ -38,7 +55,7 @@ export default function ResetPassword() {
     <MobileContainer>
       <HalfBall right={0} />
 
-      {!isPassReseted ? (
+      {isPassReseted ? (
         <VStack flex={1} justify="center">
           <Flex justifyContent="center" mb="10">
             <Image
@@ -67,11 +84,15 @@ export default function ResetPassword() {
             <Heading fontWeight="semibold">{t("enterNewPassword")}</Heading>
           </Flex>
 
-          <Flex flex={1} justifyContent="center" mb="10">
-            <Image
-              src={PasswordGreenLocker}
-              alt="person closing a green locker"
-            />
+          <Flex flex={1} mb="10">
+            <List spacing="5">
+              {passInstructions.map((item, index) => (
+                <ListItem key={index} display="flex" alignItems="center">
+                  <ListIcon as={FaInfoCircle} />
+                  {t(`${item}`, { ns: "glossary" })}
+                </ListItem>
+              ))}
+            </List>
           </Flex>
 
           <Flex flex={2} flexDir="column">

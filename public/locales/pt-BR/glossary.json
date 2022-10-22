@@ -13,5 +13,8 @@
   "backToHomePage": "Voltar para a página inicial",
   "enterNewPassword": "Informe sua nova senha!",
   "repeatNewPassword": "Repita sua nova senha",
-  "updatedPassword": "Sua senha foi atualizada!"
+  "updatedPassword": "Sua senha foi atualizada!",
+  "resetPasswordInstructionOne": "Sua nova senha deve conter pelo menos 6 caracteres.",
+  "resetPasswordInstructionTwo": "Deve incluir um caractere especial (%, =, $, @, etc).",
+  "resetPasswordInstructionThree": "Deve incluir uma letra maiúscula e minúscula."
 }
