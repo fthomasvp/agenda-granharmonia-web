@@ -10,6 +10,8 @@ import {
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { InputErrorMessage } from "../../../components/form";
+
 type FormVerifyCodeProps = {
   onSubmit: (data: string) => void;
 };
@@ -84,9 +86,9 @@ export default function FormVerifyCode({ onSubmit }: FormVerifyCodeProps) {
           </PinInput>
         </HStack>
 
-        <Text align="center" color="red.500">
-          {error}
-        </Text>
+        <HStack justify="center">
+          <InputErrorMessage message={error} />
+        </HStack>
 
         <HStack justify="center" mt="8" spacing={4}>
           <Box>

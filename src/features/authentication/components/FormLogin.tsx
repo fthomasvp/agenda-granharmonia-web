@@ -11,7 +11,7 @@ type FormLoginProps = {
 };
 
 export default function FormLogin({ onSubmit }: FormLoginProps) {
-  const { t } = useTranslation(["common"]);
+  const { t } = useTranslation(["common", "glossary"]);
   const navigate = useNavigate();
 
   const { handleSubmit } = useFormContext<AuthLogin>();
@@ -32,7 +32,7 @@ export default function FormLogin({ onSubmit }: FormLoginProps) {
 
       <Box mb="7">
         <Button variant="link" onClick={handleForgotPassword}>
-          {t("forgotPassword")}
+          {t("forgotPassword", { ns: "glossary" })}
         </Button>
       </Box>
 

@@ -41,7 +41,7 @@ export default function ForgotPassword() {
 
       <Flex flex={1}>
         <Heading fontWeight="bold">
-          {t("forgotPassword", { context: "question" })}
+          {t("forgotPassword", { context: "question", ns: "glossary" })}
         </Heading>
       </Flex>
 

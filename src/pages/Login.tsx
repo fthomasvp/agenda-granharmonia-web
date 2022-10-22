@@ -18,7 +18,7 @@ import {
 import { MobileContainer } from "../layouts";
 
 export default function SignIn() {
-  const { t } = useTranslation(["common", "validation"]);
+  const { t } = useTranslation(["common", "validation", "glossary"]);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const location = useLocation();
@@ -60,9 +60,11 @@ export default function SignIn() {
       </Flex>
 
       <Flex flex={1} flexDir="column" justify="center">
-        <Heading fontWeight="semibold">{t("welcome")}</Heading>
+        <Heading fontWeight="semibold">
+          {t("welcome", { ns: "glossary" })}
+        </Heading>
         <Text fontWeight="light" fontSize="sm" mb="4" mt="2">
-          {t("doLoginToContinue")}
+          {t("doLoginToContinue", { ns: "glossary" })}
         </Text>
         <Box bg="#EB6A3F" borderRadius="full" h="2px" w="40px" />
       </Flex>
