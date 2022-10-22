@@ -5,11 +5,12 @@ import {
   InputGroup,
   InputProps,
   InputRightElement,
-  Text,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+
+import InputErrorMessage from "./InputErrorMessage";
 
 type APasswordInputProps = InputProps & {
   label: string;
@@ -25,6 +26,8 @@ export default function APasswordInput({
     register,
     formState: { errors },
   } = useFormContext();
+
+  const errorMessage = (errors as any)[`${name}`]?.message;
 
   const [isVisible, setIsVisible] = useState(false);
 
@@ -57,7 +60,7 @@ export default function APasswordInput({
           }
         />
       </InputGroup>
-      <Text color="red.500">{(errors as any)[`${name}`]?.message}</Text>
+      <InputErrorMessage message={errorMessage} />
     </>
   );
 }

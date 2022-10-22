@@ -1,5 +1,7 @@
-import { FormLabel, Input, InputProps, Text } from "@chakra-ui/react";
+import { FormLabel, Input, InputProps } from "@chakra-ui/react";
 import { useFormContext } from "react-hook-form";
+
+import InputErrorMessage from "./InputErrorMessage";
 
 type AInputProps = InputProps & {
   label: string;
@@ -12,6 +14,8 @@ export default function AInput({ label, name, ...rest }: AInputProps) {
     formState: { errors },
   } = useFormContext();
 
+  const errorMessage = (errors as any)[`${name}`]?.message;
+
   return (
     <>
       <FormLabel htmlFor={name}>{label}</FormLabel>
@@ -22,7 +26,7 @@ export default function AInput({ label, name, ...rest }: AInputProps) {
         {...register(name)}
         {...rest}
       />
-      <Text color="red.500">{(errors as any)[`${name}`]?.message}</Text>
+      <InputErrorMessage message={errorMessage} />
     </>
   );
 }
