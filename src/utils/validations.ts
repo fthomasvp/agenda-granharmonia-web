@@ -14,4 +14,4 @@ export const validatePassword = (t: TFunction) =>
   yup
     .string()
     .required(t("requiredPassword", { ns: "validation" }))
-    .matches(passwordRegex, t("passwordRequirements", { ns: "validation" }));
+    .matches(passwordRegex, t("invalidPassword", { ns: "validation" }));
