@@ -1,4 +1,8 @@
 {
+  "welcome": "Welcome again!",
+  "doLoginToContinue": "Do login to continue",
+  "forgotPassword": "Forgot my password",
+  "forgotPassword_question": "Did you forget the password?",
   "forgotPasswordInstructionOne": "You will receive a six digits code in your e-mail.",
   "forgotPasswordInstructionTwo": "The code will be used to confirm that you are the person who is requesting the password change.",
   "forgotPasswordInstructionThree": "Do not share the code with anyone.",
@@ -8,5 +12,6 @@
   "pageNotFound_description": "You may have mistyped the address or the page may have moved.",
   "backToHomePage": "Back to home page",
   "enterNewPassword": "Enter your new password!",
-  "repeatNewPassword": "Repeat your new password"
+  "repeatNewPassword": "Repeat your new password",
+  "updatedPassword": "Your password was updated!"
 }

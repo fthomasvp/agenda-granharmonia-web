@@ -1,4 +1,8 @@
 {
+  "welcome": "Bem-vindo(a) de volta!",
+  "doLoginToContinue": "Faça login para continuar",
+  "forgotPassword": "Esqueci minha senha",
+  "forgotPassword_question": "Esqueceu a senha?",
   "forgotPasswordInstructionOne": "Você receberá um código de seis dígitos no seu e-mail.",
   "forgotPasswordInstructionTwo": "O código será utilizado para confirmar que é você quem está solicitando a mudança de senha.",
   "forgotPasswordInstructionThree": "Não compartilhe o código com outras pessoas.",
@@ -8,5 +12,6 @@
   "pageNotFound_description": "Talvez você tenha digitado o endereço errado ou a página foi movida.",
   "backToHomePage": "Voltar para a página inicial",
   "enterNewPassword": "Informe sua nova senha!",
-  "repeatNewPassword": "Repita sua nova senha"
+  "repeatNewPassword": "Repita sua nova senha",
+  "updatedPassword": "Sua senha foi atualizada!"
 }

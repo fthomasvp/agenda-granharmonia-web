@@ -1,8 +1,4 @@
 {
-  "welcome": "Welcome again!",
-  "doLoginToContinue": "Do login to continue",
-  "forgotPassword": "Forgot my password",
-  "forgotPassword_question": "Did you forget the password?",
   "name": "Name",
   "password": "Password",
   "email": "E-mail",
