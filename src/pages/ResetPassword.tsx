@@ -23,7 +23,6 @@ import {
   resetPasswordSchema,
   ResetPasswordType,
 } from "../features/authentication";
-import { MobileContainer } from "../layouts";
 
 const passInstructions = [
   "resetPasswordInstructionOne",
@@ -52,7 +51,7 @@ export default function ResetPassword() {
   };
 
   return (
-    <MobileContainer>
+    <>
       <HalfBall right={0} />
 
       {isPassReseted ? (
@@ -104,6 +103,6 @@ export default function ResetPassword() {
       )}
 
       <HalfBall bottom={0} right={0} boxSize="10" />
-    </MobileContainer>
+    </>
   );
 }

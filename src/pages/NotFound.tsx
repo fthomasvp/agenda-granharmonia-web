@@ -4,14 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 import { GranHarmoniaLogo } from "../assets/images";
 import { HalfBall } from "../components/ui";
-import { MobileContainer } from "../layouts";
 
 export default function NotFound() {
   const { t } = useTranslation(["glossary"]);
   const navigate = useNavigate();
 
   return (
-    <MobileContainer>
+    <>
       <HalfBall right={0} />
 
       <Flex justify="center" mt="8">
@@ -35,6 +34,6 @@ export default function NotFound() {
           </Flex>
         </Stack>
       </Flex>
-    </MobileContainer>
+    </>
   );
 }

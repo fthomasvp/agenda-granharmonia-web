@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { MobileGreenCheck } from "../assets/images";
 import { BackButton } from "../components/ui";
 import { FormVerifyCode } from "../features/authentication";
-import { MobileContainer } from "../layouts";
 
 export default function VerifyCode() {
   const { t } = useTranslation(["common", "glossary", "validation"]);
@@ -32,7 +31,7 @@ export default function VerifyCode() {
   };
 
   return (
-    <MobileContainer>
+    <>
       <Flex flex={1}>
         <BackButton />
       </Flex>
@@ -52,6 +51,6 @@ export default function VerifyCode() {
       <Flex flex={2} flexDir="column">
         <FormVerifyCode onSubmit={onSubmit} />
       </Flex>
-    </MobileContainer>
+    </>
   );
 }

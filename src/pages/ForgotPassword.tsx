@@ -11,7 +11,6 @@ import {
   ForgotPasswordType,
   FormForgotPassword,
 } from "../features/authentication";
-import { MobileContainer } from "../layouts";
 
 const instructions = [
   "forgotPasswordInstructionOne",
@@ -34,7 +33,7 @@ export default function ForgotPassword() {
   };
 
   return (
-    <MobileContainer>
+    <>
       <Flex flex={1}>
         <BackButton />
       </Flex>
@@ -61,6 +60,6 @@ export default function ForgotPassword() {
           <FormForgotPassword onSubmit={onSubmit} />
         </FormProvider>
       </Flex>
-    </MobileContainer>
+    </>
   );
 }

@@ -1,7 +1,15 @@
 import { Flex } from "@chakra-ui/react";
-import { PropsWithChildren } from "react";
+import { Outlet } from "react-router-dom";
 
-export default function MobileContainer({ children }: PropsWithChildren) {
+import { Header } from "../components/ui";
+
+type MobileContainerProps = {
+  showHeader?: boolean;
+};
+
+export default function MobileContainer({
+  showHeader = false,
+}: MobileContainerProps) {
   return (
     <Flex
       flex={1}
@@ -12,7 +20,8 @@ export default function MobileContainer({ children }: PropsWithChildren) {
       margin="0 auto"
       pos="relative"
     >
-      {children}
+      {showHeader ? <Header /> : null}
+      <Outlet />
     </Flex>
   );
 }

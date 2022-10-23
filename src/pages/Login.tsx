@@ -15,7 +15,6 @@ import {
   loginService,
   useAuthStore,
 } from "../features/authentication";
-import { MobileContainer } from "../layouts";
 
 export default function SignIn() {
   const { t } = useTranslation(["common", "validation", "glossary"]);
@@ -26,6 +25,7 @@ export default function SignIn() {
   const from = (location.state as any)?.from?.pathname || "/home";
 
   const setAuth = useAuthStore((state) => state.setAuth);
+  const user = useAuthStore((state) => state.user);
 
   const loginMutation = useMutation(loginService, {
     onSuccess: () => {
@@ -51,8 +51,15 @@ export default function SignIn() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loginMutation.isSuccess]);
 
+  useEffect(() => {
+    if (user?.id) {
+      navigate(from, { replace: true });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id]);
+
   return (
-    <MobileContainer>
+    <>
       <HalfBall right={0} />
 
       <Flex justify="center" my="8">
@@ -80,6 +87,6 @@ export default function SignIn() {
       </Center>
 
       <HalfBall bottom={0} right={0} boxSize="10" />
-    </MobileContainer>
+    </>
   );
 }

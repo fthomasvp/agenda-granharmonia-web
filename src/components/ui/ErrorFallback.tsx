@@ -16,7 +16,6 @@ import { useTranslation } from "react-i18next";
 
 import { HalfBall } from ".";
 import { GranHarmoniaLogo, PersonBlueWarning } from "../../assets/images";
-import { MobileContainer } from "../../layouts";
 
 export default function ErrorFallback({
   error,
@@ -40,7 +39,7 @@ export default function ErrorFallback({
   );
 
   return (
-    <MobileContainer>
+    <>
       <HalfBall right={0} />
 
       <Flex justify="center" mt="8">
@@ -91,6 +90,6 @@ export default function ErrorFallback({
           </Stack>
         </Flex>
       </Flex>
-    </MobileContainer>
+    </>
   );
 }
