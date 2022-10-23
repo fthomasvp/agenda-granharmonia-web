@@ -3,6 +3,7 @@
   "password": "Senha",
   "email": "E-mail",
   "login": "Entrar",
+  "logout": "Sair",
   "resend": "Reenviar",
   "confirm": "Confirmar",
   "cancel": "Cancelar",
@@ -14,5 +15,9 @@
   "new_female": "Nova",
   "show": "Mostrar",
   "more": "Mais",
-  "less": "Menos"
+  "less": "Menos",
+  "home": "Início",
+  "alerts": "Alertas",
+  "reservations": "Reservas",
+  "profile": "Perfil"
 }

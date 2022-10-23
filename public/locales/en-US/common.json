@@ -3,6 +3,7 @@
   "password": "Password",
   "email": "E-mail",
   "login": "Login",
+  "logout": "Log out",
   "resend": "Resend",
   "confirm": "Confirm",
   "cancel": "Cancel",
@@ -13,5 +14,9 @@
   "new": "New",
   "show": "Show",
   "more": "More",
-  "less": "Less"
+  "less": "Less",
+  "home": "Home",
+  "alerts": "Alerts",
+  "reservations": "Reservations",
+  "profile": "Profile"
 }
