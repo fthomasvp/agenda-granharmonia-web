@@ -76,7 +76,7 @@ export default function ResetPassword() {
       ) : (
         <>
           <Flex flex={1}>
-            <BackButton />
+            <BackButton path="/verify-code" />
           </Flex>
 
           <Flex flex={1}>

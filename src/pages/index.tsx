@@ -1,8 +1,10 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
+import { ScrollToTop } from "../components/ui";
 import { RequireAuth } from "../features/authentication";
 import { MobileContainer } from "../layouts";
 import ForgotPassword from "./ForgotPassword";
+import Home from "./Home";
 import Login from "./Login";
 import NotFound from "./NotFound";
 import ResetPassword from "./ResetPassword";
@@ -11,6 +13,7 @@ import VerifyCode from "./VerifyCode";
 export default function Pages() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
 
@@ -23,7 +26,7 @@ export default function Pages() {
 
         <Route element={<RequireAuth />}>
           <Route element={<MobileContainer showHeader />}>
-            <Route path="/home" element={<>HomePage</>} />
+            <Route path="/home" element={<Home />} />
           </Route>
         </Route>
 

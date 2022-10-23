@@ -33,7 +33,7 @@ export default function VerifyCode() {
   return (
     <>
       <Flex flex={1}>
-        <BackButton />
+        <BackButton path="/forgot-password" />
       </Flex>
 
       <Flex flex={1}>

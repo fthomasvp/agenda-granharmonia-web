@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 
 type BackButtonProps = {
   label?: string;
+  path: string;
 };
 
-export default function BackButton({ label = "back" }: BackButtonProps) {
+export default function BackButton({ label = "back", path }: BackButtonProps) {
   const { t } = useTranslation(["common"]);
   const navigate = useNavigate();
 
@@ -15,7 +16,7 @@ export default function BackButton({ label = "back" }: BackButtonProps) {
     <Button
       variant="ghost"
       leftIcon={<FaArrowLeft />}
-      onClick={() => navigate(-1)}
+      onClick={() => navigate(path)}
     >
       {t(label)}
     </Button>

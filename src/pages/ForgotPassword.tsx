@@ -35,7 +35,7 @@ export default function ForgotPassword() {
   return (
     <>
       <Flex flex={1}>
-        <BackButton />
+        <BackButton path="/login" />
       </Flex>
 
       <Flex flex={1}>
