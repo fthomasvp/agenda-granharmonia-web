@@ -32,18 +32,27 @@ export default function Header() {
   const { t } = useTranslation(["common"]);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const handleLogout = () => {
+    localStorage.removeItem("auth-storage");
+
+    onClose();
+
+    document.location.reload();
+  };
+
   return (
-    <Flex flexDir="row">
+    <Flex flexDir="row" mb="8">
       <Box>
         <IconButton
-          aria-label="menu button"
+          variant="ghost"
+          aria-label="drawer menu button"
           icon={<FaBars />}
           onClick={onOpen}
         />
       </Box>
 
-      <Box ml="8">
-        <Image alt="Gran Harmonia logo" src={GranHarmoniaLogo} w="40" />
+      <Box ml="3">
+        <Image alt="Gran Harmonia logo" src={GranHarmoniaLogo} w="32" />
       </Box>
 
       <Drawer isOpen={isOpen} onClose={onClose} placement="left">
@@ -51,7 +60,7 @@ export default function Header() {
 
         <DrawerContent>
           <DrawerHeader>
-            <Image alt="Gran Harmonia logo" src={GranHarmoniaLogo} w="40" />
+            <Image alt="Gran Harmonia logo" src={GranHarmoniaLogo} w="32" />
           </DrawerHeader>
 
           <Divider />
@@ -100,7 +109,7 @@ export default function Header() {
               variant="ghost"
               mr="3"
               leftIcon={<FaSignOutAlt />}
-              onClick={onClose}
+              onClick={handleLogout}
             >
               {t("logout")}
             </Button>
