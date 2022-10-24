@@ -1,6 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-import { ScrollToTop } from "../components/ui";
+import { ScrollToTop } from "../components/navigation";
 import { RequireAuth } from "../features/authentication";
 import { MobileContainer } from "../layouts";
 import ForgotPassword from "./ForgotPassword";
