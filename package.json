@@ -16,7 +16,7 @@
     "test:ci": "vitest run",
     "test:coverage": "vitest run --coverage",
     "cypress:open": "cypress open",
-    "server:dev": "json-server --watch data/db.json --port 4000"
+    "server:dev": "json-server data/db.json --config"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.2.4",

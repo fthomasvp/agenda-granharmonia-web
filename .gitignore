@@ -33,3 +33,4 @@ TEST-*.xml
 
 # json-server
 data
+json-server.json
