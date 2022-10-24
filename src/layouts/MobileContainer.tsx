@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
 
-import { Header } from "../components/ui";
+import { Header } from "../components/navigation";
 
 type MobileContainerProps = {
   showHeader?: boolean;

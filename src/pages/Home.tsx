@@ -7,7 +7,8 @@ import {
   PartyRoomPurple,
   SwimmingPoolBlue,
 } from "../assets/images";
-import { Greeting, HalfBall, ReservationCard } from "../components/ui";
+import { HalfBall } from "../components/ui";
+import { BookingOption, Greeting } from "../features/home";
 
 export default function Home() {
   const { t } = useTranslation(["common"]);
@@ -22,29 +23,29 @@ export default function Home() {
       </Flex>
 
       <Flex flexDir="column" flex={1}>
-        <ReservationCard
+        <BookingOption
           bgColor="#50BE76"
           name={t("gym")}
           image={GymGreen}
-          path="/reservations/gym"
+          path="/bookings/gym"
         />
-        <ReservationCard
+        <BookingOption
           bgColor="#D85761"
           name={t("grill")}
           image={GrillRed}
-          path="/reservations/grill"
+          path="/bookings/grill"
         />
-        <ReservationCard
+        <BookingOption
           bgColor="#5662D6"
           name={t("swimmingPool")}
           image={SwimmingPoolBlue}
-          path="/reservations/swimming-pool"
+          path="/bookings/swimming-pool"
         />
-        <ReservationCard
+        <BookingOption
           bgColor="#B955E8"
           name={t("partyRoom")}
           image={PartyRoomPurple}
-          path="/reservations/party-room"
+          path="/bookings/party-room"
         />
       </Flex>
     </>

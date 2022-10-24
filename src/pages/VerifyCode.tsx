@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import { MobileGreenCheck } from "../assets/images";
-import { BackButton } from "../components/ui";
+import { BackButton } from "../components/navigation";
 import { FormVerifyCode } from "../features/authentication";
 
 export default function VerifyCode() {

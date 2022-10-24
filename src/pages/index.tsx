@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ScrollToTop } from "../components/navigation";
 import { RequireAuth } from "../features/authentication";
 import { MobileContainer } from "../layouts";
+import BookingList from "./BookingList";
 import ForgotPassword from "./ForgotPassword";
 import Home from "./Home";
 import Login from "./Login";
@@ -27,6 +28,7 @@ export default function Pages() {
         <Route element={<RequireAuth />}>
           <Route element={<MobileContainer showHeader />}>
             <Route path="/home" element={<Home />} />
+            <Route path="/bookings" element={<BookingList />} />
           </Route>
         </Route>
 

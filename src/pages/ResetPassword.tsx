@@ -17,7 +17,8 @@ import { FaInfoCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 import { UpdatedStatusNeonCarrot } from "../assets/images";
-import { BackButton, HalfBall } from "../components/ui";
+import { BackButton } from "../components/navigation";
+import { HalfBall } from "../components/ui";
 import {
   FormResetPassword,
   resetPasswordSchema,

@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { FaInfoCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-import { BackButton } from "../components/ui";
+import { BackButton } from "../components/navigation";
 import {
   forgotPasswordSchema,
   ForgotPasswordType,

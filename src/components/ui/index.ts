@@ -1,7 +1,3 @@
-export { default as OxentiLabStamp } from "./OxentiLabStamp";
-export { default as HalfBall } from "./HalfBall";
-export { default as BackButton } from "./BackButton";
 export { default as ErrorFallback } from "./ErrorFallback";
-export { default as Header } from "./Header";
-export { default as Greeting } from "./Greeting";
-export { default as ReservationCard } from "./ReservationCard";
+export { default as HalfBall } from "./HalfBall";
+export { default as OxentiLabStamp } from "./OxentiLabStamp";
