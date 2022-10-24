@@ -4,3 +4,7 @@ export { default as Ball } from "./ball.svg";
 export { default as MobileGreenCheck } from "./mobile_green_check.svg";
 export { default as UpdatedStatusNeonCarrot } from "./undraw_updated_status_neon_carrot.svg";
 export { default as PersonBlueWarning } from "./undraw_person_blue_warning.svg";
+export { default as GymGreen } from "./gym_green.svg";
+export { default as GrillRed } from "./grill_red.svg";
+export { default as SwimmingPoolBlue } from "./swimming_pool_blue.svg";
+export { default as PartyRoomPurple } from "./party_room_purple.svg";

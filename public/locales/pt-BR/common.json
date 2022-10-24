@@ -1,4 +1,5 @@
 {
+  "hello": "Olá",
   "name": "Nome",
   "password": "Senha",
   "email": "E-mail",
@@ -19,5 +20,9 @@
   "home": "Início",
   "alerts": "Alertas",
   "reservations": "Reservas",
-  "profile": "Perfil"
+  "profile": "Perfil",
+  "gym": "Academia",
+  "grill": "Churrasqueira",
+  "swimmingPool": "Piscina",
+  "partyRoom": "Salão de festas"
 }

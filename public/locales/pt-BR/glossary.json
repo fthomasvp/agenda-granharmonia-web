@@ -17,5 +17,8 @@
   "resetPasswordInstructionOne": "Sua nova senha deve conter pelo menos 6 caracteres.",
   "resetPasswordInstructionTwo": "Deve incluir um caractere especial (%, =, $, @, etc).",
   "resetPasswordInstructionThree": "Deve incluir uma letra maiúscula e minúscula.",
-  "tryAgain": "Tente novamente"
+  "tryAgain": "Tente novamente",
+  "checkTimes": "Ver horários",
+  "findNextTime": "Encontre o próximo horário",
+  "availableYourReservations": "Disponível para as suas reservas"
 }
