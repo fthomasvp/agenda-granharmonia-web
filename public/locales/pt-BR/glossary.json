@@ -20,5 +20,7 @@
   "tryAgain": "Tente novamente",
   "checkTimes": "Ver horários",
   "findNextTime": "Encontre o próximo horário",
-  "availableYourBookings": "Disponível para as suas reservas"
+  "availableYourBookings": "Disponível para as suas reservas",
+  "activeBookings": "Suas reservas ativas",
+  "previousBookings": "Reservas anteriores"
 }

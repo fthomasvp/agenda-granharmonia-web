@@ -1,7 +1,7 @@
 import { TFunction } from "react-i18next";
 import * as yup from "yup";
 
-import { validateEmail, validatePassword } from "../../utils/validations";
+import { validateEmail, validatePassword } from "../../utils";
 
 export const loginSchema = (t: TFunction) =>
   yup

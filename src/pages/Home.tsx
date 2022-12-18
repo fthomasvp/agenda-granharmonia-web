@@ -39,13 +39,13 @@ export default function Home() {
           bgColor="#5662D6"
           name={t("swimmingPool")}
           image={SwimmingPoolBlue}
-          path="/bookings/swimming-pool"
+          path="/bookings/swimmingPool"
         />
         <BookingOption
           bgColor="#B955E8"
           name={t("partyRoom")}
           image={PartyRoomPurple}
-          path="/bookings/party-room"
+          path="/bookings/partyRoom"
         />
       </Flex>
     </>

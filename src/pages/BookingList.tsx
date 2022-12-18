@@ -10,7 +10,7 @@ export default function BookingList() {
   return (
     <>
       <Heading color="#272727" size="md" textAlign="center" mb="2.5">
-        Suas reservas ativas
+        {t("activeBookings", { ns: "glossary" })}
       </Heading>
 
       <Flex>
@@ -28,7 +28,7 @@ export default function BookingList() {
       <Divider mt="5" mb="8" />
 
       <Heading color="#272727" size="md" textAlign="center" mb="2.5">
-        Reservas anteriores
+        {t("previousBookings", { ns: "glossary" })}
       </Heading>
 
       {[2021, 2020, 2019, 2018, 2017].map((item, index) => (

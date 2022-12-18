@@ -1,18 +1,19 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
 import { ChakraProvider } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-import { baseTheme } from "./themes";
 import App from "./App";
 import "./i18n";
 import "./index.css";
+import { baseTheme } from "./themes";
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
+      retry: false,
     },
   },
 });

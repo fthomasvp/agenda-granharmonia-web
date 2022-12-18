@@ -20,5 +20,7 @@
   "tryAgain": "Try again",
   "checkTimes": "See times",
   "findNextTime": "Find the next time",
-  "availableYourBookings": "Available for your bookings"
+  "availableYourBookings": "Available for your bookings",
+  "activeBookings": "Your active bookings",
+  "previousBookings": "Previous bookings"
 }
