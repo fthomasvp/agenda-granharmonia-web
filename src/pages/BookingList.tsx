@@ -9,7 +9,7 @@ export default function BookingList() {
 
   return (
     <>
-      <Heading color="#272727" size="md" textAlign="center" mb="2.5">
+      <Heading color="blackAlpha.400" size="md" textAlign="center" mb="2.5">
         {t("activeBookings", { ns: "glossary" })}
       </Heading>
 
@@ -17,7 +17,7 @@ export default function BookingList() {
         {/* TODO: fetch active booking from back-end */}
         <BookingCard
           isActive
-          bgColor="#B955E8"
+          bgColor="purple.400"
           name={t("partyRoom")}
           image={PartyRoomPurple}
           date="24/10/2022"
@@ -27,14 +27,15 @@ export default function BookingList() {
 
       <Divider mt="5" mb="8" />
 
-      <Heading color="#272727" size="md" textAlign="center" mb="2.5">
+      <Heading color="blackAlpha.400" size="md" textAlign="center" mb="2.5">
         {t("previousBookings", { ns: "glossary" })}
       </Heading>
 
+      {/* TODO: fetch previous bookings from back-end */}
       {[2021, 2020, 2019, 2018, 2017].map((item, index) => (
         <Flex key={index}>
           <BookingCard
-            bgColor="#50BE76"
+            bgColor="green.400"
             name={t("gym")}
             date={`24/10/${item}`}
             time="16:00"

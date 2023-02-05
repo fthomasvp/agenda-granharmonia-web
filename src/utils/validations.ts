@@ -1,8 +1,7 @@
 import { TFunction } from "i18next";
 import * as yup from "yup";
 
-const passwordRegex =
-  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9\s]).{6,}$/gm;
+import { passwordRegex } from "./constants";
 
 export const validateEmail = (t: TFunction) =>
   yup

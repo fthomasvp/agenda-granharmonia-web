@@ -24,25 +24,25 @@ export default function Home() {
 
       <Flex flexDir="column" flex={1}>
         <BookingOption
-          bgColor="#50BE76"
+          bgColor="green.400"
           name={t("gym")}
           image={GymGreen}
           path="/bookings/gym"
         />
         <BookingOption
-          bgColor="#D85761"
+          bgColor="red.400"
           name={t("grill")}
           image={GrillRed}
           path="/bookings/grill"
         />
         <BookingOption
-          bgColor="#5662D6"
+          bgColor="blue.400"
           name={t("swimmingPool")}
           image={SwimmingPoolBlue}
           path="/bookings/swimmingPool"
         />
         <BookingOption
-          bgColor="#B955E8"
+          bgColor="purple.400"
           name={t("partyRoom")}
           image={PartyRoomPurple}
           path="/bookings/partyRoom"

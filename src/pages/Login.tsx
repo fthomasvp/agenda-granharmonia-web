@@ -12,7 +12,7 @@ import {
   AuthLogin,
   FormLogin,
   loginSchema,
-  loginService,
+  authService,
   useAuthStore,
 } from "../features/authentication";
 
@@ -27,7 +27,7 @@ export default function SignIn() {
   const setAuth = useAuthStore((state) => state.setAuth);
   const user = useAuthStore((state) => state.user);
 
-  const loginMutation = useMutation(loginService, {
+  const loginMutation = useMutation(authService, {
     onSuccess: () => {
       queryClient.invalidateQueries(["auth"]);
     },
@@ -38,7 +38,9 @@ export default function SignIn() {
   });
 
   const onSubmit: SubmitHandler<AuthLogin> = (data) => {
-    loginMutation.mutate(data);
+    // loginMutation.mutate(data);
+    setAuth({ email: data.email, id: crypto.randomUUID() });
+    navigate(from, { replace: true });
   };
 
   useEffect(() => {
@@ -70,10 +72,16 @@ export default function SignIn() {
         <Heading fontWeight="semibold">
           {t("welcome", { ns: "glossary" })}
         </Heading>
-        <Text fontWeight="light" fontSize="sm" mb="4" mt="2">
+        <Text
+          color="gray.800"
+          fontWeight="light"
+          fontSize={["sm", "md"]}
+          mb="4"
+          mt="2"
+        >
           {t("doLoginToContinue", { ns: "glossary" })}
         </Text>
-        <Box bg="#EB6A3F" borderRadius="full" h="2px" w="40px" />
+        <Box bg="orange.400" borderRadius="full" h="2px" w="40px" />
       </Flex>
 
       <Flex flex={2} flexDir="column">

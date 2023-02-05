@@ -2,10 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 
 import { commonAreaKeys } from "../queries";
 import { getCommonAreaByName } from "../services";
-import { BookingCommonAreas } from "../types";
+import { CommonArea } from "../types";
 
 type Props = {
-  commonArea: BookingCommonAreas;
+  commonArea: CommonArea["name"];
 };
 
 export const useCommonAreasQuery = ({ commonArea }: Props) => {

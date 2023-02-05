@@ -15,7 +15,7 @@ export default function Greeting({ username }: GreetingProps) {
         <Text as="span" color="#363E91">
           {username}
         </Text>
-        <Text as="span" color="#EB6A3F">
+        <Text as="span" color="orange.400">
           .
         </Text>
       </Heading>

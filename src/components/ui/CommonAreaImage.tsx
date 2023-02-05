@@ -6,19 +6,19 @@ import {
   PartyRoomPurple,
   SwimmingPoolBlue,
 } from "../../assets/images";
-import { BookingNewParams } from "../../features/booking";
+import { CommonArea } from "../../features/booking";
 
-export default function CommonAreaImage({ commonArea }: BookingNewParams) {
+export default function CommonAreaImage({ name }: Pick<CommonArea, "name">) {
   const getCommonAreaImage = () => {
-    if (commonArea === "gym") {
+    if (name === "gym") {
       return GymGreen;
     }
 
-    if (commonArea === "grill") {
+    if (name === "grill") {
       return GrillRed;
     }
 
-    if (commonArea === "partyRoom") {
+    if (name === "partyRoom") {
       return PartyRoomPurple;
     }
 

@@ -25,14 +25,17 @@ import {
   FaSignOutAlt,
   FaUser,
 } from "react-icons/fa";
-import { GranHarmoniaLogo } from "../../assets/images";
+import { useLocation } from "react-router-dom";
 
-const inactiveColor = "#A39E9E";
-const activeColor = "#EB6A3F";
+import { GranHarmoniaLogo } from "../../assets/images";
+import { baseColors } from "../../themes/base";
 
 export default function Header() {
   const { t } = useTranslation(["common"]);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const location = useLocation();
+
+  const isActivePath = (aPath: string) => location.pathname.includes(aPath);
 
   const handleLogout = () => {
     localStorage.removeItem("auth-storage");
@@ -74,43 +77,91 @@ export default function Header() {
                   variant="ghost"
                   iconSpacing="3"
                   w="100%"
-                  leftIcon={<FaHome color={activeColor} />}
+                  leftIcon={
+                    <FaHome
+                      color={
+                        isActivePath("/home")
+                          ? baseColors.orange["400"]
+                          : baseColors.gray["400"]
+                      }
+                    />
+                  }
                 >
                   <Flex flex={1}>
                     <LinkOverlay href="/home">{t("home")}</LinkOverlay>
                   </Flex>
                 </Button>
               </LinkBox>
-              <Button
-                variant="ghost"
-                iconSpacing="3"
-                w="100%"
-                leftIcon={<FaBell color={inactiveColor} />}
-              >
-                <Flex flex={1}>{t("alerts")}</Flex>
-              </Button>
               <LinkBox w="100%">
                 <Button
                   variant="ghost"
                   iconSpacing="3"
                   w="100%"
-                  leftIcon={<FaCalendarDay color={inactiveColor} />}
+                  leftIcon={
+                    <FaBell
+                      color={
+                        isActivePath("/alerts")
+                          ? baseColors.orange["400"]
+                          : baseColors.gray["400"]
+                      }
+                    />
+                  }
                 >
-                  <Flex flex={1}>
-                    <LinkOverlay href="/bookings">
-                      {t("bookings")}
-                    </LinkOverlay>
+                  <Flex flex={1} justify="space-between" alignItems="center">
+                    <LinkOverlay href="/alerts">{t("alerts")}</LinkOverlay>
+                    {/* TODO: create a component to show alerts quantity badge. Also change bgColor to avoid conflic with `baseColors.orange['400']` */}
+                    <Box
+                      bgColor="orange.400"
+                      borderRadius="full"
+                      color="whiteAlpha.900"
+                      px="2"
+                      py="0.5"
+                    >
+                      1
+                    </Box>
                   </Flex>
                 </Button>
               </LinkBox>
-              <Button
-                variant="ghost"
-                iconSpacing="3"
-                w="100%"
-                leftIcon={<FaUser color={inactiveColor} />}
-              >
-                <Flex flex={1}>{t("profile")}</Flex>
-              </Button>
+              <LinkBox w="100%">
+                <Button
+                  variant="ghost"
+                  iconSpacing="3"
+                  w="100%"
+                  leftIcon={
+                    <FaCalendarDay
+                      color={
+                        isActivePath("/bookings")
+                          ? baseColors.orange["400"]
+                          : baseColors.gray["400"]
+                      }
+                    />
+                  }
+                >
+                  <Flex flex={1}>
+                    <LinkOverlay href="/bookings">{t("bookings")}</LinkOverlay>
+                  </Flex>
+                </Button>
+              </LinkBox>
+              <LinkBox w="100%">
+                <Button
+                  variant="ghost"
+                  iconSpacing="3"
+                  w="100%"
+                  leftIcon={
+                    <FaUser
+                      color={
+                        isActivePath("/profile")
+                          ? baseColors.orange["400"]
+                          : baseColors.gray["400"]
+                      }
+                    />
+                  }
+                >
+                  <Flex flex={1}>
+                    <LinkOverlay href="/profile">{t("profile")}</LinkOverlay>
+                  </Flex>
+                </Button>
+              </LinkBox>
             </VStack>
           </DrawerBody>
 

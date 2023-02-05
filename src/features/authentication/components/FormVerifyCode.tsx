@@ -35,7 +35,7 @@ export default function FormVerifyCode({ onSubmit }: FormVerifyCodeProps) {
 
   return (
     <Flex flexDir="column">
-      <Text align="center" mb="2">
+      <Text color="gray.800" align="center" mb="2">
         {t("enterCodeFromEmail", { ns: "glossary" })}
       </Text>
 
@@ -43,7 +43,7 @@ export default function FormVerifyCode({ onSubmit }: FormVerifyCodeProps) {
         <PinInput
           otp
           id="code-input"
-          // TODO: when add request to verify the code
+          // TODO: uncomment after add request to verify the code
           // isInvalid={Boolean(error)}
           onChange={handleChange}
           value={code}
@@ -59,7 +59,7 @@ export default function FormVerifyCode({ onSubmit }: FormVerifyCodeProps) {
         </PinInput>
       </HStack>
 
-      {/* TODO: uncomment when add request to verify the code */}
+      {/* TODO: uncomment after add request to verify the code */}
       {/* <HStack justify="center">
         <InputErrorMessage message={error} />
       </HStack> */}

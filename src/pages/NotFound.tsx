@@ -25,7 +25,7 @@ export default function NotFound() {
           <Heading as="h5" size="sm" textAlign="center">
             {t("pageNotFound")}
           </Heading>
-          <Text>{t("pageNotFound_description")}</Text>
+          <Text color="gray.800">{t("pageNotFound_description")}</Text>
 
           <Flex justify="center">
             <Button variant="link" onClick={() => navigate("/home")}>

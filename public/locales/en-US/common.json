@@ -13,6 +13,7 @@
   "code": "Code",
   "reset": "Reset",
   "new": "New",
+  "new_female": "New",
   "show": "Show",
   "more": "More",
   "less": "Less",
@@ -23,5 +24,7 @@
   "gym": "Gym",
   "grill": "Grill",
   "swimmingPool": "Swimming pool",
-  "partyRoom": "Party room"
+  "partyRoom": "Party room",
+  "reserve": "Reserve",
+  "reserved": "Reserved"
 }

@@ -22,5 +22,8 @@
   "findNextTime": "Find the next time",
   "availableYourBookings": "Available for your bookings",
   "activeBookings": "Your active bookings",
-  "previousBookings": "Previous bookings"
+  "previousBookings": "Previous bookings",
+  "emptyData": "There is no data",
+  "selectDate": "Select a date",
+  "selectDateToSearch": "Select a date to search"
 }

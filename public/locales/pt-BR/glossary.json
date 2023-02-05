@@ -22,5 +22,8 @@
   "findNextTime": "Encontre o próximo horário",
   "availableYourBookings": "Disponível para as suas reservas",
   "activeBookings": "Suas reservas ativas",
-  "previousBookings": "Reservas anteriores"
+  "previousBookings": "Reservas anteriores",
+  "emptyData": "Não há dados",
+  "SelectDate": "Selecione uma data",
+  "selectDateToSearch": "Selecione uma data para pesquisar"
 }

@@ -1,13 +1,7 @@
-export type BookingCommonAreas = "gym" | "grill" | "swimmingPool" | "partyRoom";
-
-export type BookingNewParams = {
-  commonArea: BookingCommonAreas;
-};
-
 export type CommonArea = {
   id: string;
   createdAt: string;
-  name: string;
+  name: "gym" | "grill" | "swimmingPool" | "partyRoom";
 };
 
 export type TimeSlot = {
@@ -24,5 +18,5 @@ export type AreaSlot = {
   commonArea: CommonArea;
   timeSlotId: string;
   timeSlot: TimeSlot;
-  status: string;
+  status: "AVAILABLE" | "RESERVED";
 };

@@ -1,8 +1,15 @@
-import { Flex, HStack, Image, Text, VStack } from "@chakra-ui/react";
+import {
+  BackgroundProps,
+  Flex,
+  HStack,
+  Image,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 
 export type BookingCardProps = {
   isActive?: boolean;
-  bgColor: string;
+  bgColor: BackgroundProps["bg"];
   image?: string;
   name: string;
   date: string;
@@ -36,15 +43,10 @@ export default function BookingCard({
           spacing="2"
           ml="4"
         >
-          <Text color="#F9F0EE">{name}</Text>
-          <Text as="span" fontSize="sm" fontWeight="light" color="#F9F0EE">
+          <Text>{name}</Text>
+          <Text as="span" fontWeight="light">
             Realizado em{" "}
-            <Text
-              as={isActive ? "p" : "span"}
-              fontSize="sm"
-              fontWeight="light"
-              color="#F9F0EE"
-            >
+            <Text as={isActive ? "p" : "span"} fontWeight="light">
               {date} às {time}h
             </Text>
           </Text>

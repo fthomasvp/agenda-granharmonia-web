@@ -24,5 +24,7 @@
   "gym": "Academia",
   "grill": "Churrasqueira",
   "swimmingPool": "Piscina",
-  "partyRoom": "Salão de festas"
+  "partyRoom": "Salão de festas",
+  "reserve": "Reservar",
+  "reserved": "Reservado"
 }

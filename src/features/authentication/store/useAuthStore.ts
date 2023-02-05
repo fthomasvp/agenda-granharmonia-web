@@ -4,7 +4,7 @@ import CryptoJS from "crypto-js";
 
 const SALT = import.meta.env.VITE_LOCAL_STORAGE_SALT;
 
-type User = { id: number; email: string };
+type User = { id: string; email: string };
 
 type AuthState = {
   user: User | null;

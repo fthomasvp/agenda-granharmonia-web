@@ -1,4 +1,5 @@
 import {
+  BackgroundProps,
   Flex,
   HStack,
   Icon,
@@ -12,7 +13,7 @@ import { useTranslation } from "react-i18next";
 import { FaChevronRight } from "react-icons/fa";
 
 type BookingOptionProps = {
-  bgColor: string;
+  bgColor: BackgroundProps["bgColor"];
   image: string;
   name: string;
   path: string;
@@ -39,12 +40,12 @@ export default function BookingOption({
         <VStack flex={1} spacing="2">
           <Image alt={name} src={image} />
           <LinkOverlay href={path}>
-            <Text color="#F9F0EE">{name}</Text>
+            <Text>{name}</Text>
           </LinkOverlay>
         </VStack>
         <HStack flex={1} justify="center">
-          <Text color="#F9F0EE">{t("checkTimes")}</Text>
-          <Icon as={FaChevronRight} color="#F9F0EE" boxSize="8" />
+          <Text>{t("checkTimes")}</Text>
+          <Icon as={FaChevronRight} color="whiteAlpha.900" boxSize="8" />
         </HStack>
       </Flex>
     </LinkBox>

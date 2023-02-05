@@ -1,10 +1,10 @@
-import { Spinner } from "@chakra-ui/react";
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import { ScrollToTop } from "../components/navigation";
+import { Loading } from "../components/ui";
 import { RequireAuth } from "../features/authentication";
-import { MobileContainer } from "../layouts";
+import { MobileLayout } from "../layouts";
 const BookingList = lazy(() => import("./BookingList"));
 const BookingNew = lazy(() => import("./BookingNew"));
 const ForgotPassword = lazy(() => import("./ForgotPassword"));
@@ -19,11 +19,11 @@ export default function Pages() {
     <BrowserRouter>
       <ScrollToTop />
 
-      <Suspense fallback={<Spinner />}>
+      <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<Navigate to="/login" replace />} />
 
-          <Route element={<MobileContainer />}>
+          <Route element={<MobileLayout />}>
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/verify-code" element={<VerifyCode />} />
@@ -31,14 +31,14 @@ export default function Pages() {
           </Route>
 
           <Route element={<RequireAuth />}>
-            <Route element={<MobileContainer showHeader />}>
+            <Route element={<MobileLayout showHeader />}>
               <Route path="/home" element={<Home />} />
               <Route path="/bookings" element={<BookingList />} />
-              <Route path="/bookings/:commonArea" element={<BookingNew />} />
+              <Route path="/bookings/:name" element={<BookingNew />} />
             </Route>
           </Route>
 
-          <Route element={<MobileContainer />}>
+          <Route element={<MobileLayout />}>
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
