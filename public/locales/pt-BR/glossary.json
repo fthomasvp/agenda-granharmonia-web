@@ -24,6 +24,7 @@
   "activeBookings": "Suas reservas ativas",
   "previousBookings": "Reservas anteriores",
   "emptyData": "Não há dados",
-  "SelectDate": "Selecione uma data",
-  "selectDateToSearch": "Selecione uma data para pesquisar"
+  "selectDate": "Selecione uma data",
+  "selectDateToSearch": "Selecione uma data para pesquisar",
+  "confirmBooking": "Você tem certeza de que deseja confirmar a reserva?"
 }

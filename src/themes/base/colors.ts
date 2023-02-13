@@ -4,6 +4,7 @@ export const baseColors = {
   },
   blue: {
     400: "#5662D6",
+    600: "#363E91",
   },
   gray: {
     400: "#979494",

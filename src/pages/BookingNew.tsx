@@ -3,12 +3,9 @@ import { ChangeEvent, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
-import { AreaSlotList, CommonAreaImage } from "../components/ui";
-import {
-  CommonArea,
-  useAreaSlotsQuery,
-  useCommonAreasQuery,
-} from "../features/booking";
+import { CommonAreaImage } from "../components/ui";
+import { AreaSlotList } from "../features/areaSlot";
+import { CommonArea, useCommonAreasQuery } from "../features/booking";
 import { formatDateToISO8601, getCurrentDate } from "../utils";
 
 export default function BookingNew() {
@@ -20,17 +17,13 @@ export default function BookingNew() {
   const commonAreaByNameQuery = useCommonAreasQuery({
     commonArea: name!,
   });
-  const areaSlotsQuery = useAreaSlotsQuery({
-    commonAreaId: commonAreaByNameQuery.data?.id!,
-    date,
-  });
 
   const handleChangeDate = (e: ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
 
-    if (!e.target.value) {
-      areaSlotsQuery.remove();
-    }
+    // if (!e.target.value) {
+    //   areaSlotsQuery.remove();
+    // }
   };
 
   return (
@@ -62,9 +55,9 @@ export default function BookingNew() {
 
       <Flex flex={6} flexDir="column" mt="8">
         <AreaSlotList
-          data={areaSlotsQuery.data}
-          isFetching={areaSlotsQuery.isFetching}
-          name={name!}
+          commonAreaId={commonAreaByNameQuery.data?.id!}
+          commonAreaName={name!}
+          date={date}
         />
       </Flex>
     </>

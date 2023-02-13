@@ -25,5 +25,6 @@
   "previousBookings": "Previous bookings",
   "emptyData": "There is no data",
   "selectDate": "Select a date",
-  "selectDateToSearch": "Select a date to search"
+  "selectDateToSearch": "Select a date to search",
+  "confirmBooking": "Are you sure you want to confirm the reservation?"
 }

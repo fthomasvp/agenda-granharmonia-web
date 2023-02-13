@@ -5,6 +5,7 @@ type GreetingProps = {
   username: string;
 };
 
+// TODO: add a prop called `message` to display custom messages.
 export default function Greeting({ username }: GreetingProps) {
   const { t } = useTranslation(["glossary", "common"]);
 
@@ -12,7 +13,7 @@ export default function Greeting({ username }: GreetingProps) {
     <>
       <Heading fontWeight="semibold">
         {t("hello", { ns: "common" })},{" "}
-        <Text as="span" color="#363E91">
+        <Text as="span" color="blue.600">
           {username}
         </Text>
         <Text as="span" color="orange.400">

@@ -1,0 +1,1 @@
+export { useAreaSlotsQuery } from "./useAreaSlotsQuery";

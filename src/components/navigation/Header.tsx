@@ -100,7 +100,7 @@ export default function Header() {
                   leftIcon={
                     <FaBell
                       color={
-                        isActivePath("/alerts")
+                        isActivePath("/notifications")
                           ? baseColors.orange["400"]
                           : baseColors.gray["400"]
                       }
@@ -108,10 +108,12 @@ export default function Header() {
                   }
                 >
                   <Flex flex={1} justify="space-between" alignItems="center">
-                    <LinkOverlay href="/alerts">{t("alerts")}</LinkOverlay>
-                    {/* TODO: create a component to show alerts quantity badge. Also change bgColor to avoid conflic with `baseColors.orange['400']` */}
+                    <LinkOverlay href="/notifications">
+                      {t("notifications")}
+                    </LinkOverlay>
+                    {/* TODO: create component to show Notifications quantity */}
                     <Box
-                      bgColor="orange.400"
+                      bgColor="blue.600"
                       borderRadius="full"
                       color="whiteAlpha.900"
                       px="2"

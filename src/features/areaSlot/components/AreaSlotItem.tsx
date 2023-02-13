@@ -2,15 +2,31 @@ import { Button, Flex, ListIcon, ListItem, Text } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { FaClock } from "react-icons/fa";
 
-import { AreaSlot } from "../../features/booking";
-import { getCommonAreaColor, STATUS_AVAILABLE } from "../../utils";
+import { getCommonAreaColor, STATUS_AVAILABLE } from "../../../utils";
+import { useAlertStore } from "../../ui";
+import type { AreaSlot } from "../types";
+
+type AreaSlotItemProps = AreaSlot & {
+  onReservation: (areaSlotId: string) => void;
+};
 
 export default function AreaSlotItem({
+  id,
   status,
   timeSlot,
   commonArea,
-}: AreaSlot) {
+  onReservation,
+}: AreaSlotItemProps) {
   const { t } = useTranslation(["common"]);
+
+  const setIsOpen = useAlertStore((state) => state.setIsOpen);
+
+  const isAvailable = status === STATUS_AVAILABLE;
+
+  const openAlert = () => {
+    setIsOpen(true);
+    onReservation(id!);
+  };
 
   return (
     <ListItem
@@ -18,11 +34,7 @@ export default function AreaSlotItem({
       alignItems="center"
       px="3"
       py="4"
-      bgColor={
-        status === STATUS_AVAILABLE
-          ? getCommonAreaColor(commonArea.name)
-          : "gray.400"
-      }
+      bgColor={isAvailable ? getCommonAreaColor(commonArea.name) : "gray.400"}
       borderRadius="md"
     >
       <Flex flex={0.1} justify="center">
@@ -34,12 +46,8 @@ export default function AreaSlotItem({
         </Text>
       </Flex>
       <Flex>
-        {status === STATUS_AVAILABLE ? (
-          <Button
-            alignSelf="flex-end"
-            variant="solid"
-            onClick={() => console.log("Clicked to open confirmation modal")}
-          >
+        {isAvailable ? (
+          <Button alignSelf="flex-end" variant="solid" onClick={openAlert}>
             {t("reserve").toUpperCase()}
           </Button>
         ) : (
