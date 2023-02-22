@@ -13,12 +13,12 @@ export default function Greeting({ username }: GreetingProps) {
     <>
       <Heading fontWeight="semibold">
         {t("hello", { ns: "common" })},{" "}
-        <Text as="span" color="blue.600">
+        <Heading as="span" color="blue.600">
           {username}
-        </Text>
-        <Text as="span" color="orange.400">
+        </Heading>
+        <Heading as="span" color="orange.400">
           .
-        </Text>
+        </Heading>
       </Heading>
       <Text color="#666666" fontWeight="light">
         {t("findNextTime")}
