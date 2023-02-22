@@ -3,13 +3,11 @@ import { Outlet } from "react-router-dom";
 
 import { Header } from "../components/navigation";
 
-type MobileContainerProps = {
+type MainLayoutProps = {
   showHeader?: boolean;
 };
 
-export default function MobileLayout({
-  showHeader = false,
-}: MobileContainerProps) {
+export default function MainLayout({ showHeader = false }: MainLayoutProps) {
   return (
     <Flex
       flex={1}
