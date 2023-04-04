@@ -3,7 +3,7 @@ import { SubmitHandler, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-import { AInput, APasswordInput } from "../../../components/form";
+import { Input, PasswordInput } from "../../../components/form";
 import type { AuthLogin } from "../types";
 
 type FormLoginProps = {
@@ -23,11 +23,11 @@ export default function FormLogin({ onSubmit }: FormLoginProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Box mb="5">
-        <AInput label={t("email")} name="email" />
+        <Input label={t("email")} name="email" />
       </Box>
 
       <Box mb="5">
-        <APasswordInput label={t("password")} name="password" />
+        <PasswordInput label={t("password")} name="password" />
       </Box>
 
       <Box mb="7">

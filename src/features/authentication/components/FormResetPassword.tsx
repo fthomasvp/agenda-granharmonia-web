@@ -2,7 +2,7 @@ import { Box, Button } from "@chakra-ui/react";
 import { SubmitHandler, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-import { APasswordInput } from "../../../components/form";
+import { PasswordInput } from "../../../components/form";
 import type { ResetPasswordType } from "../types";
 
 type FormResetPasswordProps = {
@@ -19,7 +19,7 @@ export default function FormResetPassword({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Box mb="5">
-        <APasswordInput
+        <PasswordInput
           label={`${t("new", { context: "female" })} ${t(
             "password"
           ).toLowerCase()}`}
@@ -28,7 +28,7 @@ export default function FormResetPassword({
       </Box>
 
       <Box mb="5">
-        <APasswordInput
+        <PasswordInput
           label={t("repeatNewPassword", { ns: "glossary" })}
           name="newPasswordConfirmation"
         />

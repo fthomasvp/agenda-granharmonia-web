@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 import {
   GrillRed,
@@ -7,19 +7,24 @@ import {
   PartyRoomPurple,
   SwimmingPoolBlue,
 } from "../assets/images";
-import { HalfBall } from "../components/ui";
-import { BookingOption, Greeting } from "../features/home";
+import { Greeting, HalfBall } from "../components/ui";
+import { BookingOption } from "../features/home";
 
 export default function Home() {
-  const { t } = useTranslation(["common"]);
+  const { t } = useTranslation(["common", "glossary"]);
 
   return (
     <>
       <HalfBall right={0} />
 
       <Flex flexDir="column" mb="12">
-        {/* TODO: replace with value from storage (Zustand) */}
-        <Greeting username="Thomas" />
+        {/* TODO: replace `username` with value from storage (Zustand) */}
+        <Greeting
+          username="Thomas"
+          message={
+            <Trans i18nKey="findNextTimeAvailableYourBookings" ns="glossary" />
+          }
+        />
       </Flex>
 
       <Flex flexDir="column" flex={1}>
