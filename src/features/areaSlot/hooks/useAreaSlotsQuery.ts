@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { areaSlotKeys } from "../queries";
+import { areaSlotKeys } from "../query-keys";
 import { getAreaSlotsService } from "../services";
 
 type Props = {
@@ -9,12 +9,10 @@ type Props = {
 };
 
 export const useAreaSlotsQuery = ({ commonAreaId, date }: Props) => {
-  return useQuery(
-    areaSlotKeys.list(commonAreaId, date),
-    ({ queryKey: [{ commonAreaId, date }], signal }) =>
+  return useQuery({
+    queryKey: areaSlotKeys.list(commonAreaId, date),
+    queryFn: ({ signal }) =>
       getAreaSlotsService({ commonAreaId, date }, signal),
-    {
-      enabled: Boolean(commonAreaId! && date),
-    }
-  );
+    enabled: Boolean(commonAreaId! && date),
+  });
 };

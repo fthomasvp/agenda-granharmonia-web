@@ -3,12 +3,23 @@ import { devtools } from "zustand/middleware";
 
 type BookingStore = {
   isOpen: boolean;
-  setIsOpen: (data: boolean) => void;
+  actions: {
+    setIsOpen: (data: boolean) => void;
+  };
 };
 
-export const useBookingStore = create<BookingStore>()(
+/**
+ * Remember the reason to use this store
+ */
+const useBookingStore = create<BookingStore>()(
   devtools((set) => ({
     isOpen: false,
-    setIsOpen: (data) => set(() => ({ isOpen: data })),
+    actions: {
+      setIsOpen: (data) => set(() => ({ isOpen: data })),
+    },
   }))
 );
+
+export const useBookingIsOpen = () => useBookingStore((state) => state.isOpen);
+export const useBookingActions = () =>
+  useBookingStore((state) => state.actions);

@@ -3,12 +3,19 @@ import { devtools } from "zustand/middleware";
 
 type AlertStore = {
   isOpen: boolean;
-  setIsOpen: (data: boolean) => void;
+  actions: {
+    setIsOpen: (data: boolean) => void;
+  };
 };
 
-export const useAlertStore = create<AlertStore>()(
+const useAlertStore = create<AlertStore>()(
   devtools((set) => ({
     isOpen: false,
-    setIsOpen: (data) => set(() => ({ isOpen: data })),
+    actions: {
+      setIsOpen: (data) => set(() => ({ isOpen: data })),
+    },
   }))
 );
+
+export const useIsOpenAlert = () => useAlertStore((state) => state.isOpen);
+export const useAlertActions = () => useAlertStore((state) => state.actions);

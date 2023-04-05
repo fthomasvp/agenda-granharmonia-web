@@ -7,19 +7,23 @@ const SALT = import.meta.env.VITE_LOCAL_STORAGE_SALT;
 type User = { id: string; email: string };
 
 type AuthState = {
-  user: User | null;
-  setAuth: (data: User) => void;
+  user?: User;
+  actions: {
+    setAuth: (data: User) => void;
+  };
 };
 
-export const useAuthStore = create<AuthState>()(
+const useAuthStore = create<AuthState>()(
   devtools(
     persist(
       (set) => ({
-        user: null,
-        setAuth: (data) => set(() => ({ user: data })),
+        user: undefined,
+        actions: {
+          setAuth: (data) => set(() => ({ user: data })),
+        },
       }),
       {
-        name: "auth-storage",
+        name: "agenda-auth",
         serialize(state) {
           const stringifiedState = JSON.stringify(state);
           const encryptedState = CryptoJS.AES.encrypt(stringifiedState, SALT);
@@ -38,3 +42,6 @@ export const useAuthStore = create<AuthState>()(
     )
   )
 );
+
+export const useUser = () => useAuthStore((state) => state.user);
+export const useAuthActions = () => useAuthStore((state) => state.actions);

@@ -1,7 +1,5 @@
 export * from "./components";
-
-export { useAuthStore } from "./store/useAuthStore";
-
 export * from "./schemas";
 export * from "./services";
+export { useAuthActions, useUser } from "./store/useAuthStore";
 export * from "./types";

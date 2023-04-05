@@ -13,6 +13,7 @@ const Login = lazy(() => import("./Login"));
 const NotFound = lazy(() => import("./404"));
 const ResetPassword = lazy(() => import("./ResetPassword"));
 const VerifyCode = lazy(() => import("./VerifyCode"));
+const ApartmentList = lazy(() => import("./ApartmentList"));
 
 export default function Pages() {
   return (
@@ -32,6 +33,7 @@ export default function Pages() {
 
           <Route element={<RequireAuth />}>
             <Route element={<MainLayout showHeader />}>
+              <Route path="/apartments" element={<ApartmentList />} />
               <Route path="/home" element={<Home />} />
               <Route path="/bookings" element={<BookingList />} />
               <Route path="/bookings/:name" element={<BookingNew />} />

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { FaClock } from "react-icons/fa";
 
 import { getCommonAreaColor, STATUS_AVAILABLE } from "../../../utils";
-import { useAlertStore } from "../../ui";
+import { useAlertActions } from "../../ui";
 import type { AreaSlot } from "../types";
 
 type AreaSlotItemProps = AreaSlot & {
@@ -19,7 +19,7 @@ export default function AreaSlotItem({
 }: AreaSlotItemProps) {
   const { t } = useTranslation(["common"]);
 
-  const setIsOpen = useAlertStore((state) => state.setIsOpen);
+  const { setIsOpen } = useAlertActions();
 
   const isAvailable = status === STATUS_AVAILABLE;
 

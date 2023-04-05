@@ -10,10 +10,11 @@ import { GranHarmoniaLogo } from "../assets/images";
 import { HalfBall, OxentiLabStamp } from "../components/ui";
 import {
   AuthLogin,
+  authService,
   FormLogin,
   loginSchema,
-  authService,
-  useAuthStore,
+  useAuthActions,
+  useUser,
 } from "../features/authentication";
 
 export default function SignIn() {
@@ -24,10 +25,11 @@ export default function SignIn() {
 
   const from = (location.state as any)?.from?.pathname || "/home";
 
-  const setAuth = useAuthStore((state) => state.setAuth);
-  const user = useAuthStore((state) => state.user);
+  const { setAuth } = useAuthActions();
+  const user = useUser();
 
-  const loginMutation = useMutation(authService, {
+  const loginMutation = useMutation({
+    mutationFn: authService,
     onSuccess: () => {
       queryClient.invalidateQueries(["auth"]);
     },
