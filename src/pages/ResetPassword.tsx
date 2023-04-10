@@ -9,7 +9,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -36,7 +36,7 @@ export default function ResetPassword() {
   const navigate = useNavigate();
 
   const methods = useForm<ResetPasswordType>({
-    resolver: yupResolver(resetPasswordSchema(t)),
+    resolver: zodResolver(resetPasswordSchema(t)),
   });
 
   const [isPassReseted, setIsPassReseted] = useState(false);

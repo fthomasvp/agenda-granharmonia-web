@@ -1,5 +1,5 @@
 import { Box, Center, Flex, Heading, Image, Text } from "@chakra-ui/react";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
@@ -44,7 +44,7 @@ export default function SignIn() {
   });
 
   const methods = useForm<TAuth>({
-    resolver: yupResolver(loginSchema(t)),
+    resolver: zodResolver(loginSchema(t)),
   });
 
   const onSubmit: SubmitHandler<TAuth> = (data) => {

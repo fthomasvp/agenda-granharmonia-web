@@ -1,5 +1,5 @@
 import { Flex, Heading, List, ListIcon, ListItem } from "@chakra-ui/react";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { FaInfoCircle } from "react-icons/fa";
@@ -23,7 +23,7 @@ export default function ForgotPassword() {
   const navigate = useNavigate();
 
   const methods = useForm<ForgotPasswordType>({
-    resolver: yupResolver(forgotPasswordSchema(t)),
+    resolver: zodResolver(forgotPasswordSchema(t)),
   });
 
   const onSubmit: SubmitHandler<ForgotPasswordType> = (data) => {
