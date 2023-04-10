@@ -1,6 +1,6 @@
 export const areaSlotKeys = {
-  all: ["areaSlots"] as const,
-  lists: () => [...areaSlotKeys.all, "list"] as const,
+  all: [{ scope: "areaSlots" }] as const,
+  lists: () => [{ ...areaSlotKeys.all[0], entity: "list" }] as const,
   list: (commonAreaId: string, date: string) =>
-    [...areaSlotKeys.lists(), commonAreaId, date] as const,
+    [{ ...areaSlotKeys.lists()[0], commonAreaId, date }] as const,
 };

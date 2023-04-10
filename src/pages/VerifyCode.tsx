@@ -1,28 +1,17 @@
-import { Flex, Heading, Image, useBreakpointValue } from "@chakra-ui/react";
+import { Flex, Heading, Image } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import { MobileGreenCheck } from "../assets/images";
 import { BackButton } from "../components/navigation";
 import { FormVerifyCode } from "../features/authentication";
+import { useVariantSize } from "../features/ui/hooks";
 
 export default function VerifyCode() {
   const { t } = useTranslation(["common", "glossary", "validation"]);
   const navigate = useNavigate();
 
-  const mobileGreenCheckVariantSize = useBreakpointValue(
-    {
-      base: "60",
-      sm: "60",
-      md: "72",
-      lg: "80",
-      xl: "96",
-    },
-    {
-      fallback: "md",
-      ssr: false,
-    }
-  );
+  const mobileGreenCheckVariantSize = useVariantSize();
 
   const onSubmit = (data: string) => {
     console.log("> VerifyCode :: data", data);

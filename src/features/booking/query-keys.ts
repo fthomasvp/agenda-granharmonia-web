@@ -1,8 +1,10 @@
 import { CommonArea } from "./types";
 
 export const commonAreaKeys = {
-  all: ["commonAreas"] as const,
-  lists: () => [...commonAreaKeys.all, "list"] as const,
+  all: [{ scope: "commonAreas" }] as const,
+  lists: () => [{ ...commonAreaKeys.all[0], entity: "list" }] as const,
   list: (commonArea: CommonArea["name"]) =>
-    [...commonAreaKeys.lists(), commonArea] as const,
+    [{ ...commonAreaKeys.lists()[0], commonArea }] as const,
 };
+
+export type TCommonAreaKeyList = ReturnType<typeof commonAreaKeys["list"]>;

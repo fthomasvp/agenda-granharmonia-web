@@ -9,7 +9,7 @@
   "sentCode": "Code was sent!",
   "enterCodeFromEmail": "Enter the code that you received by e-mail",
   "pageNotFound": "Oops! The page you were looking for doesn't exist.",
-  "pageNotFound_description": "You may have mistyped the address or the page may have moved.",
+  "pageNotFoundDescription": "You may have mistyped the address or the page may have moved.",
   "backToHomePage": "Back to home page",
   "enterNewPassword": "Enter your new password!",
   "repeatNewPassword": "Repeat your new password",
@@ -25,5 +25,6 @@
   "emptyData": "There is no data",
   "selectDate": "Select a date",
   "selectDateToSearch": "Select a date to search",
-  "confirmBooking": "Are you sure you want to confirm the reservation?"
+  "confirmBooking": "Are you sure you want to confirm the reservation?",
+  "selectYourApartment": "Choose your apartment"
 }

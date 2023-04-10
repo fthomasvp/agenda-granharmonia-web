@@ -28,6 +28,7 @@ import {
 import { useLocation } from "react-router-dom";
 
 import { GranHarmoniaLogo } from "../../assets/images";
+import { clearAuthStorage } from "../../features/authentication";
 import { baseColors } from "../../themes/base";
 
 export default function Header() {
@@ -38,8 +39,7 @@ export default function Header() {
   const isActivePath = (aPath: string) => location.pathname.includes(aPath);
 
   const handleLogout = () => {
-    localStorage.removeItem("auth-storage");
-
+    clearAuthStorage();
     onClose();
 
     document.location.reload();
@@ -57,7 +57,11 @@ export default function Header() {
       </Box>
 
       <Box ml="3">
-        <Image alt="Gran Harmonia logo" src={GranHarmoniaLogo} w="32" />
+        <Image
+          alt="Blue Gran Harmonia word with orange Agenda word below"
+          src={GranHarmoniaLogo}
+          w="32"
+        />
       </Box>
 
       <Drawer isOpen={isOpen} onClose={onClose} placement="left">
@@ -65,7 +69,11 @@ export default function Header() {
 
         <DrawerContent>
           <DrawerHeader>
-            <Image alt="Gran Harmonia logo" src={GranHarmoniaLogo} w="32" />
+            <Image
+              alt="Blue Gran Harmonia word with orange Agenda word below"
+              src={GranHarmoniaLogo}
+              w="32"
+            />
           </DrawerHeader>
 
           <Divider />

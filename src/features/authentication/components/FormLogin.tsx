@@ -4,17 +4,17 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import { Input, PasswordInput } from "../../../components/form";
-import type { AuthLogin } from "../types";
+import type { TAuth } from "../types";
 
 type FormLoginProps = {
-  onSubmit: SubmitHandler<AuthLogin>;
+  onSubmit: SubmitHandler<TAuth>;
 };
 
 export default function FormLogin({ onSubmit }: FormLoginProps) {
   const { t } = useTranslation(["common", "glossary"]);
   const navigate = useNavigate();
 
-  const { handleSubmit } = useFormContext<AuthLogin>();
+  const { handleSubmit } = useFormContext<TAuth>();
 
   const handleForgotPassword = () => {
     navigate("/forgot-password");

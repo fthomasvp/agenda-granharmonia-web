@@ -4,9 +4,8 @@ import { useTranslation } from "react-i18next";
 
 import { Alert, Empty, Loading } from "../../../components/ui";
 import { CommonArea } from "../../../features/booking";
-import { getCommonAreaColor } from "../../../utils";
-import { useIsOpenAlert, useAlertActions } from "../../ui";
-import { useAreaSlotsQuery } from "../hooks";
+import { useAlertActions, useIsOpenAlert } from "../../ui";
+import { useAreaSlotsQuery, useCommonAreaColor } from "../hooks";
 import AreaSlotItem from "./AreaSlotItem";
 
 type AreaSlotListProps = {
@@ -26,6 +25,7 @@ export default function AreaSlotList({
 
   const isOpen = useIsOpenAlert();
   const { setIsOpen } = useAlertActions();
+  const commonAreaColor = useCommonAreaColor(commonAreaName);
 
   const { data, isFetching } = useAreaSlotsQuery({
     commonAreaId,
@@ -49,7 +49,7 @@ export default function AreaSlotList({
   };
 
   if (isFetching) {
-    return <Loading color={getCommonAreaColor(commonAreaName!) as string} />;
+    return <Loading color={commonAreaColor as string} />;
   }
 
   if (!data?.length) {

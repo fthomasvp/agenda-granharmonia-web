@@ -1,6 +1,8 @@
+import CryptoJS from "crypto-js";
 import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import CryptoJS from "crypto-js";
+
+import { LOCAL_STORAGE_AUTH_KEY } from "../../../utils";
 
 const SALT = import.meta.env.VITE_LOCAL_STORAGE_SALT;
 
@@ -23,7 +25,8 @@ const useAuthStore = create<AuthState>()(
         },
       }),
       {
-        name: "agenda-auth",
+        name: LOCAL_STORAGE_AUTH_KEY,
+        partialize: (state) => ({ user: state.user }),
         serialize(state) {
           const stringifiedState = JSON.stringify(state);
           const encryptedState = CryptoJS.AES.encrypt(stringifiedState, SALT);
@@ -45,3 +48,4 @@ const useAuthStore = create<AuthState>()(
 
 export const useUser = () => useAuthStore((state) => state.user);
 export const useAuthActions = () => useAuthStore((state) => state.actions);
+export const clearAuthStorage = () => useAuthStore.persist.clearStorage();

@@ -8,7 +8,6 @@ import {
   Heading,
   Image,
   Stack,
-  useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import { FallbackProps } from "react-error-boundary";
@@ -16,6 +15,7 @@ import { useTranslation } from "react-i18next";
 
 import { HalfBall } from ".";
 import { GranHarmoniaLogo, PersonBlueWarning } from "../../assets/images";
+import { useVariantSize } from "../../features/ui/hooks";
 
 export default function ErrorFallback({
   error,
@@ -24,26 +24,17 @@ export default function ErrorFallback({
   const { t } = useTranslation(["glossary", "common"]);
   const { isOpen, onToggle } = useDisclosure();
 
-  const personBlueWarningVariantSize = useBreakpointValue(
-    {
-      base: "60",
-      sm: "60",
-      md: "72",
-      lg: "80",
-      xl: "96",
-    },
-    {
-      fallback: "md",
-      ssr: false,
-    }
-  );
+  const personBlueWarningVariantSize = useVariantSize();
 
   return (
     <>
       <HalfBall right={0} />
 
       <Flex justify="center" mt="8">
-        <Image src={GranHarmoniaLogo} alt="Gran Harmonia logo" />
+        <Image
+          src={GranHarmoniaLogo}
+          alt="Blue Gran Harmonia word with orange Agenda word below"
+        />
       </Flex>
 
       <Flex flex={1} flexDir="column" justify="center" align="center">

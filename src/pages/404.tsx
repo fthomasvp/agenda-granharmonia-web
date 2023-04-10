@@ -14,7 +14,10 @@ export default function NotFound() {
       <HalfBall right={0} />
 
       <Flex justify="center" mt="8">
-        <Image src={GranHarmoniaLogo} alt="Gran Harmonia logo" />
+        <Image
+          src={GranHarmoniaLogo}
+          alt="Blue Gran Harmonia word with orange Agenda word below"
+        />
       </Flex>
 
       <Flex align="center" justify="center" flex={1}>
@@ -25,7 +28,7 @@ export default function NotFound() {
           <Heading as="h5" size="sm" textAlign="center">
             {t("pageNotFound")}
           </Heading>
-          <Text color="gray.800">{t("pageNotFound_description")}</Text>
+          <Text color="gray.800">{t("pageNotFoundDescription")}</Text>
 
           <Flex justify="center">
             <Button variant="link" onClick={() => navigate("/home")}>

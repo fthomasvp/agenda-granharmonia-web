@@ -26,5 +26,7 @@
   "swimmingPool": "Piscina",
   "partyRoom": "Salão de festas",
   "reserve": "Reservar",
-  "reserved": "Reservado"
+  "reserved": "Reservado",
+  "apartment": "Apartamento",
+  "block": "Bloco"
 }

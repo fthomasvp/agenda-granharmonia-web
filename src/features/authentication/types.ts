@@ -1,9 +1,9 @@
-export type AuthLogin = {
+export type TAuth = {
   email: string;
   password: string;
 };
 
-export type ForgotPasswordType = Omit<AuthLogin, "password">;
+export type ForgotPasswordType = Omit<TAuth, "password">;
 
 export type ResetPasswordType = {
   newPassword: string;

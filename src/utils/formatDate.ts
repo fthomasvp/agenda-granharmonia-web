@@ -1,21 +1,20 @@
 import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import timezone from "dayjs/plugin/timezone";
-import customParseFormat from "dayjs/plugin/customParseFormat";
 import "dayjs/locale/pt-br";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+
+import { DATE_PATTERNS } from "./constants";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(customParseFormat);
+
 dayjs.locale("pt-br");
 dayjs.tz.setDefault("America/Sao_Paulo");
 
-const ISO_8601_PATTERN = "YYYY-MM-DD";
-const BRAZILIAN_PATTERN = "DD/MM/YYYY";
-
 /**
- * Get the current UTC date, considering the timezone and
- * returns a Date object.
+ * Get current UTC date considering timezone.
  */
 export const getCurrentDate = () => dayjs().tz().toDate();
 
@@ -29,7 +28,7 @@ export const formatDateToBrazilian = (date: Date | string) => {
     return "";
   }
 
-  return dayjs.utc(date).format(BRAZILIAN_PATTERN);
+  return dayjs.utc(date).format(DATE_PATTERNS.BRAZILIAN);
 };
 
 /**
@@ -37,35 +36,35 @@ export const formatDateToBrazilian = (date: Date | string) => {
  * @param date - Date object.
  */
 export const formatDateToISO8601 = (date: Date) =>
-  dayjs(date).format(ISO_8601_PATTERN);
+  dayjs(date).format(DATE_PATTERNS.ISO_8601);
 
 /**
  * Format a Brazilian string date into an ISO 8601 string.
  * @param date - Brazilian string date.
  */
 export const formatBrazilianToISO8601 = (date: string) =>
-  dayjs(date, BRAZILIAN_PATTERN).format(ISO_8601_PATTERN);
+  dayjs(date, DATE_PATTERNS.BRAZILIAN).format(DATE_PATTERNS.ISO_8601);
 
 /**
  * Converts an ISO 8601 string to a Date object.
  * @param date - ISO 8601 string.
  */
 export const convertISO8601ToDate = (date: string) =>
-  dayjs(date, ISO_8601_PATTERN).toDate();
+  dayjs(date, DATE_PATTERNS.ISO_8601).toDate();
 
 /**
  * Converts a Brazilian string date to a Date object.
  * @param date - Brazilian string date.
  */
 export const convertBrazilianToDate = (date: string) =>
-  dayjs(date, BRAZILIAN_PATTERN).toDate();
+  dayjs(date, DATE_PATTERNS.BRAZILIAN).toDate();
 
 /**
  * Checks if a Brazilian string date is valid using `strict` comparison.
  * @param date - Brazilian string date.
  */
 export const isValidBrazilianDate = (date: string) =>
-  dayjs(date, BRAZILIAN_PATTERN, true).isValid();
+  dayjs(date, DATE_PATTERNS.BRAZILIAN, true).isValid();
 
 /**
  * Checks if a Date object is valid.

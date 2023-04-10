@@ -11,8 +11,7 @@ type Props = {
 export const useAreaSlotsQuery = ({ commonAreaId, date }: Props) => {
   return useQuery({
     queryKey: areaSlotKeys.list(commonAreaId, date),
-    queryFn: ({ signal }) =>
-      getAreaSlotsService({ commonAreaId, date }, signal),
+    queryFn: getAreaSlotsService,
     enabled: Boolean(commonAreaId! && date),
   });
 };

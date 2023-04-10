@@ -1,0 +1,1 @@
+export { useApartmentsByUserIdQuery } from "./useApartmentsByUserIdQuery";

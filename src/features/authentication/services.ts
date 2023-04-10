@@ -1,8 +1,8 @@
 import api from "../../api";
-import type { AuthLogin } from "./types";
+import type { TAuth } from "./types";
 
-export const authService = async (body: AuthLogin) => {
-  const { data } = await api.post("/auth", body);
+export const authService = async (body: TAuth) => {
+  const { data } = await api.post("/Auth", body);
 
   return data;
 };

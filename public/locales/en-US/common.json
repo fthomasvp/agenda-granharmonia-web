@@ -26,5 +26,7 @@
   "swimmingPool": "Swimming pool",
   "partyRoom": "Party room",
   "reserve": "Reserve",
-  "reserved": "Reserved"
+  "reserved": "Reserved",
+  "apartment": "Apartment",
+  "block": "Block"
 }

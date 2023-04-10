@@ -1,13 +1,8 @@
-import {
-  Center,
-  Image,
-  Text,
-  useBreakpointValue,
-  VStack,
-} from "@chakra-ui/react";
+import { Center, Image, Text, VStack } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 
 import { EmptyOrange } from "../../assets/images";
+import { useVariantSize } from "../../features/ui/hooks";
 
 type EmptyProps = {
   customMessage?: string;
@@ -16,19 +11,7 @@ type EmptyProps = {
 export default function Empty({ customMessage }: EmptyProps) {
   const { t } = useTranslation(["glossary"]);
 
-  const emptyOrangeVariantSize = useBreakpointValue(
-    {
-      base: "60",
-      sm: "60",
-      md: "72",
-      lg: "80",
-      xl: "96",
-    },
-    {
-      fallback: "md",
-      ssr: false,
-    }
-  );
+  const emptyOrangeVariantSize = useVariantSize();
 
   return (
     <Center h="full">

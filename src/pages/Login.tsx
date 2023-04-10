@@ -1,73 +1,71 @@
 import { Box, Center, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { GranHarmoniaLogo } from "../assets/images";
 import { HalfBall, OxentiLabStamp } from "../components/ui";
 import {
-  AuthLogin,
   authService,
   FormLogin,
   loginSchema,
+  TAuth,
   useAuthActions,
   useUser,
 } from "../features/authentication";
+import { useToast } from "../features/ui";
 
 export default function SignIn() {
   const { t } = useTranslation(["common", "validation", "glossary"]);
-  const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const location = useLocation();
+  const toast = useToast();
 
-  const from = (location.state as any)?.from?.pathname || "/home";
+  const from = "/location";
 
-  const { setAuth } = useAuthActions();
   const user = useUser();
+  const { setAuth } = useAuthActions();
 
   const loginMutation = useMutation({
     mutationFn: authService,
-    onSuccess: () => {
-      queryClient.invalidateQueries(["auth"]);
+    onSuccess: (data) => {
+      setAuth(data);
+      navigate(from, { replace: true });
+    },
+    onError: (_error) => {
+      toast({
+        title: "Error",
+        description: "Usuário ou senha inválidos",
+        status: "error",
+      });
     },
   });
 
-  const methods = useForm<AuthLogin>({
+  const methods = useForm<TAuth>({
     resolver: yupResolver(loginSchema(t)),
   });
 
-  const onSubmit: SubmitHandler<AuthLogin> = (data) => {
-    // loginMutation.mutate(data);
-    setAuth({ email: data.email, id: crypto.randomUUID() });
-    navigate(from, { replace: true });
+  const onSubmit: SubmitHandler<TAuth> = (data) => {
+    loginMutation.mutate(data);
   };
-
-  useEffect(() => {
-    if (loginMutation.isSuccess) {
-      const { data } = loginMutation;
-
-      setAuth(data);
-      navigate(from, { replace: true });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loginMutation.isSuccess]);
 
   useEffect(() => {
     if (user?.id) {
       navigate(from, { replace: true });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user?.id]);
+  }, [user?.id, navigate]);
 
   return (
     <>
       <HalfBall right={0} />
 
       <Flex justify="center" my="8">
-        <Image src={GranHarmoniaLogo} alt="Gran Harmonia Logo" />
+        <Image
+          src={GranHarmoniaLogo}
+          alt="Blue Gran Harmonia word with orange Agenda word below"
+        />
       </Flex>
 
       <Flex flex={1} flexDir="column" justify="center">

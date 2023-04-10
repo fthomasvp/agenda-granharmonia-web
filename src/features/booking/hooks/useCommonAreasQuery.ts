@@ -11,6 +11,6 @@ type Props = {
 export const useCommonAreasQuery = ({ commonArea }: Props) => {
   return useQuery({
     queryKey: commonAreaKeys.list(commonArea),
-    queryFn: ({ signal }) => getCommonAreaByName(commonArea, signal),
+    queryFn: getCommonAreaByName,
   });
 };
