@@ -6,9 +6,7 @@ type InputErrorMessageProps = {
 };
 
 export default function InputErrorMessage({ message }: InputErrorMessageProps) {
-  if (!message) {
-    return <></>;
-  }
+  if (!message) return null;
 
   return (
     <HStack align="center">
