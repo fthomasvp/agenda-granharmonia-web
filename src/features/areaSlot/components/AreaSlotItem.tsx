@@ -5,9 +5,9 @@ import { FaClock } from "react-icons/fa";
 import { STATUSES } from "../../../utils";
 import { useAlertActions } from "../../ui";
 import { useCommonAreaColor } from "../hooks";
-import type { AreaSlot } from "../types";
+import type { TAreaSlot } from "../types";
 
-type AreaSlotItemProps = AreaSlot & {
+type AreaSlotItemProps = TAreaSlot & {
   onReservation: (areaSlotId: string) => void;
 };
 

@@ -3,10 +3,10 @@ import { SubmitHandler, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 import { Input } from "../../../components/form";
-import type { ForgotPasswordType } from "../types";
+import type { TForgotPasswordType } from "../types";
 
 type FormForgotPasswordProps = {
-  onSubmit: SubmitHandler<ForgotPasswordType>;
+  onSubmit: SubmitHandler<TForgotPasswordType>;
 };
 
 export default function FormForgotPassword({
@@ -14,7 +14,7 @@ export default function FormForgotPassword({
 }: FormForgotPasswordProps) {
   const { t } = useTranslation(["common"]);
 
-  const { handleSubmit } = useFormContext<ForgotPasswordType>();
+  const { handleSubmit } = useFormContext<TForgotPasswordType>();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

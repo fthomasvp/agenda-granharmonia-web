@@ -3,10 +3,10 @@ import { SubmitHandler, useFormContext } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 import { PasswordInput } from "../../../components/form";
-import type { ResetPasswordType } from "../types";
+import type { TResetPasswordType } from "../types";
 
 type FormResetPasswordProps = {
-  onSubmit: SubmitHandler<ResetPasswordType>;
+  onSubmit: SubmitHandler<TResetPasswordType>;
 };
 
 export default function FormResetPassword({
@@ -14,7 +14,7 @@ export default function FormResetPassword({
 }: FormResetPasswordProps) {
   const { t } = useTranslation(["common", "glossary", "validation"]);
 
-  const { handleSubmit } = useFormContext<ResetPasswordType>();
+  const { handleSubmit } = useFormContext<TResetPasswordType>();
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

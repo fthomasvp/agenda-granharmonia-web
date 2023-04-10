@@ -3,9 +3,9 @@ export type TAuth = {
   password: string;
 };
 
-export type ForgotPasswordType = Omit<TAuth, "password">;
+export type TForgotPasswordType = Omit<TAuth, "password">;
 
-export type ResetPasswordType = {
+export type TResetPasswordType = {
   newPassword: string;
   newPasswordConfirmation: string;
 };

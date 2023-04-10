@@ -22,7 +22,7 @@ import { HalfBall } from "../components/ui";
 import {
   FormResetPassword,
   resetPasswordSchema,
-  ResetPasswordType,
+  TResetPasswordType,
 } from "../features/authentication";
 
 const passInstructions = [
@@ -35,13 +35,13 @@ export default function ResetPassword() {
   const { t } = useTranslation(["glossary"]);
   const navigate = useNavigate();
 
-  const methods = useForm<ResetPasswordType>({
+  const methods = useForm<TResetPasswordType>({
     resolver: zodResolver(resetPasswordSchema(t)),
   });
 
   const [isPassReseted, setIsPassReseted] = useState(false);
 
-  const onSubmit: SubmitHandler<ResetPasswordType> = (data) => {
+  const onSubmit: SubmitHandler<TResetPasswordType> = (data) => {
     console.log("> ResetPassword :: data", data);
 
     setIsPassReseted(true);

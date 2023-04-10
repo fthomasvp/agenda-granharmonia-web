@@ -1,9 +1,9 @@
-import { CommonArea } from "./types";
+import { TCommonArea } from "./types";
 
 export const commonAreaKeys = {
   all: [{ scope: "commonAreas" }] as const,
   lists: () => [{ ...commonAreaKeys.all[0], entity: "list" }] as const,
-  list: (commonArea: CommonArea["name"]) =>
+  list: (commonArea: TCommonArea["name"]) =>
     [{ ...commonAreaKeys.lists()[0], commonArea }] as const,
 };
 

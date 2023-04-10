@@ -6,7 +6,9 @@ import { validateEmail, validatePassword } from "../../utils";
 export const loginSchema = (t: TFunction) =>
   z.object({
     email: validateEmail(t),
-    password: validatePassword(t),
+    password: z.string({
+      required_error: t("requiredPassword", { ns: "validation" }),
+    }),
   });
 
 export const forgotPasswordSchema = (t: TFunction) =>

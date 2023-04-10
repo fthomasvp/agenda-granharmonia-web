@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { BackButton } from "../components/navigation";
 import {
   forgotPasswordSchema,
-  ForgotPasswordType,
   FormForgotPassword,
+  TForgotPasswordType,
 } from "../features/authentication";
 
 const instructions = [
@@ -22,11 +22,11 @@ export default function ForgotPassword() {
   const { t } = useTranslation(["common", "glossary", "validation"]);
   const navigate = useNavigate();
 
-  const methods = useForm<ForgotPasswordType>({
+  const methods = useForm<TForgotPasswordType>({
     resolver: zodResolver(forgotPasswordSchema(t)),
   });
 
-  const onSubmit: SubmitHandler<ForgotPasswordType> = (data) => {
+  const onSubmit: SubmitHandler<TForgotPasswordType> = (data) => {
     console.log("> data", data);
 
     navigate("/verify-code");

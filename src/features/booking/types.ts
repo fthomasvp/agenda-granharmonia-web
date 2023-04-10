@@ -1,10 +1,10 @@
-export type CommonArea = {
+export type TCommonArea = {
   id?: string;
   createdAt?: string;
   name: "gym" | "grill" | "swimmingPool" | "partyRoom";
 };
 
-export type TimeSlot = {
+export type TTimeSlot = {
   id?: string;
   createdAt?: string;
   startTime: string;

@@ -5,11 +5,11 @@ import { useParams } from "react-router-dom";
 
 import { CommonAreaImage } from "../components/ui";
 import { AreaSlotList } from "../features/areaSlot";
-import { CommonArea, useCommonAreasQuery } from "../features/booking";
+import { TCommonArea, useCommonAreasQuery } from "../features/booking";
 import { formatDateToISO8601, getCurrentDate } from "../utils";
 
 export default function BookingNew() {
-  let { name } = useParams<Pick<CommonArea, "name">>();
+  let { name } = useParams<Pick<TCommonArea, "name">>();
   const { t } = useTranslation(["common", "glossary"]);
 
   const [date, setDate] = useState(formatDateToISO8601(getCurrentDate()));

@@ -1,11 +1,11 @@
-import type { CommonArea, TimeSlot } from "../booking";
+import type { TCommonArea, TTimeSlot } from "../booking";
 
-export type AreaSlot = {
+export type TAreaSlot = {
   id?: string;
   createdAt?: string;
   commonAreaId: string;
-  commonArea: CommonArea;
+  commonArea: TCommonArea;
   timeSlotId: string;
-  timeSlot: TimeSlot;
+  timeSlot: TTimeSlot;
   status: "AVAILABLE" | "RESERVED";
 };

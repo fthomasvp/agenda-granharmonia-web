@@ -6,9 +6,9 @@ import {
   PartyRoomPurple,
   SwimmingPoolBlue,
 } from "../../assets/images";
-import { CommonArea } from "../../features/booking";
+import { TCommonArea } from "../../features/booking";
 
-export default function CommonAreaImage({ name }: Pick<CommonArea, "name">) {
+export default function CommonAreaImage({ name }: Pick<TCommonArea, "name">) {
   const getCommonAreaImage = () => {
     if (name === "gym") {
       return GymGreen;

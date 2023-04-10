@@ -1,9 +1,9 @@
 import { ColorProps } from "@chakra-ui/react";
 
-import { CommonArea } from "../../booking";
+import { TCommonArea } from "../../booking";
 
 export const useCommonAreaColor = (
-  name: CommonArea["name"]
+  name: TCommonArea["name"]
 ): ColorProps["color"] => {
   if (name === "grill") {
     return "red.400";

@@ -18,21 +18,24 @@ import {
 } from "../features/authentication";
 import { useToast } from "../features/ui";
 
+const FROM = "/location";
+
 export default function SignIn() {
   const { t } = useTranslation(["common", "validation", "glossary"]);
   const navigate = useNavigate();
   const toast = useToast();
-
-  const from = "/location";
-
   const user = useUser();
   const { setAuth } = useAuthActions();
+
+  const methods = useForm<TAuth>({
+    resolver: zodResolver(loginSchema(t)),
+  });
 
   const loginMutation = useMutation({
     mutationFn: authService,
     onSuccess: (data) => {
       setAuth(data);
-      navigate(from, { replace: true });
+      navigate(FROM, { replace: true });
     },
     onError: (_error) => {
       toast({
@@ -43,17 +46,13 @@ export default function SignIn() {
     },
   });
 
-  const methods = useForm<TAuth>({
-    resolver: zodResolver(loginSchema(t)),
-  });
-
   const onSubmit: SubmitHandler<TAuth> = (data) => {
     loginMutation.mutate(data);
   };
 
   useEffect(() => {
     if (user?.id) {
-      navigate(from, { replace: true });
+      navigate(FROM, { replace: true });
     }
   }, [user?.id, navigate]);
 

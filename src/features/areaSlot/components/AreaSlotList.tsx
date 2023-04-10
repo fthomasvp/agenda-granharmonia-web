@@ -3,14 +3,14 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Alert, Empty, Loading } from "../../../components/ui";
-import { CommonArea } from "../../../features/booking";
+import { TCommonArea } from "../../../features/booking";
 import { useAlertActions, useIsOpenAlert } from "../../ui";
 import { useAreaSlotsQuery, useCommonAreaColor } from "../hooks";
 import AreaSlotItem from "./AreaSlotItem";
 
 type AreaSlotListProps = {
   commonAreaId: string;
-  commonAreaName: Pick<CommonArea, "name">["name"];
+  commonAreaName: Pick<TCommonArea, "name">["name"];
   date: string;
 };
 
