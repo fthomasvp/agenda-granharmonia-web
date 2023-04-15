@@ -25,7 +25,7 @@ export default function Location() {
   }
 
   if (!data?.length) {
-    return <Empty customMessage="Não há dados" />;
+    return <Empty message="Não há dados" />;
   }
 
   return (

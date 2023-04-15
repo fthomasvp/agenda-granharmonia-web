@@ -5,7 +5,7 @@ import {
 } from "@chakra-ui/react";
 import { useFormContext } from "react-hook-form";
 
-import InputErrorMessage from "./InputErrorMessage";
+import ErrorMessage from "./ErrorMessage";
 
 type InputProps = ChakraInputProps & {
   label: string;
@@ -30,7 +30,7 @@ export default function Input({ label, name, ...rest }: InputProps) {
         {...register(name)}
         {...rest}
       />
-      <InputErrorMessage message={errorMessage} />
+      <ErrorMessage message={errorMessage} />
     </>
   );
 }

@@ -1,1 +1,1 @@
-export { useIsOpenAlert, useAlertActions } from "./useAlert";
+export { useAlertIsOpen, useAlertActions } from "./useAlert";

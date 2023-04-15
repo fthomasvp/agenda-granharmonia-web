@@ -17,5 +17,5 @@ const useAlertStore = create<AlertStore>()(
   }))
 );
 
-export const useIsOpenAlert = () => useAlertStore((state) => state.isOpen);
+export const useAlertIsOpen = () => useAlertStore((state) => state.isOpen);
 export const useAlertActions = () => useAlertStore((state) => state.actions);

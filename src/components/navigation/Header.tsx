@@ -36,7 +36,9 @@ export default function Header() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const location = useLocation();
 
-  const isActivePath = (aPath: string) => location.pathname.includes(aPath);
+  const isActivePath = (path: string) => location.pathname.includes(path);
+  const getPathColor = (path: string) =>
+    isActivePath(path) ? baseColors.orange["400"] : baseColors.gray["400"];
 
   const handleLogout = () => {
     clearAuthStorage();
@@ -85,18 +87,12 @@ export default function Header() {
                   variant="ghost"
                   iconSpacing="3"
                   w="100%"
-                  leftIcon={
-                    <FaHome
-                      color={
-                        isActivePath("/home")
-                          ? baseColors.orange["400"]
-                          : baseColors.gray["400"]
-                      }
-                    />
-                  }
+                  leftIcon={<FaHome color={getPathColor("/home")} />}
                 >
                   <Flex flex={1}>
-                    <LinkOverlay href="/home">{t("home")}</LinkOverlay>
+                    <LinkOverlay href="/home" color={getPathColor("/home")}>
+                      {t("home")}
+                    </LinkOverlay>
                   </Flex>
                 </Button>
               </LinkBox>
@@ -105,18 +101,13 @@ export default function Header() {
                   variant="ghost"
                   iconSpacing="3"
                   w="100%"
-                  leftIcon={
-                    <FaBell
-                      color={
-                        isActivePath("/notifications")
-                          ? baseColors.orange["400"]
-                          : baseColors.gray["400"]
-                      }
-                    />
-                  }
+                  leftIcon={<FaBell color={getPathColor("/notifications")} />}
                 >
                   <Flex flex={1} justify="space-between" alignItems="center">
-                    <LinkOverlay href="/notifications">
+                    <LinkOverlay
+                      href="/notifications"
+                      color={getPathColor("/notifications")}
+                    >
                       {t("notifications")}
                     </LinkOverlay>
                     {/* TODO: create component to show Notifications quantity */}
@@ -137,18 +128,15 @@ export default function Header() {
                   variant="ghost"
                   iconSpacing="3"
                   w="100%"
-                  leftIcon={
-                    <FaCalendarDay
-                      color={
-                        isActivePath("/bookings")
-                          ? baseColors.orange["400"]
-                          : baseColors.gray["400"]
-                      }
-                    />
-                  }
+                  leftIcon={<FaCalendarDay color={getPathColor("/bookings")} />}
                 >
                   <Flex flex={1}>
-                    <LinkOverlay href="/bookings">{t("bookings")}</LinkOverlay>
+                    <LinkOverlay
+                      href="/bookings"
+                      color={getPathColor("/bookings")}
+                    >
+                      {t("bookings")}
+                    </LinkOverlay>
                   </Flex>
                 </Button>
               </LinkBox>
@@ -157,18 +145,15 @@ export default function Header() {
                   variant="ghost"
                   iconSpacing="3"
                   w="100%"
-                  leftIcon={
-                    <FaUser
-                      color={
-                        isActivePath("/profile")
-                          ? baseColors.orange["400"]
-                          : baseColors.gray["400"]
-                      }
-                    />
-                  }
+                  leftIcon={<FaUser color={getPathColor("/profile")} />}
                 >
                   <Flex flex={1}>
-                    <LinkOverlay href="/profile">{t("profile")}</LinkOverlay>
+                    <LinkOverlay
+                      href="/profile"
+                      color={getPathColor("/profile")}
+                    >
+                      {t("profile")}
+                    </LinkOverlay>
                   </Flex>
                 </Button>
               </LinkBox>

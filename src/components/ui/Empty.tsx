@@ -5,10 +5,10 @@ import { EmptyOrange } from "../../assets/images";
 import { useVariantSize } from "../../features/ui/hooks";
 
 type EmptyProps = {
-  customMessage?: string;
+  message?: string;
 };
 
-export default function Empty({ customMessage }: EmptyProps) {
+export default function Empty({ message }: EmptyProps) {
   const { t } = useTranslation(["glossary"]);
 
   const emptyOrangeVariantSize = useVariantSize();
@@ -22,7 +22,7 @@ export default function Empty({ customMessage }: EmptyProps) {
           alt="Empty data"
         />
         <Text color="gray.800">{t("emptyData")}</Text>
-        {customMessage && <Text color="gray.800">{customMessage}</Text>}
+        {message && <Text color="gray.800">{message}</Text>}
       </VStack>
     </Center>
   );

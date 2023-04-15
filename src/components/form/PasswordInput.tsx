@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-import InputErrorMessage from "./InputErrorMessage";
+import ErrorMessage from "./ErrorMessage";
 
 type PasswordInputProps = InputProps & {
   label: string;
@@ -60,7 +60,7 @@ export default function PasswordInput({
           }
         />
       </InputGroup>
-      <InputErrorMessage message={errorMessage} />
+      <ErrorMessage message={errorMessage} />
     </>
   );
 }
