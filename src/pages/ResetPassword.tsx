@@ -1,12 +1,11 @@
 import {
-  Button,
   Flex,
   Heading,
   Image,
+  Link,
   List,
   ListIcon,
   ListItem,
-  Text,
   VStack,
 } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -65,13 +64,13 @@ export default function ResetPassword() {
           </Flex>
 
           <VStack spacing="3">
-            <Text fontSize="lg" fontWeight="semibold">
+            <Heading fontSize="lg" fontWeight="semibold">
               {t("updatedPassword")}
-            </Text>
+            </Heading>
 
-            <Button variant="link" onClick={navigateToLogin}>
+            <Link href="/login" onClick={navigateToLogin}>
               {t("doLoginToContinue", { ns: "glossary" })}
-            </Button>
+            </Link>
           </VStack>
         </VStack>
       ) : (
