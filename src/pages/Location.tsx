@@ -4,6 +4,7 @@ import {
   Icon,
   LinkBox,
   LinkOverlay,
+  Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -17,14 +18,17 @@ export default function Location() {
   const { t } = useTranslation(["glossary", "common"]);
 
   const { data, isFetching } = useApartmentsByUserIdQuery({
+    // TODO: get user ID from Zustand store
     userId: "e76ce01b-4347-40c4-9e3c-afeb7adda80d",
   });
 
   if (isFetching) {
+    // TODO: add Skeleton loading
     return <Loading />;
   }
 
   if (!data?.length) {
+    // TODO: use texts from locale files
     return <Empty message="Não há dados" />;
   }
 
@@ -36,7 +40,7 @@ export default function Location() {
         <Greeting username="Thomas" message={t("selectYourApartment")} />
       </Flex>
 
-      <Flex flexDir="column" justify="center" flex={1}>
+      <Stack flexDir="column" justify="center" flex={1} spacing="4">
         {data.map(({ id, apartment }) => (
           <LinkBox key={id} as="div" display="flex" flexDir="row">
             <Flex
@@ -45,7 +49,6 @@ export default function Location() {
               justifyContent="space-between"
               borderRadius="md"
               shadow="md"
-              mb="3"
               border="1px"
             >
               <VStack py="4">
@@ -70,7 +73,7 @@ export default function Location() {
             </Flex>
           </LinkBox>
         ))}
-      </Flex>
+      </Stack>
     </>
   );
 }

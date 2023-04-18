@@ -1,5 +1,5 @@
 export { default as Alert } from "./Alert";
-export { default as CommonAreaImage } from "./CommonAreaImage";
+export { default as CommonAreaIcon } from "./CommonAreaIcon";
 export { default as Empty } from "./Empty";
 export { default as ErrorFallback } from "./ErrorFallback";
 export { default as Greeting } from "./Greeting";

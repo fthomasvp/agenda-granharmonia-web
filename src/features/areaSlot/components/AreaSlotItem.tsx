@@ -20,13 +20,13 @@ export default function AreaSlotItem({
 }: AreaSlotItemProps) {
   const { t } = useTranslation(["common"]);
 
-  const { setIsOpen } = useAlertActions();
+  const { open } = useAlertActions();
   const commonAreaColor = useCommonAreaColor(commonArea.name);
 
   const isAvailable = status === STATUSES.AVAILABLE;
 
   const openAlert = () => {
-    setIsOpen(true);
+    open();
     onReservation(id!);
   };
 

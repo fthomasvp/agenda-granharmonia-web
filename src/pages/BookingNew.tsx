@@ -3,9 +3,13 @@ import { ChangeEvent, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
-import { Alert, CommonAreaImage, Empty } from "../components/ui";
+import { Alert, CommonAreaIcon, Empty } from "../components/ui";
 import { AreaSlotItem, useAreaSlotsQuery } from "../features/areaSlot";
-import { TCommonArea, useCommonAreasQuery } from "../features/booking";
+import {
+  SkeletonBookingNew,
+  TCommonArea,
+  useCommonAreasQuery,
+} from "../features/booking";
 import { useAlertActions, useAlertIsOpen } from "../features/ui";
 import { formatDateToISO8601, getCurrentDate } from "../utils";
 
@@ -14,7 +18,7 @@ export default function BookingNew() {
   const { t } = useTranslation(["common", "glossary"]);
 
   const isOpen = useAlertIsOpen();
-  const { setIsOpen } = useAlertActions();
+  const { close } = useAlertActions();
 
   const [date, setDate] = useState(formatDateToISO8601(getCurrentDate()));
 
@@ -25,6 +29,8 @@ export default function BookingNew() {
     commonAreaId: commonAreasQuery.data?.id!,
     date,
   });
+
+  const isLoading = commonAreasQuery.isFetching || areaSlotsQuery.isFetching;
 
   const handleChangeDate = (e: ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
@@ -54,7 +60,7 @@ export default function BookingNew() {
 
       {name ? (
         <Flex justify="center" mt="2.5">
-          <CommonAreaImage name={name} />
+          <CommonAreaIcon name={name} />
         </Flex>
       ) : null}
 
@@ -62,34 +68,42 @@ export default function BookingNew() {
         <Empty />
       ) : (
         <>
-          <Flex flex={1} align="center" justify="flex-start" mt="8">
-            <Box>
-              <FormLabel htmlFor="date">
-                {t("selectDate", { ns: "glossary" })}
-              </FormLabel>
-              <Input
-                type="date"
-                id="date"
-                min={formatDateToISO8601(getCurrentDate())}
-                value={date}
-                onChange={handleChangeDate}
-              />
-            </Box>
-          </Flex>
+          {commonAreasQuery.isFetching ? (
+            <SkeletonBookingNew.Form />
+          ) : (
+            <Flex flex={1} align="center" justify="flex-start" mt="8">
+              <Box>
+                <FormLabel htmlFor="date">
+                  {t("selectDate", { ns: "glossary" })}
+                </FormLabel>
+                <Input
+                  type="date"
+                  id="date"
+                  min={formatDateToISO8601(getCurrentDate())}
+                  value={date}
+                  onChange={handleChangeDate}
+                />
+              </Box>
+            </Flex>
+          )}
 
-          <Flex flex={6} flexDir="column" mt="8">
-            {areaSlotsQuery.data && areaSlotsQuery.data.length > 0 ? (
-              <List spacing="4">
-                {areaSlotsQuery.data.map((item) => (
-                  <AreaSlotItem
-                    key={item.id}
-                    onReservation={handleReservation}
-                    {...item}
-                  />
-                ))}
-              </List>
-            ) : null}
-          </Flex>
+          {isLoading ? (
+            <SkeletonBookingNew.List />
+          ) : (
+            <Flex flex={6} flexDir="column" mt="8">
+              {areaSlotsQuery.data && areaSlotsQuery.data.length && (
+                <List spacing="4">
+                  {areaSlotsQuery.data.map((item) => (
+                    <AreaSlotItem
+                      key={item.id}
+                      onReservation={handleReservation}
+                      {...item}
+                    />
+                  ))}
+                </List>
+              )}
+            </Flex>
+          )}
         </>
       )}
 
@@ -98,9 +112,9 @@ export default function BookingNew() {
         header={t("reserve")}
         body={t("confirmBooking", { ns: "glossary" })}
         cancelText={t("cancel")}
-        onCancel={() => setIsOpen(false)}
+        onCancel={close}
         okText={t("confirm")}
-        onOk={() => setIsOpen(false)}
+        onOk={close}
       />
     </>
   );

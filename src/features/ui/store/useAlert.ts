@@ -4,7 +4,8 @@ import { devtools } from "zustand/middleware";
 type AlertStore = {
   isOpen: boolean;
   actions: {
-    setIsOpen: (data: boolean) => void;
+    open: () => void;
+    close: () => void;
   };
 };
 
@@ -12,7 +13,8 @@ const useAlertStore = create<AlertStore>()(
   devtools((set) => ({
     isOpen: false,
     actions: {
-      setIsOpen: (data) => set(() => ({ isOpen: data })),
+      open: () => set(() => ({ isOpen: true })),
+      close: () => set(() => ({ isOpen: false })),
     },
   }))
 );
