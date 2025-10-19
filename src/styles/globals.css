@@ -1,0 +1,67 @@
+@font-face {
+	font-display: swap;
+	font-family: "Poppins";
+	font-style: normal;
+	font-weight: 300;
+
+	src:
+		local("Poppins"),
+		local("PoppinsLight"),
+		url("../assets/fonts/Poppins-Light.ttf") format("truetype");
+}
+@font-face {
+	font-display: swap;
+	font-family: "Poppins";
+	font-style: normal;
+	font-weight: 400;
+
+	src:
+		local("Poppins"),
+		local("PoppinsRegular"),
+		url("../assets/fonts/Poppins-Regular.ttf") format("truetype");
+}
+@font-face {
+	font-display: swap;
+	font-family: "Poppins";
+	font-style: normal;
+	font-weight: 600;
+
+	src:
+		local("Poppins"),
+		local("PoppinsSemiBold"),
+		url("../assets/fonts/Poppins-SemiBold.ttf") format("truetype");
+}
+@font-face {
+	font-display: swap;
+	font-family: "Poppins";
+	font-style: normal;
+	font-weight: 700;
+
+	src:
+		local("Poppins"),
+		local("PoppinsBold"),
+		url("../assets/fonts/Poppins-Bold.ttf") format("truetype");
+}
+
+:root {
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+}
+#root {
+	max-width: 1440px;
+	height: 100vh;
+
+	margin: 0 auto;
+
+	padding: 2rem;
+}
+
+body {
+	margin: 0;
+
+	min-width: 320px;
+	min-height: 100vh;
+}

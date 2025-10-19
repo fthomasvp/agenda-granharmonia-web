@@ -1,22 +1,16 @@
-/// <reference types="vitest" />
-/// <reference types="vite/client" />
-
-import { defineConfig } from "vite";
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  test: {
-    globals: true,
-    environment: "jsdom",
-    setupFiles: "src/setupTests.ts",
-    outputFile: "TEST-agenda-granharmonia-web.xml",
-    reporters: ["junit"],
-
-    coverage: {
-      reporter: ["text", "html", "cobertura"],
-      exclude: ["src/setupTests.ts", "src/mocks", "src/**/*.{test,spec}.tsx"],
-    },
-  },
+	plugins: [
+		tanstackRouter({
+			target: "react",
+			autoCodeSplitting: true,
+		}),
+		react(),
+		tsconfigPaths(),
+	],
 });

@@ -1,21 +1,22 @@
-import { ColorProps } from "@chakra-ui/react";
+// import type { ColorProps } from "@chakra-ui/react";
 
-import { TCommonArea } from "../../booking";
+import type { TCommonArea } from "../../booking";
 
 export const useCommonAreaColor = (
-  name: TCommonArea["name"]
-): ColorProps["color"] => {
-  if (name === "grill") {
-    return "red.400";
-  }
+	name: TCommonArea["name"],
+	// ): ColorProps["color"] => {
+): any => {
+	if (name === "grill") {
+		return "red.400";
+	}
 
-  if (name === "gym") {
-    return "green.400";
-  }
+	if (name === "gym") {
+		return "green.400";
+	}
 
-  if (name === "partyRoom") {
-    return "purple.400";
-  }
+	if (name === "partyRoom") {
+		return "purple.400";
+	}
 
-  return "blue.400";
+	return "blue.400";
 };

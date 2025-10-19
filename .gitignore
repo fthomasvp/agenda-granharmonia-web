@@ -13,8 +13,6 @@ dist-ssr
 *.local
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
 .idea
 .DS_Store
 *.suo
@@ -31,6 +29,4 @@ TEST-*.xml
 .env*
 !.env.example
 
-# json-server
-data
-json-server.json
+.tanstack

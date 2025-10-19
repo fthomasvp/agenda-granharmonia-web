@@ -1,39 +1,32 @@
-import {
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogCloseButton,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogOverlay,
-  Button,
-} from "@chakra-ui/react";
+// import {
+//   AlertDialog,
+//   AlertDialogBody,
+//   AlertDialogCloseButton,
+//   AlertDialogContent,
+//   AlertDialogFooter,
+//   AlertDialogHeader,
+//   AlertDialogOverlay,
+//   Button,
+// } from "@chakra-ui/react";
 import { useRef } from "react";
 
 type AlertProps = {
-  isOpen: boolean;
-  onCancel: () => void;
-  onOk: () => void;
-  header: string;
-  body: string;
-  okText: string;
-  cancelText: string;
+	isOpen: boolean;
+	onCancel: () => void;
+	onOk: () => void;
+	header: string;
+	body: string;
+	okText: string;
+	cancelText: string;
 };
 
-export default function Alert({
-  isOpen,
-  onCancel,
-  onOk,
-  header,
-  body,
-  okText,
-  cancelText,
-}: AlertProps) {
-  const cancelRef = useRef(null);
+export default function Alert(props: AlertProps) {
+	// const { isOpen, onCancel, onOk, header, body, okText, cancelText } = props;
+	const cancelRef = useRef(null);
 
-  return (
-    <>
-      <AlertDialog
+	return (
+		<>
+			{/* <AlertDialog
         motionPreset="slideInBottom"
         leastDestructiveRef={cancelRef}
         onClose={onCancel}
@@ -63,7 +56,7 @@ export default function Alert({
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
-      </AlertDialog>
-    </>
-  );
+      </AlertDialog> */}
+		</>
+	);
 }

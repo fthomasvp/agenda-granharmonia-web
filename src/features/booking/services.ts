@@ -1,17 +1,20 @@
-import { QueryFunctionContext } from "@tanstack/react-query";
+import type { QueryFunctionContext } from "@tanstack/react-query";
 
-import api from "../../api";
-import { TCommonAreaKeyList } from "./query-keys";
+import { apiClient } from "@/lib/axios";
+import type { TCommonAreaKeyList } from "./query-keys";
 import type { TCommonArea } from "./types";
 
 export const getCommonAreaByName = async ({
-  queryKey,
-  signal,
+	queryKey,
+	signal,
 }: QueryFunctionContext<TCommonAreaKeyList>) => {
-  const [{ commonArea }] = queryKey;
-  const { data } = await api.get<TCommonArea>(`/CommonAreas/${commonArea}`, {
-    signal,
-  });
+	const [{ commonArea }] = queryKey;
+	const { data } = await apiClient.get<TCommonArea>(
+		`/CommonAreas/${commonArea}`,
+		{
+			signal,
+		},
+	);
 
-  return data;
+	return data;
 };
