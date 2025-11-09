@@ -9,48 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as VerifyCodeRouteImport } from './routes/verify-code'
-import { Route as ResetPasswordRouteImport } from './routes/reset-password'
-import { Route as LoginRouteImport } from './routes/login'
 import { Route as LocationRouteImport } from './routes/location'
-import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
-import { Route as BookingNewRouteImport } from './routes/booking-new'
-import { Route as BookingListRouteImport } from './routes/booking-list'
+import { Route as HomeRouteImport } from './routes/home'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as bookingsBookingNewRouteImport } from './routes/(bookings)/booking-new'
+import { Route as bookingsBookingListRouteImport } from './routes/(bookings)/booking-list'
+import { Route as authAuthLayoutRouteImport } from './routes/(auth)/_authLayout'
+import { Route as authAuthLayoutVerifyCodeRouteImport } from './routes/(auth)/_authLayout/verify-code'
+import { Route as authAuthLayoutResetPasswordRouteImport } from './routes/(auth)/_authLayout/reset-password'
+import { Route as authAuthLayoutLoginRouteImport } from './routes/(auth)/_authLayout/login'
+import { Route as authAuthLayoutForgotPasswordRouteImport } from './routes/(auth)/_authLayout/forgot-password'
 
-const VerifyCodeRoute = VerifyCodeRouteImport.update({
-  id: '/verify-code',
-  path: '/verify-code',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResetPasswordRoute = ResetPasswordRouteImport.update({
-  id: '/reset-password',
-  path: '/reset-password',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const LocationRoute = LocationRouteImport.update({
   id: '/location',
   path: '/location',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
-  id: '/forgot-password',
-  path: '/forgot-password',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BookingNewRoute = BookingNewRouteImport.update({
-  id: '/booking-new',
-  path: '/booking-new',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BookingListRoute = BookingListRouteImport.update({
-  id: '/booking-list',
-  path: '/booking-list',
+const HomeRoute = HomeRouteImport.update({
+  id: '/home',
+  path: '/home',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -58,105 +35,127 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const bookingsBookingNewRoute = bookingsBookingNewRouteImport.update({
+  id: '/(bookings)/booking-new',
+  path: '/booking-new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const bookingsBookingListRoute = bookingsBookingListRouteImport.update({
+  id: '/(bookings)/booking-list',
+  path: '/booking-list',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const authAuthLayoutRoute = authAuthLayoutRouteImport.update({
+  id: '/(auth)/_authLayout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const authAuthLayoutVerifyCodeRoute =
+  authAuthLayoutVerifyCodeRouteImport.update({
+    id: '/verify-code',
+    path: '/verify-code',
+    getParentRoute: () => authAuthLayoutRoute,
+  } as any)
+const authAuthLayoutResetPasswordRoute =
+  authAuthLayoutResetPasswordRouteImport.update({
+    id: '/reset-password',
+    path: '/reset-password',
+    getParentRoute: () => authAuthLayoutRoute,
+  } as any)
+const authAuthLayoutLoginRoute = authAuthLayoutLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => authAuthLayoutRoute,
+} as any)
+const authAuthLayoutForgotPasswordRoute =
+  authAuthLayoutForgotPasswordRouteImport.update({
+    id: '/forgot-password',
+    path: '/forgot-password',
+    getParentRoute: () => authAuthLayoutRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/booking-list': typeof BookingListRoute
-  '/booking-new': typeof BookingNewRoute
-  '/forgot-password': typeof ForgotPasswordRoute
+  '/home': typeof HomeRoute
   '/location': typeof LocationRoute
-  '/login': typeof LoginRoute
-  '/reset-password': typeof ResetPasswordRoute
-  '/verify-code': typeof VerifyCodeRoute
+  '/booking-list': typeof bookingsBookingListRoute
+  '/booking-new': typeof bookingsBookingNewRoute
+  '/forgot-password': typeof authAuthLayoutForgotPasswordRoute
+  '/login': typeof authAuthLayoutLoginRoute
+  '/reset-password': typeof authAuthLayoutResetPasswordRoute
+  '/verify-code': typeof authAuthLayoutVerifyCodeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/booking-list': typeof BookingListRoute
-  '/booking-new': typeof BookingNewRoute
-  '/forgot-password': typeof ForgotPasswordRoute
+  '/home': typeof HomeRoute
   '/location': typeof LocationRoute
-  '/login': typeof LoginRoute
-  '/reset-password': typeof ResetPasswordRoute
-  '/verify-code': typeof VerifyCodeRoute
+  '/booking-list': typeof bookingsBookingListRoute
+  '/booking-new': typeof bookingsBookingNewRoute
+  '/forgot-password': typeof authAuthLayoutForgotPasswordRoute
+  '/login': typeof authAuthLayoutLoginRoute
+  '/reset-password': typeof authAuthLayoutResetPasswordRoute
+  '/verify-code': typeof authAuthLayoutVerifyCodeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/booking-list': typeof BookingListRoute
-  '/booking-new': typeof BookingNewRoute
-  '/forgot-password': typeof ForgotPasswordRoute
+  '/home': typeof HomeRoute
   '/location': typeof LocationRoute
-  '/login': typeof LoginRoute
-  '/reset-password': typeof ResetPasswordRoute
-  '/verify-code': typeof VerifyCodeRoute
+  '/(auth)/_authLayout': typeof authAuthLayoutRouteWithChildren
+  '/(bookings)/booking-list': typeof bookingsBookingListRoute
+  '/(bookings)/booking-new': typeof bookingsBookingNewRoute
+  '/(auth)/_authLayout/forgot-password': typeof authAuthLayoutForgotPasswordRoute
+  '/(auth)/_authLayout/login': typeof authAuthLayoutLoginRoute
+  '/(auth)/_authLayout/reset-password': typeof authAuthLayoutResetPasswordRoute
+  '/(auth)/_authLayout/verify-code': typeof authAuthLayoutVerifyCodeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/home'
+    | '/location'
     | '/booking-list'
     | '/booking-new'
     | '/forgot-password'
-    | '/location'
     | '/login'
     | '/reset-password'
     | '/verify-code'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/home'
+    | '/location'
     | '/booking-list'
     | '/booking-new'
     | '/forgot-password'
-    | '/location'
     | '/login'
     | '/reset-password'
     | '/verify-code'
   id:
     | '__root__'
     | '/'
-    | '/booking-list'
-    | '/booking-new'
-    | '/forgot-password'
+    | '/home'
     | '/location'
-    | '/login'
-    | '/reset-password'
-    | '/verify-code'
+    | '/(auth)/_authLayout'
+    | '/(bookings)/booking-list'
+    | '/(bookings)/booking-new'
+    | '/(auth)/_authLayout/forgot-password'
+    | '/(auth)/_authLayout/login'
+    | '/(auth)/_authLayout/reset-password'
+    | '/(auth)/_authLayout/verify-code'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  BookingListRoute: typeof BookingListRoute
-  BookingNewRoute: typeof BookingNewRoute
-  ForgotPasswordRoute: typeof ForgotPasswordRoute
+  HomeRoute: typeof HomeRoute
   LocationRoute: typeof LocationRoute
-  LoginRoute: typeof LoginRoute
-  ResetPasswordRoute: typeof ResetPasswordRoute
-  VerifyCodeRoute: typeof VerifyCodeRoute
+  authAuthLayoutRoute: typeof authAuthLayoutRouteWithChildren
+  bookingsBookingListRoute: typeof bookingsBookingListRoute
+  bookingsBookingNewRoute: typeof bookingsBookingNewRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/verify-code': {
-      id: '/verify-code'
-      path: '/verify-code'
-      fullPath: '/verify-code'
-      preLoaderRoute: typeof VerifyCodeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/reset-password': {
-      id: '/reset-password'
-      path: '/reset-password'
-      fullPath: '/reset-password'
-      preLoaderRoute: typeof ResetPasswordRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/location': {
       id: '/location'
       path: '/location'
@@ -164,25 +163,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocationRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/forgot-password': {
-      id: '/forgot-password'
-      path: '/forgot-password'
-      fullPath: '/forgot-password'
-      preLoaderRoute: typeof ForgotPasswordRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/booking-new': {
-      id: '/booking-new'
-      path: '/booking-new'
-      fullPath: '/booking-new'
-      preLoaderRoute: typeof BookingNewRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/booking-list': {
-      id: '/booking-list'
-      path: '/booking-list'
-      fullPath: '/booking-list'
-      preLoaderRoute: typeof BookingListRouteImport
+    '/home': {
+      id: '/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof HomeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -192,18 +177,83 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(bookings)/booking-new': {
+      id: '/(bookings)/booking-new'
+      path: '/booking-new'
+      fullPath: '/booking-new'
+      preLoaderRoute: typeof bookingsBookingNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(bookings)/booking-list': {
+      id: '/(bookings)/booking-list'
+      path: '/booking-list'
+      fullPath: '/booking-list'
+      preLoaderRoute: typeof bookingsBookingListRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(auth)/_authLayout': {
+      id: '/(auth)/_authLayout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof authAuthLayoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(auth)/_authLayout/verify-code': {
+      id: '/(auth)/_authLayout/verify-code'
+      path: '/verify-code'
+      fullPath: '/verify-code'
+      preLoaderRoute: typeof authAuthLayoutVerifyCodeRouteImport
+      parentRoute: typeof authAuthLayoutRoute
+    }
+    '/(auth)/_authLayout/reset-password': {
+      id: '/(auth)/_authLayout/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof authAuthLayoutResetPasswordRouteImport
+      parentRoute: typeof authAuthLayoutRoute
+    }
+    '/(auth)/_authLayout/login': {
+      id: '/(auth)/_authLayout/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof authAuthLayoutLoginRouteImport
+      parentRoute: typeof authAuthLayoutRoute
+    }
+    '/(auth)/_authLayout/forgot-password': {
+      id: '/(auth)/_authLayout/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof authAuthLayoutForgotPasswordRouteImport
+      parentRoute: typeof authAuthLayoutRoute
+    }
   }
 }
 
+interface authAuthLayoutRouteChildren {
+  authAuthLayoutForgotPasswordRoute: typeof authAuthLayoutForgotPasswordRoute
+  authAuthLayoutLoginRoute: typeof authAuthLayoutLoginRoute
+  authAuthLayoutResetPasswordRoute: typeof authAuthLayoutResetPasswordRoute
+  authAuthLayoutVerifyCodeRoute: typeof authAuthLayoutVerifyCodeRoute
+}
+
+const authAuthLayoutRouteChildren: authAuthLayoutRouteChildren = {
+  authAuthLayoutForgotPasswordRoute: authAuthLayoutForgotPasswordRoute,
+  authAuthLayoutLoginRoute: authAuthLayoutLoginRoute,
+  authAuthLayoutResetPasswordRoute: authAuthLayoutResetPasswordRoute,
+  authAuthLayoutVerifyCodeRoute: authAuthLayoutVerifyCodeRoute,
+}
+
+const authAuthLayoutRouteWithChildren = authAuthLayoutRoute._addFileChildren(
+  authAuthLayoutRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  BookingListRoute: BookingListRoute,
-  BookingNewRoute: BookingNewRoute,
-  ForgotPasswordRoute: ForgotPasswordRoute,
+  HomeRoute: HomeRoute,
   LocationRoute: LocationRoute,
-  LoginRoute: LoginRoute,
-  ResetPasswordRoute: ResetPasswordRoute,
-  VerifyCodeRoute: VerifyCodeRoute,
+  authAuthLayoutRoute: authAuthLayoutRouteWithChildren,
+  bookingsBookingListRoute: bookingsBookingListRoute,
+  bookingsBookingNewRoute: bookingsBookingNewRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

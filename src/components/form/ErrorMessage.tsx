@@ -1,17 +1,19 @@
 import { HStack, Icon, Text } from "@chakra-ui/react";
-import { FaExclamationCircle } from "react-icons/fa";
+import { LuCircleAlert } from "react-icons/lu";
 
 type ErrorMessageProps = {
-  message: string;
+	message: string;
 };
 
-export default function ErrorMessage({ message }: ErrorMessageProps) {
-  if (!message) return null;
+export function ErrorMessage(props: ErrorMessageProps) {
+	const { message } = props;
 
-  return (
-    <HStack align="center">
-      <Icon as={FaExclamationCircle} color="red.500" />
-      <Text color="red.500">{message}</Text>
-    </HStack>
-  );
+	if (!message) return null;
+
+	return (
+		<HStack align="center">
+			<Icon as={LuCircleAlert} color="red.500" />
+			<Text color="red.500">{message}</Text>
+		</HStack>
+	);
 }

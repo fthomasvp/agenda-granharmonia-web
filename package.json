@@ -6,8 +6,8 @@
 	"engines": {
 		"node": "22.x",
 		"pnpm": "10.x",
-		"npm": "Use pnpm@10.12.4 to install dependencies",
-		"yarn": "Use pnpm@10.12.4 to install dependencies"
+		"npm": "Use pnpm@10.x to install dependencies",
+		"yarn": "Use pnpm@10.x to install dependencies"
 	},
 	"scripts": {
 		"build": "tsc -b && vite build",
@@ -32,6 +32,7 @@
 		"i18next": "25.6.0",
 		"i18next-browser-languagedetector": "8.2.0",
 		"i18next-http-backend": "3.0.2",
+		"immer": "10.2.0",
 		"react": "18.3.1",
 		"react-dom": "18.3.1",
 		"react-error-boundary": "6.0.0",
@@ -43,6 +44,8 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.6",
+		"@redux-devtools/extension": "3.3.0",
+		"@tanstack/react-router-devtools": "1.134.15",
 		"@tanstack/router-plugin": "1.133.13",
 		"@testing-library/jest-dom": "6.9.1",
 		"@testing-library/react": "16.3.0",

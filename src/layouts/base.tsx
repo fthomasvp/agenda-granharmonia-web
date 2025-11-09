@@ -1,26 +1,33 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, VStack } from "@chakra-ui/react";
 import { Outlet } from "@tanstack/react-router";
-
-import { Header } from "../components/navigation";
+import { Header } from "@/components/navigation/Header";
 
 type MainLayoutProps = {
 	showHeader?: boolean;
 };
 
-export function BaseLayout({ showHeader = false }: MainLayoutProps) {
+export function BaseLayout(props: MainLayoutProps) {
+	const { showHeader = false } = props;
+
 	return (
 		<Flex
 			flex={1}
 			flexDir="column"
 			alignItems="stretch"
 			h="100%"
-			w={["100%", "80%", "80%", "50%"]}
-			margin="0 auto"
+			minH={"inherit"}
+			// w={["100%", "80%", "80%", "50%"]}
+			maxW={{ smDown: "full", sm: "breakpoint-2xl" }}
+			marginInline={"auto"}
 			pos="relative"
 			overflowY="auto"
 		>
 			{showHeader && <Header />}
-			<Outlet />
+			<main style={{ minHeight: "inherit" }}>
+				<VStack gap={"12"} minH={"inherit"} justifyContent={"center"}>
+					<Outlet />
+				</VStack>
+			</main>
 		</Flex>
 	);
 }

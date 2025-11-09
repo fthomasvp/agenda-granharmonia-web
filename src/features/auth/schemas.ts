@@ -34,3 +34,11 @@ export const resetPasswordSchema = (t: any) =>
 				path: ["newPasswordConfirmation"],
 			},
 		);
+
+export const pinCodeSchema = (t: any) =>
+	z.object({
+		pin: z
+			.array(z.string().min(1))
+			.min(1, { message: "Pin is required" })
+			.length(4, { message: "Pin must be 4 digits long" }),
+	});

@@ -48,7 +48,7 @@
 		"editor.defaultFormatter": "biomejs.biome"
 	},
 
-	// Enforcing ESlint and Prettier disabled
+	// Enforcing ESlint and Prettier to be disabled
 	"eslint.enable": false,
 	"prettier.enable": false
 }

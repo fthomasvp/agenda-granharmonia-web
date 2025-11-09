@@ -1,36 +1,23 @@
 import {
 	Input as ChakraInput,
 	type InputProps as ChakraInputProps,
-	// FormLabel,
+	mergeRefs,
 } from "@chakra-ui/react";
-import { useFormContext } from "react-hook-form";
+import { forwardRef, useRef } from "react";
 
-import ErrorMessage from "./ErrorMessage";
+type InputProps = ChakraInputProps & {};
 
-type InputProps = ChakraInputProps & {
-	label: string;
-	name: string;
-};
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+	function Input(props, ref) {
+		const inputRef = useRef<HTMLInputElement>(null);
 
-export default function Input({ label, name, ...rest }: InputProps) {
-	const {
-		register,
-		formState: { errors },
-	} = useFormContext();
-
-	const errorMessage = (errors as any)[`${name}`]?.message;
-
-	return (
-		<>
-			{/* <FormLabel htmlFor={name}>{label}</FormLabel> */}
+		return (
 			<ChakraInput
-				data-test={`${name}-input`}
-				id={name}
-				// isInvalid={Boolean(errors[`${name}`])}
-				{...register(name)}
-				{...rest}
+				{...props}
+				data-test={`${props.name}-input`}
+				id={props.name}
+				ref={mergeRefs(ref, inputRef)}
 			/>
-			<ErrorMessage message={errorMessage} />
-		</>
-	);
-}
+		);
+	},
+);

@@ -7,6 +7,7 @@ import ReactDOM from "react-dom/client";
 import { routeTree } from "./routeTree.gen";
 import "@/i18n";
 import "@/styles/globals.css";
+import { Toaster } from "@/components/ui/toaster";
 import { baseSystem } from "@/themes/base";
 
 // Set up a Router instance
@@ -39,6 +40,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 			<QueryClientProvider client={queryClient}>
 				<RouterProvider router={router} />
 				<ReactQueryDevtools />
+				<Toaster />
 			</QueryClientProvider>
 		</ChakraProvider>
 	</React.StrictMode>,

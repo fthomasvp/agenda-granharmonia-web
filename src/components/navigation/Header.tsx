@@ -16,12 +16,12 @@ import {
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { FaBars, FaSignOutAlt } from "react-icons/fa";
+import { clearAuthStorage } from "@/features/auth/store/useAuthStore";
 import { MENU } from "@/utils/constants";
 import { GranHarmoniaLogo } from "../../assets/images";
-import { clearAuthStorage } from "../../features/authentication";
 import MenuItem from "./MenuItem";
 
-export default function Header() {
+export function Header() {
 	const { t } = useTranslation(["common"]);
 	const { open: isOpen, onOpen, onClose } = useDisclosure();
 

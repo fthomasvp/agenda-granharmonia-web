@@ -1,30 +1,28 @@
 import { useQuery } from "@tanstack/react-query";
-
-import { useToast } from "../../ui";
+// import { toaster } from "@/components/ui/toaster";
 import { commonAreaKeys } from "../query-keys";
 import { getCommonAreaByName } from "../services";
 import type { TCommonArea } from "../types";
 
 type Props = {
-  commonArea: TCommonArea["name"];
+	commonArea: TCommonArea["name"];
 };
 
 export const useCommonAreasQuery = ({ commonArea }: Props) => {
-  const toast = useToast();
+	// Improve this error handler. Maybe creating an util.
+	// const handleError = (_error: unknown) => {
+	// 	toaster.create({
+	// 		title: "Atenção",
+	// 		description:
+	// 			"Entrar em contato com o suporte para realizar o registro dos horários",
+	// 		type: "warning",
+	// 	});
+	// };
 
-  // Improve this error handler. Maybe creating an util.
-  const handleError = (_error: unknown) => {
-    toast({
-      title: "Atenção",
-      description:
-        "Entrar em contato com o suporte para realizar o registro dos horários",
-      status: "warning",
-    });
-  };
-
-  return useQuery({
-    queryKey: commonAreaKeys.list(commonArea),
-    queryFn: getCommonAreaByName,
-    onError: handleError,
-  });
+	return useQuery({
+		queryKey: commonAreaKeys.list(commonArea),
+		queryFn: getCommonAreaByName,
+		// TODO: onError and onSuccess were removed from React Query v5
+		// onError: handleError,
+	});
 };

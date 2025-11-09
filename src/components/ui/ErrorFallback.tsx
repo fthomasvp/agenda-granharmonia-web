@@ -64,7 +64,7 @@ export default function ErrorFallback({
 								<Collapse startingHeight={20} in={isOpen}>
 									{error.message}
 								</Collapse>
-								<Button variant="unstyled" size="sm" onClick={onToggle} mt="2">
+								<Button variant="ghost" size="sm" onClick={onToggle} mt="2">
 									{t("show", { ns: "common" })}{" "}
 									{(isOpen
 										? t("less", { ns: "common" })
