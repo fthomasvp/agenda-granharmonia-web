@@ -7,10 +7,7 @@ import { FaInfoCircle } from "react-icons/fa";
 import { BackButton } from "@/components/navigation";
 import { FormForgotPassword } from "@/features/auth/components/FormForgotPassword";
 import { forgotPasswordSchema } from "@/features/auth/schemas";
-import {
-	useAuthActions,
-	useRecoverEmail,
-} from "@/features/auth/store/useAuthStore";
+import { useAuthActions, useRecoverEmail } from "@/features/auth/store";
 import type { TForgotPasswordType } from "@/features/auth/types";
 import { instructions } from "@/utils/constants";
 

@@ -2,16 +2,10 @@ import { Flex, VStack } from "@chakra-ui/react";
 import { Outlet } from "@tanstack/react-router";
 import { Header } from "@/components/navigation/Header";
 
-type MainLayoutProps = {
-	showHeader?: boolean;
-};
-
-export function BaseLayout(props: MainLayoutProps) {
-	const { showHeader = false } = props;
-
+export function MainLayout() {
 	return (
 		<Flex
-			data-element="base-layout"
+			data-element="main-layout"
 			flex={1}
 			flexDir="column"
 			alignItems="stretch"
@@ -22,15 +16,8 @@ export function BaseLayout(props: MainLayoutProps) {
 			marginInline={"auto"}
 			pos="relative"
 			overflowY="auto"
-			style={{
-				background: `linear-gradient(
-		191deg,
-		rgba(21, 101, 138, 1) 0%,
-		rgba(171, 171, 171, 1) 100%
-	)`,
-			}}
 		>
-			{showHeader && <Header />}
+			<Header />
 			<main style={{ minHeight: "inherit" }}>
 				<VStack gap={"12"} minH={"inherit"} justifyContent={"center"}>
 					<Outlet />

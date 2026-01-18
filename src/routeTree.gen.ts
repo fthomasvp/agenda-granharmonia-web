@@ -9,22 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as LocationRouteImport } from './routes/location'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as signedMainLayoutRouteImport } from './routes/(signed)/_mainLayout'
 import { Route as bookingsBookingNewRouteImport } from './routes/(bookings)/booking-new'
 import { Route as bookingsBookingListRouteImport } from './routes/(bookings)/booking-list'
 import { Route as authAuthLayoutRouteImport } from './routes/(auth)/_authLayout'
+import { Route as signedMainLayoutLocationRouteImport } from './routes/(signed)/_mainLayout/location'
 import { Route as authAuthLayoutVerifyCodeRouteImport } from './routes/(auth)/_authLayout/verify-code'
 import { Route as authAuthLayoutResetPasswordRouteImport } from './routes/(auth)/_authLayout/reset-password'
 import { Route as authAuthLayoutLoginRouteImport } from './routes/(auth)/_authLayout/login'
 import { Route as authAuthLayoutForgotPasswordRouteImport } from './routes/(auth)/_authLayout/forgot-password'
 
-const LocationRoute = LocationRouteImport.update({
-  id: '/location',
-  path: '/location',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const HomeRoute = HomeRouteImport.update({
   id: '/home',
   path: '/home',
@@ -33,6 +29,10 @@ const HomeRoute = HomeRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const signedMainLayoutRoute = signedMainLayoutRouteImport.update({
+  id: '/(signed)/_mainLayout',
   getParentRoute: () => rootRouteImport,
 } as any)
 const bookingsBookingNewRoute = bookingsBookingNewRouteImport.update({
@@ -49,6 +49,12 @@ const authAuthLayoutRoute = authAuthLayoutRouteImport.update({
   id: '/(auth)/_authLayout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const signedMainLayoutLocationRoute =
+  signedMainLayoutLocationRouteImport.update({
+    id: '/location',
+    path: '/location',
+    getParentRoute: () => signedMainLayoutRoute,
+  } as any)
 const authAuthLayoutVerifyCodeRoute =
   authAuthLayoutVerifyCodeRouteImport.update({
     id: '/verify-code',
@@ -76,93 +82,88 @@ const authAuthLayoutForgotPasswordRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
-  '/location': typeof LocationRoute
   '/booking-list': typeof bookingsBookingListRoute
   '/booking-new': typeof bookingsBookingNewRoute
   '/forgot-password': typeof authAuthLayoutForgotPasswordRoute
   '/login': typeof authAuthLayoutLoginRoute
   '/reset-password': typeof authAuthLayoutResetPasswordRoute
   '/verify-code': typeof authAuthLayoutVerifyCodeRoute
+  '/location': typeof signedMainLayoutLocationRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
-  '/location': typeof LocationRoute
   '/booking-list': typeof bookingsBookingListRoute
   '/booking-new': typeof bookingsBookingNewRoute
   '/forgot-password': typeof authAuthLayoutForgotPasswordRoute
   '/login': typeof authAuthLayoutLoginRoute
   '/reset-password': typeof authAuthLayoutResetPasswordRoute
   '/verify-code': typeof authAuthLayoutVerifyCodeRoute
+  '/location': typeof signedMainLayoutLocationRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
-  '/location': typeof LocationRoute
   '/(auth)/_authLayout': typeof authAuthLayoutRouteWithChildren
   '/(bookings)/booking-list': typeof bookingsBookingListRoute
   '/(bookings)/booking-new': typeof bookingsBookingNewRoute
+  '/(signed)/_mainLayout': typeof signedMainLayoutRouteWithChildren
   '/(auth)/_authLayout/forgot-password': typeof authAuthLayoutForgotPasswordRoute
   '/(auth)/_authLayout/login': typeof authAuthLayoutLoginRoute
   '/(auth)/_authLayout/reset-password': typeof authAuthLayoutResetPasswordRoute
   '/(auth)/_authLayout/verify-code': typeof authAuthLayoutVerifyCodeRoute
+  '/(signed)/_mainLayout/location': typeof signedMainLayoutLocationRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/home'
-    | '/location'
     | '/booking-list'
     | '/booking-new'
     | '/forgot-password'
     | '/login'
     | '/reset-password'
     | '/verify-code'
+    | '/location'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/home'
-    | '/location'
     | '/booking-list'
     | '/booking-new'
     | '/forgot-password'
     | '/login'
     | '/reset-password'
     | '/verify-code'
+    | '/location'
   id:
     | '__root__'
     | '/'
     | '/home'
-    | '/location'
     | '/(auth)/_authLayout'
     | '/(bookings)/booking-list'
     | '/(bookings)/booking-new'
+    | '/(signed)/_mainLayout'
     | '/(auth)/_authLayout/forgot-password'
     | '/(auth)/_authLayout/login'
     | '/(auth)/_authLayout/reset-password'
     | '/(auth)/_authLayout/verify-code'
+    | '/(signed)/_mainLayout/location'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   HomeRoute: typeof HomeRoute
-  LocationRoute: typeof LocationRoute
   authAuthLayoutRoute: typeof authAuthLayoutRouteWithChildren
   bookingsBookingListRoute: typeof bookingsBookingListRoute
   bookingsBookingNewRoute: typeof bookingsBookingNewRoute
+  signedMainLayoutRoute: typeof signedMainLayoutRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/location': {
-      id: '/location'
-      path: '/location'
-      fullPath: '/location'
-      preLoaderRoute: typeof LocationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/home': {
       id: '/home'
       path: '/home'
@@ -175,6 +176,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(signed)/_mainLayout': {
+      id: '/(signed)/_mainLayout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof signedMainLayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/(bookings)/booking-new': {
@@ -197,6 +205,13 @@ declare module '@tanstack/react-router' {
       fullPath: ''
       preLoaderRoute: typeof authAuthLayoutRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/(signed)/_mainLayout/location': {
+      id: '/(signed)/_mainLayout/location'
+      path: '/location'
+      fullPath: '/location'
+      preLoaderRoute: typeof signedMainLayoutLocationRouteImport
+      parentRoute: typeof signedMainLayoutRoute
     }
     '/(auth)/_authLayout/verify-code': {
       id: '/(auth)/_authLayout/verify-code'
@@ -247,13 +262,24 @@ const authAuthLayoutRouteWithChildren = authAuthLayoutRoute._addFileChildren(
   authAuthLayoutRouteChildren,
 )
 
+interface signedMainLayoutRouteChildren {
+  signedMainLayoutLocationRoute: typeof signedMainLayoutLocationRoute
+}
+
+const signedMainLayoutRouteChildren: signedMainLayoutRouteChildren = {
+  signedMainLayoutLocationRoute: signedMainLayoutLocationRoute,
+}
+
+const signedMainLayoutRouteWithChildren =
+  signedMainLayoutRoute._addFileChildren(signedMainLayoutRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   HomeRoute: HomeRoute,
-  LocationRoute: LocationRoute,
   authAuthLayoutRoute: authAuthLayoutRouteWithChildren,
   bookingsBookingListRoute: bookingsBookingListRoute,
   bookingsBookingNewRoute: bookingsBookingNewRoute,
+  signedMainLayoutRoute: signedMainLayoutRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

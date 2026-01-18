@@ -3,7 +3,6 @@
 	font-family: "Poppins";
 	font-style: normal;
 	font-weight: 300;
-
 	src:
 		local("Poppins"),
 		local("PoppinsLight"),
@@ -14,7 +13,6 @@
 	font-family: "Poppins";
 	font-style: normal;
 	font-weight: 400;
-
 	src:
 		local("Poppins"),
 		local("PoppinsRegular"),
@@ -25,7 +23,6 @@
 	font-family: "Poppins";
 	font-style: normal;
 	font-weight: 600;
-
 	src:
 		local("Poppins"),
 		local("PoppinsSemiBold"),
@@ -36,7 +33,6 @@
 	font-family: "Poppins";
 	font-style: normal;
 	font-weight: 700;
-
 	src:
 		local("Poppins"),
 		local("PoppinsBold"),
@@ -53,6 +49,12 @@
 #root {
 	min-height: inherit;
 	min-width: inherit;
+
+	/* background: linear-gradient(
+		191deg,
+		rgba(21, 101, 138, 1) 0%,
+		rgba(171, 171, 171, 1) 100%
+	); */
 }
 
 body {

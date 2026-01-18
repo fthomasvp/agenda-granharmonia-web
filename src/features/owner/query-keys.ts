@@ -1,5 +1,6 @@
 export const ownerKeys = {
-  all: [{ scope: "owners" }] as const,
-  lists: () => [{ ...ownerKeys.all[0], entity: "list" }] as const,
-  list: (userId: string) => [{ ...ownerKeys.lists()[0], userId }] as const,
+	all: [{ scope: "owners" }] as const,
+	lists: () => [{ ...ownerKeys.all[0], entity: "list" }] as const,
+	details: () => [{ ...ownerKeys.all[0], entity: "detail" }] as const,
+	detail: (userId: string) => [{ ...ownerKeys.details()[0], userId }] as const,
 };

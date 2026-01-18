@@ -5,7 +5,6 @@ import { FormProvider, type SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { FaInfoCircle } from "react-icons/fa";
 import { BackButton } from "@/components/navigation";
-import { HalfBall } from "@/components/ui";
 import { FormResetPassword } from "@/features/auth/components/FormResetPassword";
 import { resetPasswordSchema } from "@/features/auth/schemas";
 import type { TResetPasswordType } from "@/features/auth/types";
@@ -38,8 +37,6 @@ function ResetPassword() {
 
 	return (
 		<VStack gap={"8"}>
-			<HalfBall right={0} />
-
 			<VStack
 				w={{ smDown: "80", sm: "96" }}
 				alignItems={"flex-start"}
@@ -77,8 +74,6 @@ function ResetPassword() {
 				{/* TODO: Create a Button component (e.g. "Link" variant) */}
 				<BackButton path="/verify-code" />
 			</VStack>
-
-			<HalfBall bottom={0} right={0} boxSize="10" />
 		</VStack>
 	);
 }

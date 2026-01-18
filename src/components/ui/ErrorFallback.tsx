@@ -14,7 +14,6 @@ import type { FallbackProps } from "react-error-boundary";
 import { useTranslation } from "react-i18next";
 import { GranHarmoniaLogo, PersonBlueWarning } from "../../assets/images";
 import { useVariantSize } from "../../features/ui/hooks";
-import { HalfBall } from ".";
 
 export default function ErrorFallback({
 	error,
@@ -27,8 +26,6 @@ export default function ErrorFallback({
 
 	return (
 		<>
-			<HalfBall right={0} />
-
 			<Flex justify="center" mt="8">
 				<Image
 					src={GranHarmoniaLogo}

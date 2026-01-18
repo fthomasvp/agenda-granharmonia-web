@@ -5,9 +5,11 @@ import { validateEmail, validatePassword } from "@/utils/validations";
 export const loginSchema = (t: any) =>
 	z.object({
 		email: validateEmail(t),
-		password: z.string({
-			error: t("requiredPassword", { ns: "validation" }),
-		}),
+		password: z
+			.string({
+				error: t("requiredPassword", { ns: "validation" }),
+			})
+			.min(8, { error: t("invalidPassword", { ns: "validation" }) }),
 	});
 
 export const forgotPasswordSchema = (t: any) =>

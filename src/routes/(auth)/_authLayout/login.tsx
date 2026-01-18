@@ -10,40 +10,51 @@ import {
 } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
-// import { useEffect } from "react";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { FormProvider, type SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { GranHarmoniaLogo } from "@/assets/images";
+import { OxentiLabStamp } from "@/components/ui";
 import { toaster } from "@/components/ui/toaster";
+import { signInRequest } from "@/features/auth/api";
 import { FormLogin } from "@/features/auth/components/FormLogin";
 import { loginSchema } from "@/features/auth/schemas";
-import { signInRequest } from "@/features/auth/services";
-import { useAuthActions } from "@/features/auth/store/useAuthStore";
+import { useAuthActions } from "@/features/auth/store";
 import type { AuthSignInProps } from "@/features/auth/types";
-import { GranHarmoniaLogo } from "../../../assets/images";
-import { HalfBall, OxentiLabStamp } from "../../../components/ui";
 
 export const Route = createFileRoute("/(auth)/_authLayout/login")({
+	beforeLoad: ({ context }) => {
+		if (context.user?.id) {
+			throw redirect({ to: "/location", replace: true });
+		}
+	},
 	component: Login,
 });
 
 function Login() {
 	const navigate = Route.useNavigate();
 	const { t } = useTranslation(["common", "validation", "glossary"]);
-	// const user = useUser();
 	const { setAuth } = useAuthActions();
 
-	const methods = useForm<AuthSignInProps>({
+	const loginForm = useForm<AuthSignInProps>({
 		resolver: zodResolver(loginSchema(t)),
+		defaultValues: {
+			email: "annoyed_jatoria@web.de",
+			password: "Abcd$1234",
+		},
 	});
 
 	const loginMutation = useMutation({
 		mutationFn: signInRequest,
-		onSuccess: (data) => {
-			console.log("> onSuccess", data);
-
+		onSuccess: ({ data }) => {
+			// TODO: Rename to `setUser`
 			setAuth(data);
-			navigate({ from: "/location", replace: true });
+
+			// Firing `navigate` here doesn't wait for the `setAuth` action
+			// to be done. This causes the "/location" page to fire the
+			// request without the userId in the URL (error).
+			// See https://tanstack.com/query/latest/docs/framework/react/guides/mutations#mutation-side-effects
+			// See https://tanstack.com/query/latest/docs/framework/react/guides/mutations#consecutive-mutations
 		},
 		onError: (error) => {
 			console.log("> onError", error);
@@ -57,26 +68,22 @@ function Login() {
 		},
 	});
 
-	const onSubmit: SubmitHandler<AuthSignInProps> = (data) => {
-		loginMutation.mutate(data);
+	const handleSubmit: SubmitHandler<AuthSignInProps> = (data) => {
+		loginMutation.mutate(data, {
+			onSuccess: () => {
+				// Runs ONLY after the first onSuccess in useMutation
+				navigate({ to: "/location", replace: true });
+			},
+		});
 	};
 
 	const handleForgotPassword = () => {
 		navigate({ to: "/forgot-password" });
 	};
 
-	// TODO: Why this was used for?
-	// useEffect(() => {
-	// 	if (user?.id) {
-	// 		navigate(FROM, { replace: true });
-	// 	}
-	// }, [user?.id, navigate]);
-
 	return (
 		<>
 			<VStack gap={"8"}>
-				<HalfBall right={0} top={0} />
-
 				<Flex justify="center" position={"relative"}>
 					{/* TODO: Create "Logo" component using text to replace this image */}
 					<Image
@@ -104,8 +111,8 @@ function Login() {
 
 				<VStack gap={"6"} w={"full"}>
 					<Flex flexDir="column" w={"full"}>
-						<FormProvider {...methods}>
-							<FormLogin onSubmit={onSubmit} />
+						<FormProvider {...loginForm}>
+							<FormLogin onSubmit={handleSubmit} />
 						</FormProvider>
 					</Flex>
 

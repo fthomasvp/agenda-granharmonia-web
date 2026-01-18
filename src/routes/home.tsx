@@ -7,7 +7,7 @@ import {
 	PartyRoomPurple,
 	SwimmingPoolBlue,
 } from "../assets/images";
-import { Greeting, HalfBall } from "../components/ui";
+import { Greeting } from "../components/ui";
 import { BookingOption } from "../features/home";
 
 export const Route = createFileRoute("/home")({
@@ -19,8 +19,6 @@ function Home() {
 
 	return (
 		<>
-			<HalfBall right={0} />
-
 			<Flex flexDir="column" mb="12">
 				{/* TODO: replace `username` with value from storage (Zustand) */}
 				<Greeting
@@ -58,5 +56,5 @@ function Home() {
 				/>
 			</Flex>
 		</>
-	)
+	);
 }

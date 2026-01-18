@@ -1,15 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-
+import { getApartmentsByUserIdService } from "../owner-api";
 import { ownerKeys } from "../query-keys";
-import { getApartmentsByUserIdService } from "../services";
 
 type Props = {
-  userId: string;
+	userId: string;
 };
 
 export const useApartmentsByUserIdQuery = ({ userId }: Props) => {
-  return useQuery({
-    queryKey: ownerKeys.list(userId),
-    queryFn: getApartmentsByUserIdService,
-  });
+	return useQuery({
+		queryKey: ownerKeys.list(userId),
+		queryFn: getApartmentsByUserIdService,
+	});
 };

@@ -1,23 +1,17 @@
-export async function apiClient2(url: string, init?: RequestInit) {
-	// const baseUrl = import.meta.env.BASE_URL;
-	const baseUrl = "https://98294ab8-94d8-4d87-a023-14587dcdbfc6.mock.pstmn.io";
+import { env } from "@/utils/env";
+
+export async function fetchApi<T>(url: string, init?: RequestInit) {
+	const baseUrl = env.VITE_API_BASE_URL;
 
 	try {
-		const response = await fetch(`${baseUrl}${url}`, {
-			...init,
-			headers: {
-				...init?.headers,
-				"X-Oxenti-Lab-Request-Id": crypto.randomUUID(),
-			},
-		});
+		const response = await fetch(`${baseUrl}${url}`, init);
 
+		// TODO: Check if a redirect can impact this
 		if (!response.ok) {
 			throw new Error(`Response status: ${response.status}`);
 		}
 
-		// TODO: Validate response status before returning data
-
-		const result = await response.json();
+		const result = (await response.json()) as T;
 
 		return result;
 	} catch (error: any) {

@@ -8,22 +8,8 @@ import { routeTree } from "./routeTree.gen";
 import "@/i18n";
 import "@/styles/globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { useUser } from "@/features/auth/store";
 import { baseSystem } from "@/themes/base";
-
-// Set up a Router instance
-const router = createRouter({
-	routeTree,
-	defaultPreload: "intent",
-	defaultStaleTime: 5000,
-	scrollRestoration: true,
-});
-
-// Register things for typesafety
-declare module "@tanstack/react-router" {
-	interface Register {
-		router: typeof router;
-	}
-}
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -34,11 +20,37 @@ const queryClient = new QueryClient({
 	},
 });
 
+// Set up a Router instance
+const router = createRouter({
+	routeTree,
+	defaultPreload: "intent",
+	defaultPreloadStaleTime: 0,
+	defaultStaleTime: 5000,
+	scrollRestoration: true,
+	context: {
+		user: null,
+		queryClient,
+	},
+});
+
+// Register things for typesafety
+declare module "@tanstack/react-router" {
+	interface Register {
+		router: typeof router;
+	}
+}
+
+function App() {
+	const user = useUser();
+
+	return <RouterProvider router={router} context={{ user }} />;
+}
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>
 		<ChakraProvider value={baseSystem}>
 			<QueryClientProvider client={queryClient}>
-				<RouterProvider router={router} />
+				<App />
 				<ReactQueryDevtools />
 				<Toaster />
 			</QueryClientProvider>

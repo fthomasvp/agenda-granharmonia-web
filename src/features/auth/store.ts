@@ -1,18 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-
-type User = { id: string; email: string };
-type Actions = {
-	setAuth: (payload: User) => void;
-	setRecoverEmail: (payload: string) => void;
-};
-
-type AuthState = {
-	recoverEmail: string;
-	user: User | null;
-	actions: Actions;
-};
+import type { AuthState } from "./types";
 
 const useAuthStore = create<AuthState>()(
 	devtools(
@@ -41,13 +30,15 @@ const useAuthStore = create<AuthState>()(
 			})),
 			{
 				name: "oxentilab:agenda-auth",
-				partialize: (state) => ({
-					user: state.user,
-					recoverEmail: state.recoverEmail,
-				}),
+				partialize: (state) => {
+					// Do not return unserializable data (e.g. functions)
+					const { actions: _, ...authState } = state;
+
+					return authState;
+				},
 				storage: createJSONStorage(() => localStorage, {
 					replacer(key, value) {
-						if (["user", "recoverEmail"].includes(key)) {
+						if (key === "state") {
 							const stringifiedData = JSON.stringify(value);
 
 							return btoa(stringifiedData);
@@ -56,7 +47,7 @@ const useAuthStore = create<AuthState>()(
 						return value;
 					},
 					reviver(key, value) {
-						if (["user", "recoverEmail"].includes(key)) {
+						if (key === "state") {
 							const rawData = atob(value as string);
 
 							return JSON.parse(rawData);

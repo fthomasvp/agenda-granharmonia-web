@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 // import { useNavigate } from "react-router-dom";
 
 import { GranHarmoniaLogo } from "../assets/images";
-import { HalfBall } from "./ui";
 
 export function NotFound() {
 	const { t } = useTranslation(["glossary"]);
@@ -12,8 +11,6 @@ export function NotFound() {
 
 	return (
 		<>
-			<HalfBall right={0} />
-
 			<Flex justify="center" mt="8">
 				<Image
 					src={GranHarmoniaLogo}

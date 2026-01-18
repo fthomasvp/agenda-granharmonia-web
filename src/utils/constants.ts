@@ -14,6 +14,7 @@ export const DATE_PATTERNS = {
 export const SECOND_IN_MS = 1000;
 
 /**
+ * TODO: Extract this logic to a component!!!
  * Use this property to manage links inside the Drawer.
  */
 export const MENU = [
