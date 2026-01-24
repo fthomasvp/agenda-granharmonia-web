@@ -1,10 +1,9 @@
 import {
 	Box,
 	Flex,
-	HStack,
-	Icon,
 	LinkBox,
 	LinkOverlay,
+	Skeleton,
 	Stack,
 	Text,
 	VStack,
@@ -12,26 +11,39 @@ import {
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import { FaChevronRight } from "react-icons/fa";
-import { Greeting, Loading } from "@/components/ui";
-import { useUser } from "@/features/auth/store";
+import { Greeting } from "@/components/ui";
 import { userHousesQueryOptions } from "@/features/user/queries";
 
-export const Route = createFileRoute("/(signed)/_mainLayout/location")({
-	loader: ({ context }) =>
+function HouseSkeleton() {
+	return (
+		<Box px={"7"} minHeight={"100vh"} w={"full"}>
+			<VStack gap={"8"} width={"full"}>
+				<VStack width={"full"} alignItems={"flex-start"}>
+					<Skeleton colorPalette={"blue"} height="4" width={"36%"} />
+					<Skeleton colorPalette={"blue"} height="4" width={"45%"} />
+				</VStack>
+
+				<Skeleton colorPalette={"blue"} height="60px" width={"full"} />
+			</VStack>
+		</Box>
+	);
+}
+
+export const Route = createFileRoute("/(authorized)/_authorized-layout/house")({
+	component: House,
+	loader: ({ context }) => {
+		// If you don't await the promise nor return it, the query will be started on the server and will be streamed to the client without blocking the SSR request
+		// See https://tanstack.com/router/latest/docs/integrations/query#prefetching-and-streaming
 		context.queryClient.ensureQueryData(
 			userHousesQueryOptions(context.user?.id || ""),
-		),
-	component: Location,
-	// TODO: Replace `Loading` with Skeleton for loading
-	pendingComponent: Loading,
-	// TODO: Add Error component
-	// errorComponent: CustomErrorComponentTBD
+		);
+	},
+	pendingComponent: HouseSkeleton,
 });
 
-function Location() {
+function House() {
 	const { t } = useTranslation(["glossary", "common"]);
-	const user = useUser();
+	const { user } = Route.useRouteContext();
 
 	const {
 		data: { data },
@@ -43,7 +55,7 @@ function Location() {
 				<Flex flexDir="column">
 					<Greeting
 						username={user?.firstName || ""}
-						message={t("selectYourApartment")}
+						message={t("selectYourHouse")}
 					/>
 				</Flex>
 
@@ -71,13 +83,6 @@ function Location() {
 										</VStack>
 									</LinkOverlay>
 								</VStack>
-								<HStack justify="center" pr="6">
-									<Icon
-										as={FaChevronRight}
-										color="blackAlpha.400"
-										boxSize="8"
-									/>
-								</HStack>
 							</Flex>
 						</LinkBox>
 					))}
@@ -86,8 +91,3 @@ function Location() {
 		</Box>
 	);
 }
-
-// TODO: Use message from locale files
-// if (!data?.length) {
-// 	return <Empty message="Não há dados" />;
-// }

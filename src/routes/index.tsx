@@ -12,7 +12,7 @@ export const Route = createFileRoute("/")({
 
 		// TODO: This should only happens when no House or Building are selected. If user has selected both, then redirect him to the /home page.
 		throw redirect({
-			to: "/location",
+			to: "/house",
 		});
 	},
 });

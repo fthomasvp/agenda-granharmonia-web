@@ -1,19 +1,19 @@
 {
 	"name": "agenda-granharmonia-web",
-	"private": true,
 	"version": "0.0.0",
+	"private": true,
+	"license": "MIT",
 	"type": "module",
 	"engines": {
-		"node": "22.x",
-		"pnpm": "10.x",
-		"npm": "Use pnpm@10.x to install dependencies",
-		"yarn": "Use pnpm@10.x to install dependencies"
+		"node": ">=22.x <24",
+		"pnpm": ">=10.x <11"
 	},
+	"packageManager": "pnpm@10.12.4",
 	"scripts": {
 		"build": "tsc -b && vite build",
 		"dev": "vite --host",
-		"format": "biome format",
-		"lint": "biome lint",
+		"format": "biome format --write src/",
+		"lint": "biome lint src/",
 		"preview": "vite preview",
 		"test": "vitest dev",
 		"test:ci": "vitest run",
@@ -59,7 +59,5 @@
 		"vite": "7.1.10",
 		"vite-tsconfig-paths": "5.1.4",
 		"vitest": "3.2.4"
-	},
-	"license": "MIT",
-	"packageManager": "pnpm@10.12.4"
+	}
 }

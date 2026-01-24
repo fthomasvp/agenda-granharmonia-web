@@ -22,10 +22,10 @@ import { loginSchema } from "@/features/auth/schemas";
 import { useAuthActions } from "@/features/auth/store";
 import type { AuthSignInProps } from "@/features/auth/types";
 
-export const Route = createFileRoute("/(auth)/_authLayout/login")({
+export const Route = createFileRoute("/login")({
 	beforeLoad: ({ context }) => {
 		if (context.user?.id) {
-			throw redirect({ to: "/location", replace: true });
+			throw redirect({ to: "/house", replace: true });
 		}
 	},
 	component: Login,
@@ -72,13 +72,13 @@ function Login() {
 		loginMutation.mutate(data, {
 			onSuccess: () => {
 				// Runs ONLY after the first onSuccess in useMutation
-				navigate({ to: "/location", replace: true });
+				navigate({ to: "/house", replace: true });
 			},
 		});
 	};
 
 	const handleForgotPassword = () => {
-		navigate({ to: "/forgot-password" });
+		navigate({ to: "/recover-pass/check-email" });
 	};
 
 	return (

@@ -11,7 +11,7 @@ import { instructions } from "@/utils/constants";
 
 // TODO: Redirect user to "/forgot-password" page if no e-mail is found in local storage
 
-export const Route = createFileRoute("/(auth)/_authLayout/verify-code")({
+export const Route = createFileRoute("/recover-pass/verify-code")({
 	component: VerifyCode,
 });
 
@@ -30,7 +30,7 @@ function VerifyCode() {
 		console.log("> VerifyCode :: data", data);
 
 		// INFO: Do not persist four digits code
-		navigate({ to: "/reset-password" });
+		navigate({ to: "/recover-pass/reset" });
 	};
 
 	return (

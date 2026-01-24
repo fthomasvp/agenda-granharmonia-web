@@ -6,11 +6,11 @@ import {
 	GymGreen,
 	PartyRoomPurple,
 	SwimmingPoolBlue,
-} from "../assets/images";
-import { Greeting } from "../components/ui";
-import { BookingOption } from "../features/home";
+} from "../../../assets/images";
+import { Greeting } from "../../../components/ui";
+import { BookingOption } from "../../../features/home";
 
-export const Route = createFileRoute("/home")({
+export const Route = createFileRoute("/(authorized)/_authorized-layout/home")({
 	component: Home,
 });
 
@@ -56,5 +56,5 @@ function Home() {
 				/>
 			</Flex>
 		</>
-	);
+	)
 }

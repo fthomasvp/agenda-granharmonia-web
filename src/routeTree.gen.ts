@@ -9,21 +9,21 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as HomeRouteImport } from './routes/home'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as signedMainLayoutRouteImport } from './routes/(signed)/_mainLayout'
-import { Route as bookingsBookingNewRouteImport } from './routes/(bookings)/booking-new'
-import { Route as bookingsBookingListRouteImport } from './routes/(bookings)/booking-list'
-import { Route as authAuthLayoutRouteImport } from './routes/(auth)/_authLayout'
-import { Route as signedMainLayoutLocationRouteImport } from './routes/(signed)/_mainLayout/location'
-import { Route as authAuthLayoutVerifyCodeRouteImport } from './routes/(auth)/_authLayout/verify-code'
-import { Route as authAuthLayoutResetPasswordRouteImport } from './routes/(auth)/_authLayout/reset-password'
-import { Route as authAuthLayoutLoginRouteImport } from './routes/(auth)/_authLayout/login'
-import { Route as authAuthLayoutForgotPasswordRouteImport } from './routes/(auth)/_authLayout/forgot-password'
+import { Route as RecoverPassVerifyCodeRouteImport } from './routes/recover-pass/verify-code'
+import { Route as RecoverPassResetRouteImport } from './routes/recover-pass/reset'
+import { Route as RecoverPassCheckEmailRouteImport } from './routes/recover-pass/check-email'
+import { Route as authorizedAuthorizedLayoutRouteImport } from './routes/(authorized)/_authorized-layout'
+import { Route as authorizedAuthorizedLayoutHouseRouteImport } from './routes/(authorized)/_authorized-layout/house'
+import { Route as authorizedAuthorizedLayoutHomeRouteImport } from './routes/(authorized)/_authorized-layout/home'
+import { Route as authorizedAuthorizedLayoutApartmentRouteImport } from './routes/(authorized)/_authorized-layout/apartment'
+import { Route as authorizedAuthorizedLayoutbookingsBookingNewRouteImport } from './routes/(authorized)/_authorized-layout/(bookings)/booking-new'
+import { Route as authorizedAuthorizedLayoutbookingsBookingListRouteImport } from './routes/(authorized)/_authorized-layout/(bookings)/booking-list'
 
-const HomeRoute = HomeRouteImport.update({
-  id: '/home',
-  path: '/home',
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,144 +31,151 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const signedMainLayoutRoute = signedMainLayoutRouteImport.update({
-  id: '/(signed)/_mainLayout',
+const RecoverPassVerifyCodeRoute = RecoverPassVerifyCodeRouteImport.update({
+  id: '/recover-pass/verify-code',
+  path: '/recover-pass/verify-code',
   getParentRoute: () => rootRouteImport,
 } as any)
-const bookingsBookingNewRoute = bookingsBookingNewRouteImport.update({
-  id: '/(bookings)/booking-new',
-  path: '/booking-new',
+const RecoverPassResetRoute = RecoverPassResetRouteImport.update({
+  id: '/recover-pass/reset',
+  path: '/recover-pass/reset',
   getParentRoute: () => rootRouteImport,
 } as any)
-const bookingsBookingListRoute = bookingsBookingListRouteImport.update({
-  id: '/(bookings)/booking-list',
-  path: '/booking-list',
+const RecoverPassCheckEmailRoute = RecoverPassCheckEmailRouteImport.update({
+  id: '/recover-pass/check-email',
+  path: '/recover-pass/check-email',
   getParentRoute: () => rootRouteImport,
 } as any)
-const authAuthLayoutRoute = authAuthLayoutRouteImport.update({
-  id: '/(auth)/_authLayout',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const signedMainLayoutLocationRoute =
-  signedMainLayoutLocationRouteImport.update({
-    id: '/location',
-    path: '/location',
-    getParentRoute: () => signedMainLayoutRoute,
+const authorizedAuthorizedLayoutRoute =
+  authorizedAuthorizedLayoutRouteImport.update({
+    id: '/(authorized)/_authorized-layout',
+    getParentRoute: () => rootRouteImport,
   } as any)
-const authAuthLayoutVerifyCodeRoute =
-  authAuthLayoutVerifyCodeRouteImport.update({
-    id: '/verify-code',
-    path: '/verify-code',
-    getParentRoute: () => authAuthLayoutRoute,
+const authorizedAuthorizedLayoutHouseRoute =
+  authorizedAuthorizedLayoutHouseRouteImport.update({
+    id: '/house',
+    path: '/house',
+    getParentRoute: () => authorizedAuthorizedLayoutRoute,
   } as any)
-const authAuthLayoutResetPasswordRoute =
-  authAuthLayoutResetPasswordRouteImport.update({
-    id: '/reset-password',
-    path: '/reset-password',
-    getParentRoute: () => authAuthLayoutRoute,
+const authorizedAuthorizedLayoutHomeRoute =
+  authorizedAuthorizedLayoutHomeRouteImport.update({
+    id: '/home',
+    path: '/home',
+    getParentRoute: () => authorizedAuthorizedLayoutRoute,
   } as any)
-const authAuthLayoutLoginRoute = authAuthLayoutLoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => authAuthLayoutRoute,
-} as any)
-const authAuthLayoutForgotPasswordRoute =
-  authAuthLayoutForgotPasswordRouteImport.update({
-    id: '/forgot-password',
-    path: '/forgot-password',
-    getParentRoute: () => authAuthLayoutRoute,
+const authorizedAuthorizedLayoutApartmentRoute =
+  authorizedAuthorizedLayoutApartmentRouteImport.update({
+    id: '/apartment',
+    path: '/apartment',
+    getParentRoute: () => authorizedAuthorizedLayoutRoute,
+  } as any)
+const authorizedAuthorizedLayoutbookingsBookingNewRoute =
+  authorizedAuthorizedLayoutbookingsBookingNewRouteImport.update({
+    id: '/(bookings)/booking-new',
+    path: '/booking-new',
+    getParentRoute: () => authorizedAuthorizedLayoutRoute,
+  } as any)
+const authorizedAuthorizedLayoutbookingsBookingListRoute =
+  authorizedAuthorizedLayoutbookingsBookingListRouteImport.update({
+    id: '/(bookings)/booking-list',
+    path: '/booking-list',
+    getParentRoute: () => authorizedAuthorizedLayoutRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/home': typeof HomeRoute
-  '/booking-list': typeof bookingsBookingListRoute
-  '/booking-new': typeof bookingsBookingNewRoute
-  '/forgot-password': typeof authAuthLayoutForgotPasswordRoute
-  '/login': typeof authAuthLayoutLoginRoute
-  '/reset-password': typeof authAuthLayoutResetPasswordRoute
-  '/verify-code': typeof authAuthLayoutVerifyCodeRoute
-  '/location': typeof signedMainLayoutLocationRoute
+  '/login': typeof LoginRoute
+  '/recover-pass/check-email': typeof RecoverPassCheckEmailRoute
+  '/recover-pass/reset': typeof RecoverPassResetRoute
+  '/recover-pass/verify-code': typeof RecoverPassVerifyCodeRoute
+  '/apartment': typeof authorizedAuthorizedLayoutApartmentRoute
+  '/home': typeof authorizedAuthorizedLayoutHomeRoute
+  '/house': typeof authorizedAuthorizedLayoutHouseRoute
+  '/booking-list': typeof authorizedAuthorizedLayoutbookingsBookingListRoute
+  '/booking-new': typeof authorizedAuthorizedLayoutbookingsBookingNewRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/home': typeof HomeRoute
-  '/booking-list': typeof bookingsBookingListRoute
-  '/booking-new': typeof bookingsBookingNewRoute
-  '/forgot-password': typeof authAuthLayoutForgotPasswordRoute
-  '/login': typeof authAuthLayoutLoginRoute
-  '/reset-password': typeof authAuthLayoutResetPasswordRoute
-  '/verify-code': typeof authAuthLayoutVerifyCodeRoute
-  '/location': typeof signedMainLayoutLocationRoute
+  '/login': typeof LoginRoute
+  '/recover-pass/check-email': typeof RecoverPassCheckEmailRoute
+  '/recover-pass/reset': typeof RecoverPassResetRoute
+  '/recover-pass/verify-code': typeof RecoverPassVerifyCodeRoute
+  '/apartment': typeof authorizedAuthorizedLayoutApartmentRoute
+  '/home': typeof authorizedAuthorizedLayoutHomeRoute
+  '/house': typeof authorizedAuthorizedLayoutHouseRoute
+  '/booking-list': typeof authorizedAuthorizedLayoutbookingsBookingListRoute
+  '/booking-new': typeof authorizedAuthorizedLayoutbookingsBookingNewRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/home': typeof HomeRoute
-  '/(auth)/_authLayout': typeof authAuthLayoutRouteWithChildren
-  '/(bookings)/booking-list': typeof bookingsBookingListRoute
-  '/(bookings)/booking-new': typeof bookingsBookingNewRoute
-  '/(signed)/_mainLayout': typeof signedMainLayoutRouteWithChildren
-  '/(auth)/_authLayout/forgot-password': typeof authAuthLayoutForgotPasswordRoute
-  '/(auth)/_authLayout/login': typeof authAuthLayoutLoginRoute
-  '/(auth)/_authLayout/reset-password': typeof authAuthLayoutResetPasswordRoute
-  '/(auth)/_authLayout/verify-code': typeof authAuthLayoutVerifyCodeRoute
-  '/(signed)/_mainLayout/location': typeof signedMainLayoutLocationRoute
+  '/login': typeof LoginRoute
+  '/(authorized)/_authorized-layout': typeof authorizedAuthorizedLayoutRouteWithChildren
+  '/recover-pass/check-email': typeof RecoverPassCheckEmailRoute
+  '/recover-pass/reset': typeof RecoverPassResetRoute
+  '/recover-pass/verify-code': typeof RecoverPassVerifyCodeRoute
+  '/(authorized)/_authorized-layout/apartment': typeof authorizedAuthorizedLayoutApartmentRoute
+  '/(authorized)/_authorized-layout/home': typeof authorizedAuthorizedLayoutHomeRoute
+  '/(authorized)/_authorized-layout/house': typeof authorizedAuthorizedLayoutHouseRoute
+  '/(authorized)/_authorized-layout/(bookings)/booking-list': typeof authorizedAuthorizedLayoutbookingsBookingListRoute
+  '/(authorized)/_authorized-layout/(bookings)/booking-new': typeof authorizedAuthorizedLayoutbookingsBookingNewRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/login'
+    | '/recover-pass/check-email'
+    | '/recover-pass/reset'
+    | '/recover-pass/verify-code'
+    | '/apartment'
     | '/home'
+    | '/house'
     | '/booking-list'
     | '/booking-new'
-    | '/forgot-password'
-    | '/login'
-    | '/reset-password'
-    | '/verify-code'
-    | '/location'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/login'
+    | '/recover-pass/check-email'
+    | '/recover-pass/reset'
+    | '/recover-pass/verify-code'
+    | '/apartment'
     | '/home'
+    | '/house'
     | '/booking-list'
     | '/booking-new'
-    | '/forgot-password'
-    | '/login'
-    | '/reset-password'
-    | '/verify-code'
-    | '/location'
   id:
     | '__root__'
     | '/'
-    | '/home'
-    | '/(auth)/_authLayout'
-    | '/(bookings)/booking-list'
-    | '/(bookings)/booking-new'
-    | '/(signed)/_mainLayout'
-    | '/(auth)/_authLayout/forgot-password'
-    | '/(auth)/_authLayout/login'
-    | '/(auth)/_authLayout/reset-password'
-    | '/(auth)/_authLayout/verify-code'
-    | '/(signed)/_mainLayout/location'
+    | '/login'
+    | '/(authorized)/_authorized-layout'
+    | '/recover-pass/check-email'
+    | '/recover-pass/reset'
+    | '/recover-pass/verify-code'
+    | '/(authorized)/_authorized-layout/apartment'
+    | '/(authorized)/_authorized-layout/home'
+    | '/(authorized)/_authorized-layout/house'
+    | '/(authorized)/_authorized-layout/(bookings)/booking-list'
+    | '/(authorized)/_authorized-layout/(bookings)/booking-new'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  HomeRoute: typeof HomeRoute
-  authAuthLayoutRoute: typeof authAuthLayoutRouteWithChildren
-  bookingsBookingListRoute: typeof bookingsBookingListRoute
-  bookingsBookingNewRoute: typeof bookingsBookingNewRoute
-  signedMainLayoutRoute: typeof signedMainLayoutRouteWithChildren
+  LoginRoute: typeof LoginRoute
+  authorizedAuthorizedLayoutRoute: typeof authorizedAuthorizedLayoutRouteWithChildren
+  RecoverPassCheckEmailRoute: typeof RecoverPassCheckEmailRoute
+  RecoverPassResetRoute: typeof RecoverPassResetRoute
+  RecoverPassVerifyCodeRoute: typeof RecoverPassVerifyCodeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/home': {
-      id: '/home'
-      path: '/home'
-      fullPath: '/home'
-      preLoaderRoute: typeof HomeRouteImport
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -178,108 +185,104 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(signed)/_mainLayout': {
-      id: '/(signed)/_mainLayout'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof signedMainLayoutRouteImport
+    '/recover-pass/verify-code': {
+      id: '/recover-pass/verify-code'
+      path: '/recover-pass/verify-code'
+      fullPath: '/recover-pass/verify-code'
+      preLoaderRoute: typeof RecoverPassVerifyCodeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(bookings)/booking-new': {
-      id: '/(bookings)/booking-new'
+    '/recover-pass/reset': {
+      id: '/recover-pass/reset'
+      path: '/recover-pass/reset'
+      fullPath: '/recover-pass/reset'
+      preLoaderRoute: typeof RecoverPassResetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recover-pass/check-email': {
+      id: '/recover-pass/check-email'
+      path: '/recover-pass/check-email'
+      fullPath: '/recover-pass/check-email'
+      preLoaderRoute: typeof RecoverPassCheckEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(authorized)/_authorized-layout': {
+      id: '/(authorized)/_authorized-layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof authorizedAuthorizedLayoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(authorized)/_authorized-layout/house': {
+      id: '/(authorized)/_authorized-layout/house'
+      path: '/house'
+      fullPath: '/house'
+      preLoaderRoute: typeof authorizedAuthorizedLayoutHouseRouteImport
+      parentRoute: typeof authorizedAuthorizedLayoutRoute
+    }
+    '/(authorized)/_authorized-layout/home': {
+      id: '/(authorized)/_authorized-layout/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof authorizedAuthorizedLayoutHomeRouteImport
+      parentRoute: typeof authorizedAuthorizedLayoutRoute
+    }
+    '/(authorized)/_authorized-layout/apartment': {
+      id: '/(authorized)/_authorized-layout/apartment'
+      path: '/apartment'
+      fullPath: '/apartment'
+      preLoaderRoute: typeof authorizedAuthorizedLayoutApartmentRouteImport
+      parentRoute: typeof authorizedAuthorizedLayoutRoute
+    }
+    '/(authorized)/_authorized-layout/(bookings)/booking-new': {
+      id: '/(authorized)/_authorized-layout/(bookings)/booking-new'
       path: '/booking-new'
       fullPath: '/booking-new'
-      preLoaderRoute: typeof bookingsBookingNewRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof authorizedAuthorizedLayoutbookingsBookingNewRouteImport
+      parentRoute: typeof authorizedAuthorizedLayoutRoute
     }
-    '/(bookings)/booking-list': {
-      id: '/(bookings)/booking-list'
+    '/(authorized)/_authorized-layout/(bookings)/booking-list': {
+      id: '/(authorized)/_authorized-layout/(bookings)/booking-list'
       path: '/booking-list'
       fullPath: '/booking-list'
-      preLoaderRoute: typeof bookingsBookingListRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(auth)/_authLayout': {
-      id: '/(auth)/_authLayout'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof authAuthLayoutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(signed)/_mainLayout/location': {
-      id: '/(signed)/_mainLayout/location'
-      path: '/location'
-      fullPath: '/location'
-      preLoaderRoute: typeof signedMainLayoutLocationRouteImport
-      parentRoute: typeof signedMainLayoutRoute
-    }
-    '/(auth)/_authLayout/verify-code': {
-      id: '/(auth)/_authLayout/verify-code'
-      path: '/verify-code'
-      fullPath: '/verify-code'
-      preLoaderRoute: typeof authAuthLayoutVerifyCodeRouteImport
-      parentRoute: typeof authAuthLayoutRoute
-    }
-    '/(auth)/_authLayout/reset-password': {
-      id: '/(auth)/_authLayout/reset-password'
-      path: '/reset-password'
-      fullPath: '/reset-password'
-      preLoaderRoute: typeof authAuthLayoutResetPasswordRouteImport
-      parentRoute: typeof authAuthLayoutRoute
-    }
-    '/(auth)/_authLayout/login': {
-      id: '/(auth)/_authLayout/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof authAuthLayoutLoginRouteImport
-      parentRoute: typeof authAuthLayoutRoute
-    }
-    '/(auth)/_authLayout/forgot-password': {
-      id: '/(auth)/_authLayout/forgot-password'
-      path: '/forgot-password'
-      fullPath: '/forgot-password'
-      preLoaderRoute: typeof authAuthLayoutForgotPasswordRouteImport
-      parentRoute: typeof authAuthLayoutRoute
+      preLoaderRoute: typeof authorizedAuthorizedLayoutbookingsBookingListRouteImport
+      parentRoute: typeof authorizedAuthorizedLayoutRoute
     }
   }
 }
 
-interface authAuthLayoutRouteChildren {
-  authAuthLayoutForgotPasswordRoute: typeof authAuthLayoutForgotPasswordRoute
-  authAuthLayoutLoginRoute: typeof authAuthLayoutLoginRoute
-  authAuthLayoutResetPasswordRoute: typeof authAuthLayoutResetPasswordRoute
-  authAuthLayoutVerifyCodeRoute: typeof authAuthLayoutVerifyCodeRoute
+interface authorizedAuthorizedLayoutRouteChildren {
+  authorizedAuthorizedLayoutApartmentRoute: typeof authorizedAuthorizedLayoutApartmentRoute
+  authorizedAuthorizedLayoutHomeRoute: typeof authorizedAuthorizedLayoutHomeRoute
+  authorizedAuthorizedLayoutHouseRoute: typeof authorizedAuthorizedLayoutHouseRoute
+  authorizedAuthorizedLayoutbookingsBookingListRoute: typeof authorizedAuthorizedLayoutbookingsBookingListRoute
+  authorizedAuthorizedLayoutbookingsBookingNewRoute: typeof authorizedAuthorizedLayoutbookingsBookingNewRoute
 }
 
-const authAuthLayoutRouteChildren: authAuthLayoutRouteChildren = {
-  authAuthLayoutForgotPasswordRoute: authAuthLayoutForgotPasswordRoute,
-  authAuthLayoutLoginRoute: authAuthLayoutLoginRoute,
-  authAuthLayoutResetPasswordRoute: authAuthLayoutResetPasswordRoute,
-  authAuthLayoutVerifyCodeRoute: authAuthLayoutVerifyCodeRoute,
-}
+const authorizedAuthorizedLayoutRouteChildren: authorizedAuthorizedLayoutRouteChildren =
+  {
+    authorizedAuthorizedLayoutApartmentRoute:
+      authorizedAuthorizedLayoutApartmentRoute,
+    authorizedAuthorizedLayoutHomeRoute: authorizedAuthorizedLayoutHomeRoute,
+    authorizedAuthorizedLayoutHouseRoute: authorizedAuthorizedLayoutHouseRoute,
+    authorizedAuthorizedLayoutbookingsBookingListRoute:
+      authorizedAuthorizedLayoutbookingsBookingListRoute,
+    authorizedAuthorizedLayoutbookingsBookingNewRoute:
+      authorizedAuthorizedLayoutbookingsBookingNewRoute,
+  }
 
-const authAuthLayoutRouteWithChildren = authAuthLayoutRoute._addFileChildren(
-  authAuthLayoutRouteChildren,
-)
-
-interface signedMainLayoutRouteChildren {
-  signedMainLayoutLocationRoute: typeof signedMainLayoutLocationRoute
-}
-
-const signedMainLayoutRouteChildren: signedMainLayoutRouteChildren = {
-  signedMainLayoutLocationRoute: signedMainLayoutLocationRoute,
-}
-
-const signedMainLayoutRouteWithChildren =
-  signedMainLayoutRoute._addFileChildren(signedMainLayoutRouteChildren)
+const authorizedAuthorizedLayoutRouteWithChildren =
+  authorizedAuthorizedLayoutRoute._addFileChildren(
+    authorizedAuthorizedLayoutRouteChildren,
+  )
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  HomeRoute: HomeRoute,
-  authAuthLayoutRoute: authAuthLayoutRouteWithChildren,
-  bookingsBookingListRoute: bookingsBookingListRoute,
-  bookingsBookingNewRoute: bookingsBookingNewRoute,
-  signedMainLayoutRoute: signedMainLayoutRouteWithChildren,
+  LoginRoute: LoginRoute,
+  authorizedAuthorizedLayoutRoute: authorizedAuthorizedLayoutRouteWithChildren,
+  RecoverPassCheckEmailRoute: RecoverPassCheckEmailRoute,
+  RecoverPassResetRoute: RecoverPassResetRoute,
+  RecoverPassVerifyCodeRoute: RecoverPassVerifyCodeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

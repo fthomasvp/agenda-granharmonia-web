@@ -38,7 +38,7 @@ export function Header() {
 	};
 
 	return (
-		<Flex flexDir="row" mb="8">
+		<Flex flexDir="row" mb="16">
 			{/* <Box>
 				<IconButton
 					variant="ghost"

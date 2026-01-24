@@ -2,7 +2,7 @@ import { Flex, VStack } from "@chakra-ui/react";
 import { Outlet } from "@tanstack/react-router";
 import { Header } from "@/components/navigation/Header";
 
-export function MainLayout() {
+export function AuthorizedLayout() {
 	return (
 		<Flex
 			data-element="main-layout"

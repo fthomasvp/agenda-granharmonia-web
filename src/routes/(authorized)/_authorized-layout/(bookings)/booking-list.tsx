@@ -2,12 +2,12 @@ import { Flex, Heading } from "@chakra-ui/react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { PartyRoomPurple } from "@/assets/images";
-import Loading from "@/components/ui/Loading";
 import { BookingCard } from "@/features/booking";
 
-export const Route = createFileRoute("/(bookings)/booking-list")({
+export const Route = createFileRoute(
+	"/(authorized)/_authorized-layout/(bookings)/booking-list",
+)({
 	component: BookingList,
-	pendingComponent: Loading,
 });
 
 function BookingList() {
@@ -49,5 +49,5 @@ function BookingList() {
 				</Flex>
 			))}
 		</>
-	)
+	);
 }

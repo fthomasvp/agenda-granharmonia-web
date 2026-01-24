@@ -5,35 +5,35 @@ import { FormProvider, type SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { FaInfoCircle } from "react-icons/fa";
 import { BackButton } from "@/components/navigation";
-import { FormResetPassword } from "@/features/auth/components/FormResetPassword";
-import { resetPasswordSchema } from "@/features/auth/schemas";
-import type { TResetPasswordType } from "@/features/auth/types";
+import { FormForgotPassword } from "@/features/auth/components/FormForgotPassword";
+import { forgotPasswordSchema } from "@/features/auth/schemas";
+import { useAuthActions, useRecoverEmail } from "@/features/auth/store";
+import type { TForgotPasswordType } from "@/features/auth/types";
+import { instructions } from "@/utils/constants";
 
-const resetPassInstructions = [
-	"resetPasswordInstructionOne",
-	"resetPasswordInstructionTwo",
-	"resetPasswordInstructionThree",
-];
-
-export const Route = createFileRoute("/(auth)/_authLayout/reset-password")({
-	component: ResetPassword,
+export const Route = createFileRoute("/recover-pass/check-email")({
+	component: ForgotPassword,
 });
 
-function ResetPassword() {
-	const { t } = useTranslation(["glossary"]);
-	// const navigate = Route.useNavigate();
+function ForgotPassword() {
+	const { t } = useTranslation(["common", "glossary", "validation"]);
+	const navigate = Route.useNavigate();
+	const { setRecoverEmail } = useAuthActions();
+	const recoverEmail = useRecoverEmail();
 
-	const methods = useForm<TResetPasswordType>({
-		resolver: zodResolver(resetPasswordSchema(t)),
+	const methods = useForm<TForgotPasswordType>({
+		resolver: zodResolver(forgotPasswordSchema(t)),
+		defaultValues: {
+			email: recoverEmail,
+		},
 	});
 
-	const onSubmit: SubmitHandler<TResetPasswordType> = (data) => {
-		console.log("> ResetPassword :: data", data);
+	const onSubmit: SubmitHandler<TForgotPasswordType> = (data) => {
+		console.log("> data", data);
 
-		// TODO: Navigate user to the homepage (already authenticated)
+		setRecoverEmail(data.email);
+		navigate({ to: "/recover-pass/verify-code" });
 	};
-
-	// TODO: Show toaster with this message: t("updatedPassword")
 
 	return (
 		<VStack gap={"8"}>
@@ -43,7 +43,9 @@ function ResetPassword() {
 				gap="4"
 				marginInline={"auto"}
 			>
-				<Heading fontWeight="semibold">{t("enterNewPassword")}</Heading>
+				<Heading fontWeight="bold">
+					{t("forgotPassword", { context: "question", ns: "glossary" })}
+				</Heading>
 			</VStack>
 
 			<VStack
@@ -53,7 +55,7 @@ function ResetPassword() {
 				marginInline={"auto"}
 			>
 				<List.Root gap={"5"}>
-					{resetPassInstructions.map((item) => (
+					{instructions.map((item) => (
 						<List.Item key={item} display="flex" alignItems="flex-start">
 							<List.Indicator asChild>
 								<FaInfoCircle />
@@ -67,12 +69,12 @@ function ResetPassword() {
 			<VStack gap={"6"} w={"full"}>
 				<Flex flexDir="column" w={"full"}>
 					<FormProvider {...methods}>
-						<FormResetPassword onSubmit={onSubmit} />
+						<FormForgotPassword onSubmit={onSubmit} />
 					</FormProvider>
 				</Flex>
 
 				{/* TODO: Create a Button component (e.g. "Link" variant) */}
-				<BackButton path="/verify-code" />
+				<BackButton path="/login" />
 			</VStack>
 		</VStack>
 	);
