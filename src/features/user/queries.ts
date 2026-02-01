@@ -1,9 +1,17 @@
 import { queryOptions } from "@tanstack/react-query";
 import { userKeys } from "./query-keys";
-import { fetchUserHouses } from "./user-api";
+import { fetchUserApartments, fetchUserHouses } from "./user-api";
 
+// TODO: Perhaps move to `Owner`
 export const userHousesQueryOptions = (userId: string) =>
 	queryOptions({
-		queryKey: userKeys.detail(userId),
+		queryKey: userKeys.listUserHouses(userId),
 		queryFn: fetchUserHouses,
+	});
+
+// TODO: Perhaps move to `Owner`
+export const userApartmentsQueryOptions = (userId: string, houseId: string) =>
+	queryOptions({
+		queryKey: userKeys.listUserApartments(userId, houseId),
+		queryFn: fetchUserApartments,
 	});

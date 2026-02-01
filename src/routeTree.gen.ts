@@ -18,8 +18,8 @@ import { Route as authorizedAuthorizedLayoutRouteImport } from './routes/(author
 import { Route as authorizedAuthorizedLayoutHouseRouteImport } from './routes/(authorized)/_authorized-layout/house'
 import { Route as authorizedAuthorizedLayoutHomeRouteImport } from './routes/(authorized)/_authorized-layout/home'
 import { Route as authorizedAuthorizedLayoutApartmentRouteImport } from './routes/(authorized)/_authorized-layout/apartment'
-import { Route as authorizedAuthorizedLayoutbookingsBookingNewRouteImport } from './routes/(authorized)/_authorized-layout/(bookings)/booking-new'
-import { Route as authorizedAuthorizedLayoutbookingsBookingListRouteImport } from './routes/(authorized)/_authorized-layout/(bookings)/booking-list'
+import { Route as authorizedAuthorizedLayoutBookingIndexRouteImport } from './routes/(authorized)/_authorized-layout/booking/index'
+import { Route as authorizedAuthorizedLayoutBookingCreateRouteImport } from './routes/(authorized)/_authorized-layout/booking/create'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -69,16 +69,16 @@ const authorizedAuthorizedLayoutApartmentRoute =
     path: '/apartment',
     getParentRoute: () => authorizedAuthorizedLayoutRoute,
   } as any)
-const authorizedAuthorizedLayoutbookingsBookingNewRoute =
-  authorizedAuthorizedLayoutbookingsBookingNewRouteImport.update({
-    id: '/(bookings)/booking-new',
-    path: '/booking-new',
+const authorizedAuthorizedLayoutBookingIndexRoute =
+  authorizedAuthorizedLayoutBookingIndexRouteImport.update({
+    id: '/booking/',
+    path: '/booking/',
     getParentRoute: () => authorizedAuthorizedLayoutRoute,
   } as any)
-const authorizedAuthorizedLayoutbookingsBookingListRoute =
-  authorizedAuthorizedLayoutbookingsBookingListRouteImport.update({
-    id: '/(bookings)/booking-list',
-    path: '/booking-list',
+const authorizedAuthorizedLayoutBookingCreateRoute =
+  authorizedAuthorizedLayoutBookingCreateRouteImport.update({
+    id: '/booking/create',
+    path: '/booking/create',
     getParentRoute: () => authorizedAuthorizedLayoutRoute,
   } as any)
 
@@ -91,8 +91,8 @@ export interface FileRoutesByFullPath {
   '/apartment': typeof authorizedAuthorizedLayoutApartmentRoute
   '/home': typeof authorizedAuthorizedLayoutHomeRoute
   '/house': typeof authorizedAuthorizedLayoutHouseRoute
-  '/booking-list': typeof authorizedAuthorizedLayoutbookingsBookingListRoute
-  '/booking-new': typeof authorizedAuthorizedLayoutbookingsBookingNewRoute
+  '/booking/create': typeof authorizedAuthorizedLayoutBookingCreateRoute
+  '/booking': typeof authorizedAuthorizedLayoutBookingIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -103,8 +103,8 @@ export interface FileRoutesByTo {
   '/apartment': typeof authorizedAuthorizedLayoutApartmentRoute
   '/home': typeof authorizedAuthorizedLayoutHomeRoute
   '/house': typeof authorizedAuthorizedLayoutHouseRoute
-  '/booking-list': typeof authorizedAuthorizedLayoutbookingsBookingListRoute
-  '/booking-new': typeof authorizedAuthorizedLayoutbookingsBookingNewRoute
+  '/booking/create': typeof authorizedAuthorizedLayoutBookingCreateRoute
+  '/booking': typeof authorizedAuthorizedLayoutBookingIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -117,8 +117,8 @@ export interface FileRoutesById {
   '/(authorized)/_authorized-layout/apartment': typeof authorizedAuthorizedLayoutApartmentRoute
   '/(authorized)/_authorized-layout/home': typeof authorizedAuthorizedLayoutHomeRoute
   '/(authorized)/_authorized-layout/house': typeof authorizedAuthorizedLayoutHouseRoute
-  '/(authorized)/_authorized-layout/(bookings)/booking-list': typeof authorizedAuthorizedLayoutbookingsBookingListRoute
-  '/(authorized)/_authorized-layout/(bookings)/booking-new': typeof authorizedAuthorizedLayoutbookingsBookingNewRoute
+  '/(authorized)/_authorized-layout/booking/create': typeof authorizedAuthorizedLayoutBookingCreateRoute
+  '/(authorized)/_authorized-layout/booking/': typeof authorizedAuthorizedLayoutBookingIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,8 +131,8 @@ export interface FileRouteTypes {
     | '/apartment'
     | '/home'
     | '/house'
-    | '/booking-list'
-    | '/booking-new'
+    | '/booking/create'
+    | '/booking'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -143,8 +143,8 @@ export interface FileRouteTypes {
     | '/apartment'
     | '/home'
     | '/house'
-    | '/booking-list'
-    | '/booking-new'
+    | '/booking/create'
+    | '/booking'
   id:
     | '__root__'
     | '/'
@@ -156,8 +156,8 @@ export interface FileRouteTypes {
     | '/(authorized)/_authorized-layout/apartment'
     | '/(authorized)/_authorized-layout/home'
     | '/(authorized)/_authorized-layout/house'
-    | '/(authorized)/_authorized-layout/(bookings)/booking-list'
-    | '/(authorized)/_authorized-layout/(bookings)/booking-new'
+    | '/(authorized)/_authorized-layout/booking/create'
+    | '/(authorized)/_authorized-layout/booking/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -234,18 +234,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authorizedAuthorizedLayoutApartmentRouteImport
       parentRoute: typeof authorizedAuthorizedLayoutRoute
     }
-    '/(authorized)/_authorized-layout/(bookings)/booking-new': {
-      id: '/(authorized)/_authorized-layout/(bookings)/booking-new'
-      path: '/booking-new'
-      fullPath: '/booking-new'
-      preLoaderRoute: typeof authorizedAuthorizedLayoutbookingsBookingNewRouteImport
+    '/(authorized)/_authorized-layout/booking/': {
+      id: '/(authorized)/_authorized-layout/booking/'
+      path: '/booking'
+      fullPath: '/booking'
+      preLoaderRoute: typeof authorizedAuthorizedLayoutBookingIndexRouteImport
       parentRoute: typeof authorizedAuthorizedLayoutRoute
     }
-    '/(authorized)/_authorized-layout/(bookings)/booking-list': {
-      id: '/(authorized)/_authorized-layout/(bookings)/booking-list'
-      path: '/booking-list'
-      fullPath: '/booking-list'
-      preLoaderRoute: typeof authorizedAuthorizedLayoutbookingsBookingListRouteImport
+    '/(authorized)/_authorized-layout/booking/create': {
+      id: '/(authorized)/_authorized-layout/booking/create'
+      path: '/booking/create'
+      fullPath: '/booking/create'
+      preLoaderRoute: typeof authorizedAuthorizedLayoutBookingCreateRouteImport
       parentRoute: typeof authorizedAuthorizedLayoutRoute
     }
   }
@@ -255,8 +255,8 @@ interface authorizedAuthorizedLayoutRouteChildren {
   authorizedAuthorizedLayoutApartmentRoute: typeof authorizedAuthorizedLayoutApartmentRoute
   authorizedAuthorizedLayoutHomeRoute: typeof authorizedAuthorizedLayoutHomeRoute
   authorizedAuthorizedLayoutHouseRoute: typeof authorizedAuthorizedLayoutHouseRoute
-  authorizedAuthorizedLayoutbookingsBookingListRoute: typeof authorizedAuthorizedLayoutbookingsBookingListRoute
-  authorizedAuthorizedLayoutbookingsBookingNewRoute: typeof authorizedAuthorizedLayoutbookingsBookingNewRoute
+  authorizedAuthorizedLayoutBookingCreateRoute: typeof authorizedAuthorizedLayoutBookingCreateRoute
+  authorizedAuthorizedLayoutBookingIndexRoute: typeof authorizedAuthorizedLayoutBookingIndexRoute
 }
 
 const authorizedAuthorizedLayoutRouteChildren: authorizedAuthorizedLayoutRouteChildren =
@@ -265,10 +265,10 @@ const authorizedAuthorizedLayoutRouteChildren: authorizedAuthorizedLayoutRouteCh
       authorizedAuthorizedLayoutApartmentRoute,
     authorizedAuthorizedLayoutHomeRoute: authorizedAuthorizedLayoutHomeRoute,
     authorizedAuthorizedLayoutHouseRoute: authorizedAuthorizedLayoutHouseRoute,
-    authorizedAuthorizedLayoutbookingsBookingListRoute:
-      authorizedAuthorizedLayoutbookingsBookingListRoute,
-    authorizedAuthorizedLayoutbookingsBookingNewRoute:
-      authorizedAuthorizedLayoutbookingsBookingNewRoute,
+    authorizedAuthorizedLayoutBookingCreateRoute:
+      authorizedAuthorizedLayoutBookingCreateRoute,
+    authorizedAuthorizedLayoutBookingIndexRoute:
+      authorizedAuthorizedLayoutBookingIndexRoute,
   }
 
 const authorizedAuthorizedLayoutRouteWithChildren =

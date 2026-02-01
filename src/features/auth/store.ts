@@ -3,12 +3,16 @@ import { createJSONStorage, devtools, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import type { AuthState } from "./types";
 
-const useAuthStore = create<AuthState>()(
+const initialState = {
+	recoverEmail: "",
+	user: null,
+};
+
+export const useAuthStore = create<AuthState>()(
 	devtools(
 		persist(
 			immer((set) => ({
-				recoverEmail: "",
-				user: null,
+				...initialState,
 				actions: {
 					setAuth: (payload) =>
 						set(

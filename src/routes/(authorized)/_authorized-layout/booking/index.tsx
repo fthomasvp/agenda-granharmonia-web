@@ -5,7 +5,7 @@ import { PartyRoomPurple } from "@/assets/images";
 import { BookingCard } from "@/features/booking";
 
 export const Route = createFileRoute(
-	"/(authorized)/_authorized-layout/(bookings)/booking-list",
+	"/(authorized)/_authorized-layout/booking/",
 )({
 	component: BookingList,
 });
@@ -49,5 +49,5 @@ function BookingList() {
 				</Flex>
 			))}
 		</>
-	);
+	)
 }

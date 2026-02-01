@@ -51,7 +51,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 		<ChakraProvider value={baseSystem}>
 			<QueryClientProvider client={queryClient}>
 				<App />
-				<ReactQueryDevtools />
+				<ReactQueryDevtools buttonPosition="bottom-left" />
 				<Toaster />
 			</QueryClientProvider>
 		</ChakraProvider>

@@ -1,5 +1,9 @@
 import { dayjs } from "@/lib/dayjs";
-import { DATE_PATTERNS } from "@/utils/constants";
+
+const DATE_PATTERNS = {
+	ISO_8601: "YYYY-MM-DD",
+	BRAZILIAN: "DD/MM/YYYY",
+};
 
 /**
  * Get current UTC date considering timezone.

@@ -1,91 +1,85 @@
-import {
-	Box,
-	Flex,
-	HStack,
-	Icon,
-	LinkBox,
-	LinkOverlay,
-	Stack,
-	Text,
-	VStack,
-} from "@chakra-ui/react";
+import { Box, Button, Skeleton, Stack, Text, VStack } from "@chakra-ui/react";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import { FaChevronRight } from "react-icons/fa";
+import { z } from "zod";
 import { Greeting } from "@/components/ui";
-import { useUser } from "@/features/auth/store";
-import { userHousesQueryOptions } from "@/features/user/queries";
+import { userApartmentsQueryOptions } from "@/features/user/queries";
+
+const apartmentSearchSchema = z.object({
+	houseId: z.string(),
+});
+
+function ApartmentSkeleton() {
+	return (
+		<Box px={"7"} minHeight={"100vh"} w={"full"}>
+			<VStack gap={"8"} width={"full"}>
+				<VStack width={"full"} alignItems={"flex-start"}>
+					<Skeleton colorPalette={"blue"} height="4" width={"36%"} />
+					<Skeleton colorPalette={"blue"} height="4" width={"45%"} />
+				</VStack>
+
+				<Skeleton colorPalette={"blue"} height="60px" width={"full"} />
+			</VStack>
+		</Box>
+	);
+}
 
 export const Route = createFileRoute(
 	"/(authorized)/_authorized-layout/apartment",
 )({
-	loader: ({ context }) =>
+	component: Apartment,
+	validateSearch: (search) => apartmentSearchSchema.parse(search),
+	loaderDeps: ({ search: { houseId } }) => ({ houseId }),
+	loader: ({ context, deps }) => {
+		const userId = context.user?.id || "";
+		const houseId = deps.houseId;
 		context.queryClient.ensureQueryData(
-			userHousesQueryOptions(context.user?.id || ""),
-		),
-	component: Location,
-	// TODO: Add Skeleton for loading
-	// TODO: Add Error component
-	// errorComponent: CustomErrorComponentTBD
+			userApartmentsQueryOptions(userId, houseId),
+		);
+	},
+	pendingComponent: ApartmentSkeleton,
 });
 
-function Location() {
+function Apartment() {
 	const { t } = useTranslation(["glossary", "common"]);
-	const user = useUser();
+	const { user } = Route.useRouteContext();
+	const { houseId } = Route.useLoaderDeps();
+
+	const userId = user?.id || "";
 
 	const {
 		data: { data },
-	} = useSuspenseQuery(userHousesQueryOptions(user?.id || ""));
+	} = useSuspenseQuery(userApartmentsQueryOptions(userId, houseId));
 
 	return (
 		<Box px={"7"} minHeight={"100vh"} w={"full"}>
 			<Stack flexDir={"column"} gap={"8"}>
-				<Flex flexDir="column">
-					<Greeting
-						username={user?.firstName || ""}
-						message={t("selectYourApartment")}
-					/>
-				</Flex>
+				<Greeting
+					username={user?.firstName || ""}
+					message={t("selectYourApartment")}
+				/>
 
-				<Stack flexDir="column">
-					{data.items.map(({ id, name }) => (
-						<LinkBox key={id} as="div" display="flex" flexDir="row">
-							<Flex
-								flex={1}
-								align="center"
-								justifyContent="space-between"
-								borderRadius="md"
-								shadow="md"
-								border="1px"
-							>
-								<VStack py="4">
-									<LinkOverlay href="/home">
-										<VStack align="flex-start" flexWrap="wrap" px="4">
-											<Text
-												color="blackAlpha.400"
-												fontSize={["lg", "xl", "2xl"]}
-												fontWeight="semibold"
-											>
-												{name}
-											</Text>
-										</VStack>
-									</LinkOverlay>
-								</VStack>
-								<HStack justify="center" pr="6">
-									<Icon
-										as={FaChevronRight}
-										color="blackAlpha.400"
-										boxSize="8"
-									/>
-								</HStack>
-							</Flex>
-						</LinkBox>
+				<VStack alignItems={"flex-start"} width={"full"}>
+					{data?.items?.map(({ id, tower, door }) => (
+						<Button
+							key={id}
+							asChild
+							justifyContent={"flex-start"}
+							width={"full"}
+							py={"6"}
+						>
+							<Link to="/home">
+								<Text fontWeight="semibold">
+									{door} - {tower}
+								</Text>
+							</Link>
+						</Button>
 					))}
-				</Stack>
+				</VStack>
 			</Stack>
 		</Box>
-	)
+	);
 }
 
 // TODO: Use message from locale files

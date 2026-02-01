@@ -1,134 +1,117 @@
 import {
-	Box,
 	Button,
 	CloseButton,
 	Drawer,
-	// Divider,
-	DrawerBody,
-	DrawerContent,
-	DrawerFooter,
-	DrawerHeader,
-	// DrawerOverlay,
-	Flex,
+	HStack,
 	IconButton,
-	Image,
+	Link,
 	Portal,
-	useDisclosure,
 	VStack,
 } from "@chakra-ui/react";
+import { useNavigate, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FaBars, FaSignOutAlt } from "react-icons/fa";
-import { clearAuthStorage } from "@/features/auth/store";
-import { MENU } from "@/utils/constants";
-import { GranHarmoniaLogo } from "../../assets/images";
-import MenuItem from "./MenuItem";
+import { FaBars, FaBell, FaCalendar, FaHome, FaRegBell } from "react-icons/fa";
+import { clearAuthStorage, useAuthActions } from "@/features/auth/store";
+
+const MOCK_NOTIFICATION = 1;
+
+function Logo() {
+	return (
+		<VStack gap={"1px"} alignItems={"flex-end"}>
+			<p>GranHarmonia</p>
+			<p>Agenda</p>
+		</VStack>
+	);
+}
 
 export function Header() {
 	const { t } = useTranslation(["common"]);
+	const router = useRouter();
+	const navigate = useNavigate();
+	const { setAuth } = useAuthActions();
 	const [open, setOpen] = useState(false);
 
-	// TODO: Remove cookies, storage and trigger invalidations
-	// TODO: Redirect to /login page
-	const logout = () => {
-		clearAuthStorage();
-		// onClose();
+	const toggle = () => {
+		setOpen(!open);
+	};
 
-		document.location.reload();
+	// TODO: Remove cookies, state, storage and trigger invalidations
+	const logout = () => {
+		toggle();
+		setAuth(null);
+		clearAuthStorage();
+		router.invalidate();
+		setTimeout(() => {
+			navigate({ to: "/login", replace: true });
+		}, 1000);
 	};
 
 	return (
-		<Flex flexDir="row" mb="16">
-			{/* <Box>
-				<IconButton
-					variant="ghost"
-					aria-label="drawer menu button"
-					// icon={<FaBars />}
-					onClick={onOpen}
-				/>
-			</Box> */}
+		<HStack
+			data-block={"header"}
+			bg={"blue.500"}
+			mb="16"
+			py={"11px"}
+			px={"5"}
+			justifyContent={"space-between"}
+			gap={"2"}
+			borderBottomStartRadius={"6px"}
+			borderBottomEndRadius={"6px"}
+		>
+			{/* Hamburger Menu + Logo */}
+			<HStack gap={"2"}>
+				<Drawer.Root open={open} onOpenChange={toggle} placement={"start"}>
+					<Drawer.Trigger asChild>
+						<IconButton aria-label="Open menu" variant={"outline"}>
+							<FaBars color="white" />
+						</IconButton>
+					</Drawer.Trigger>
+					<Portal>
+						<Drawer.Backdrop />
+						<Drawer.Positioner>
+							<Drawer.Content>
+								<Drawer.Header bg={"blue.500"} maxHeight={"71px"}>
+									<Logo />
+								</Drawer.Header>
 
-			{/* <Box ml="3">
-				<Image
-					alt="Blue Gran Harmonia word with orange Agenda word below"
-					src={GranHarmoniaLogo}
-					w="32"
-				/>
-			</Box> */}
+								<Drawer.Body>
+									<VStack alignItems="flex-start" gap="4">
+										<Button asChild variant={"ghost"}>
+											<Link href="/home">
+												<FaHome /> Home
+											</Link>
+										</Button>
+										<Button asChild variant={"ghost"}>
+											<Link href="/booking">
+												<FaCalendar /> {t("bookings")}
+											</Link>
+										</Button>
+									</VStack>
+								</Drawer.Body>
 
-			<Drawer.Root open={open} onOpenChange={(e) => setOpen(e.open)}>
-				<Drawer.Trigger asChild>
-					<Button variant="outline" size="sm">
-						Open Drawer
-					</Button>
-				</Drawer.Trigger>
-				<Portal>
-					<Drawer.Backdrop />
-					<Drawer.Positioner>
-						<Drawer.Content>
-							<Drawer.Header>
-								<Drawer.Title>Drawer Title</Drawer.Title>
-							</Drawer.Header>
-							<Drawer.Body>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-									do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-								</p>
-							</Drawer.Body>
-							<Drawer.Footer>
-								<Button variant="outline" onClick={logout} w={"full"}>
-									Logout
-								</Button>
-							</Drawer.Footer>
-							<Drawer.CloseTrigger asChild>
-								<CloseButton size="sm" />
-							</Drawer.CloseTrigger>
-						</Drawer.Content>
-					</Drawer.Positioner>
-				</Portal>
-			</Drawer.Root>
+								<Drawer.Footer>
+									<Button variant="outline" onClick={logout} w={"full"}>
+										Logout
+									</Button>
+								</Drawer.Footer>
 
-			{/* <Drawer isOpen={isOpen} onClose={onClose} placement="left">
-				<DrawerOverlay />
+								<Drawer.CloseTrigger asChild>
+									<CloseButton size="sm" />
+								</Drawer.CloseTrigger>
+							</Drawer.Content>
+						</Drawer.Positioner>
+					</Portal>
+				</Drawer.Root>
 
-				<DrawerContent>
-					<DrawerHeader>
-						<Image
-							alt="Blue Gran Harmonia word with orange Agenda word below"
-							src={GranHarmoniaLogo}
-							w="32"
-						/>
-					</DrawerHeader>
+				<Logo />
+			</HStack>
 
-					<Divider />
-
-					<DrawerBody>
-						<VStack alignItems="flex-start" spacing="4">
-							{MENU.map((item) => (
-								<MenuItem
-									key={crypto.randomUUID()}
-									icon={item.icon}
-									name={item.name}
-									path={item.path}
-								/>
-							))}
-						</VStack>
-					</DrawerBody>
-
-					<Divider />
-
-					<DrawerFooter>
-						<Button
-							variant="ghost"
-							mr="3"
-							leftIcon={<FaSignOutAlt />}
-							onClick={handleLogout}
-						>
-							{t("logout")}
-						</Button>
-					</DrawerFooter>
-				</DrawerContent>
-			</Drawer> */}
-		</Flex>
+			<HStack data-block={"notifications"}>
+				<IconButton aria-label="Open notifications" rounded={"full"}>
+					{MOCK_NOTIFICATION > 0 ? <FaBell /> : <FaRegBell />}
+				</IconButton>
+			</HStack>
+		</HStack>
 	);
 }

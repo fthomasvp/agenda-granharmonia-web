@@ -1,15 +1,6 @@
-import {
-	Box,
-	Flex,
-	LinkBox,
-	LinkOverlay,
-	Skeleton,
-	Stack,
-	Text,
-	VStack,
-} from "@chakra-ui/react";
+import { Box, Button, Skeleton, Text, VStack } from "@chakra-ui/react";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Greeting } from "@/components/ui";
 import { userHousesQueryOptions } from "@/features/user/queries";
@@ -51,43 +42,33 @@ function House() {
 
 	return (
 		<Box px={"7"} minHeight={"100vh"} w={"full"}>
-			<Stack flexDir={"column"} gap={"8"}>
-				<Flex flexDir="column">
-					<Greeting
-						username={user?.firstName || ""}
-						message={t("selectYourHouse")}
-					/>
-				</Flex>
+			<VStack alignItems={"flex-start"} gap={"8"}>
+				<Greeting
+					username={user?.firstName || ""}
+					message={t("selectYourHouse")}
+				/>
 
-				<Stack flexDir="column">
+				<VStack alignItems={"flex-start"} width={"full"}>
 					{data.items.map(({ id, name }) => (
-						<LinkBox key={id} as="div" display="flex" flexDir="row">
-							<Flex
-								flex={1}
-								align="center"
-								justifyContent="space-between"
-								borderRadius="md"
-								shadow="md"
-								border="1px"
+						<Button
+							key={id}
+							asChild
+							justifyContent={"flex-start"}
+							width={"full"}
+							py={"6"}
+						>
+							<Link
+								to="/apartment"
+								search={{
+									houseId: id,
+								}}
 							>
-								<VStack py="4">
-									<LinkOverlay href="/home">
-										<VStack align="flex-start" flexWrap="wrap" px="4">
-											<Text
-												color="blackAlpha.400"
-												fontSize={["lg", "xl", "2xl"]}
-												fontWeight="semibold"
-											>
-												{name}
-											</Text>
-										</VStack>
-									</LinkOverlay>
-								</VStack>
-							</Flex>
-						</LinkBox>
+								<Text fontWeight="semibold">{name}</Text>
+							</Link>
+						</Button>
 					))}
-				</Stack>
-			</Stack>
+				</VStack>
+			</VStack>
 		</Box>
 	);
 }

@@ -10,7 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { FormProvider, type SubmitHandler, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { GranHarmoniaLogo } from "@/assets/images";
@@ -19,15 +20,10 @@ import { toaster } from "@/components/ui/toaster";
 import { signInRequest } from "@/features/auth/api";
 import { FormLogin } from "@/features/auth/components/FormLogin";
 import { loginSchema } from "@/features/auth/schemas";
-import { useAuthActions } from "@/features/auth/store";
+import { useAuthActions, useUser } from "@/features/auth/store";
 import type { AuthSignInProps } from "@/features/auth/types";
 
 export const Route = createFileRoute("/login")({
-	beforeLoad: ({ context }) => {
-		if (context.user?.id) {
-			throw redirect({ to: "/house", replace: true });
-		}
-	},
 	component: Login,
 });
 
@@ -35,6 +31,7 @@ function Login() {
 	const navigate = Route.useNavigate();
 	const { t } = useTranslation(["common", "validation", "glossary"]);
 	const { setAuth } = useAuthActions();
+	const user = useUser();
 
 	const loginForm = useForm<AuthSignInProps>({
 		resolver: zodResolver(loginSchema(t)),
@@ -80,6 +77,15 @@ function Login() {
 	const handleForgotPassword = () => {
 		navigate({ to: "/recover-pass/check-email" });
 	};
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: Init render
+	useEffect(() => {
+		// Redirect to `/house` page if user has already signed in
+		// TODO: Perhaps changing destination page based on store state.
+		if (user?.id) {
+			navigate({ to: "/house", replace: true });
+		}
+	}, []);
 
 	return (
 		<>

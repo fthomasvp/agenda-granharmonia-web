@@ -14,14 +14,14 @@ export type User = {
 	updatedAt: string;
 };
 
-export type Actions = {
-	setAuth: (payload: User) => void;
-	setRecoverEmail: (payload: string) => void;
+export type AuthActions = {
+	setAuth: (payload: AuthState["user"]) => void;
+	setRecoverEmail: (payload: AuthState["recoverEmail"]) => void;
 };
 export type AuthState = {
 	recoverEmail: string;
 	user: User | null;
-	actions: Actions;
+	actions: AuthActions;
 };
 
 export type TForgotPasswordType = Omit<AuthSignInProps, "password">;

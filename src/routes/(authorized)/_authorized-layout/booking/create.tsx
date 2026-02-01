@@ -15,7 +15,7 @@ import {
 import { useAlertActions, useAlertIsOpen } from "@/features/ui";
 import { formatDateToISO8601, getCurrentDate } from "@/utils/format-date";
 
-export const Route = createFileRoute("/(authorized)/_authorized-layout/(bookings)/booking-new")({
+export const Route = createFileRoute("/(authorized)/_authorized-layout/booking/create")({
 	component: BookingNew,
 });
 
